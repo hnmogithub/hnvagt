@@ -12,6 +12,20 @@ class user extends baseArray
     {
         parent::__construct ( 'users', 'id' );
 
-        
+        $row = cache (DB)->get ('users', $id );
+        if ( $row == null )
+        {
+            $row = database(DB)->cache ('users', 'id', '
+                SELECT
+                    *
+                FROM
+                    `users`
+                WHERE
+                    `id` = ?
+                LIMIT 1
+            ', [ $id ] )->fetchOne ();
+        }
+
+        $this->data = $row;
     }
 }

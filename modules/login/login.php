@@ -10,14 +10,17 @@ class login
 
     public function run ()
     {
-        database ('vagt')->cache ( 'users', 'id', '
+        database (DB)->cache ( 'users', 'id', '
             SELECT
                 *
             FROM
                 `users`
         ')->each ( function ( $row )
         {
-            var_dump ( $row );
+            
         } );
+
+        $user = users::byId ( 2 );
+        var_dump ( $user );
     }
 }

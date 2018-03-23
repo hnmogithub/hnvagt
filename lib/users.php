@@ -10,7 +10,7 @@ class users
      */
     static public function byName ( string $name )
     {
-        $result = database ('vagt')->cache ('users', 'id', '
+        $result = database (DB)->cache ('users', 'id', '
             SELECT
                 *
             FROM
@@ -21,7 +21,7 @@ class users
 
         if ( $result->length () > 0 )
         {
-            
+
         }
         else
         {
