@@ -4,8 +4,11 @@ class login
 {
     public function __construct ()
     {
-        echo \schedule::lastModule ();
+        schedule::jobAdd ( 1, [ $this, 'run' ] );
+    }
 
-
+    public function run ()
+    {
+        echo schedule::lastModule ();
     }
 }
