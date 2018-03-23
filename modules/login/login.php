@@ -2,10 +2,8 @@
 
 class login
 {
-    public function __construct ( $a )
+    public function __construct ()
     {
         echo 'ran';
-
-        var_dump ( $a );
     }
 }
