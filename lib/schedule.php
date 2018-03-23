@@ -91,6 +91,7 @@ class schedule
                 $file = '\\modules\\'. $file;
                 try
                 {
+                    echo 'here?';
                     $module = new $file ( self );
                 }
                 catch ( Exception $e )
