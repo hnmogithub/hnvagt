@@ -89,7 +89,14 @@ class schedule
                 require_once ( $path );
 
                 $file = '\\modules\\'. $file;
-                $module = new $file ( self );
+                try
+                {
+                    $module = new $file ( self );
+                }
+                catch ( Exception $e )
+                {
+                    var_dump ( $e );
+                }
             }
         }
     }
