@@ -1,5 +1,6 @@
 <?php namespace modules;
 use \schedule as schedule;
+use \users as user;
 
 class login
 {
