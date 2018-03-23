@@ -77,4 +77,14 @@ class database
 
         return new databaseCacheResult ( $this->database, $table, $id, $smth );
     }
+
+    /**
+     * Gets the last inserted id
+     * 
+     * @return int $id
+     */
+    public function lastId ()
+    {
+        return $this->handle->lastInsertId ();
+    }
 }

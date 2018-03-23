@@ -107,33 +107,30 @@ abstract class base
 		$data = array_merge ( $this->data, $key );
 		if ( isset ( $data [ $this->__id ] ) == false )
 		{
-			throw new Exception ( get_class($this) .': base, database row not inserted yet' );
-			//Database::insert ( $this->__table, $data );
-			//$data [ $this->__id ] = Database::lastId ( $this->__table );
-
-			//$this->data = $data;
-			//return $this;
+			database (DB)->query ('
+				INSERT INTO
+					`'. $this->__table .'`
+				(
+					'. join ( ',', array_keys ( $data ) ) .'
+				)
+				VALUES
+				(
+					'. substr ( str_repeat ('?,', count ( $data ) ) ,0, -1 ) .'
+				)
+			', array_values ( $data ) );
+			$data [ $this->__id ] = database(DB)->lastId ();
 		}
-
-		var_dump ( '
-		UPDATE
-			`'. $this->__table .'`
-		SET
-			'. $this->__setBuild ( $key ) .'
-		WHERE
-			`'. $this->__id .'` = ?' );
-
-		var_dump ( array_merge ( $key, [ $this->data [ $this->__id ] ] ) );
-		database (DB)->query ('
-			UPDATE
-				`'. $this->__table .'`
-			SET
-				'. $this->__setBuild ( $key ) .'
-			WHERE
-				`'. $this->__id .'` = ?
-		', array_values ( array_merge ( $key, [ $this->data [ $this->__id ] ] ) ) );
-
-		//Database::update ( $this->__table, $key, [ $this->__id => $this->data [ $this->__id ] ] );
+		else
+		{
+			database (DB)->query ('
+				UPDATE
+					`'. $this->__table .'`
+				SET
+					`'. join ('` = ?,', array_keys ( $key ) ) .'` = ?
+				WHERE
+					`'. $this->__id .'` = ?
+			', array_values ( array_merge ( $key, [ $this->data [ $this->__id ] ] ) ) );
+		}
 
 		$this->data = $data;
 		return $this;
