@@ -4,5 +4,12 @@ ini_set("display_errors", 1);
 
 include ( 'lib/schedule.php' );
 
-schedule::prepare ();
-schedule::run ();
+try
+{
+    schedule::prepare ();
+    schedule::run ();
+}
+catch ( Exception $e )
+{
+    var_dump ( $e );
+}
