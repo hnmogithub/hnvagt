@@ -1,4 +1,5 @@
 <?php namespace system;
+use \schedule as schedule;
 
 class url 
 {
@@ -14,7 +15,7 @@ class url
 
     public function __construct ()
     {
-        \schedule::paramAdd ( 'url', $this );
+        schedule::paramAdd ( 'url', $this );
     }
 
     /**
