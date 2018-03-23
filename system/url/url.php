@@ -45,7 +45,7 @@ class url
             $urls =& $this->__urls;
             \schedule::jobAdd ( \schedule::levelAt (), function () use ( $urls )
             {
-                unset ( $this->__level [ schedule::levelAt () ] );
+                unset ( $this->__level [ \schedule::levelAt () ] );
 
                 krsort ( $urls );
                 foreach ( $urls as $lId => $jobs )
