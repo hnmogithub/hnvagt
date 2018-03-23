@@ -99,7 +99,6 @@ class schedule
         {
             self::$__at = $jId;
 
-            var_dump ( $jobs );
             while ( list ( $eId, $entry ) = each ( $jobs ) )
             {
                 $params = [];
