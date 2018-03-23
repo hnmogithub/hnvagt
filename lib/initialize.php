@@ -20,3 +20,25 @@ spl_autoload_register ( function ( $class )
         }
     }
 } );
+
+/**
+ * Gets a database, if database hasnt been connected yet, it will connect to it
+ * 
+ * @param string $database
+ * @param string $host
+ * @param string $user
+ * @param string $pass
+ * 
+ * @return database $db
+ */
+function database ( string $db, string $host = 'localhost', string $user = 'hnvagt', string $pass = 'M@r!@db!' )
+{
+    static $databases = [];
+
+    if ( isset ( $databases [ $db ] ) == false )
+    {
+        $databases [ $db ] = new database ( $host, $user, $pass, $db );
+    }
+
+    return $databases [ $db ];
+}
