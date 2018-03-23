@@ -106,7 +106,7 @@ class schedule
                 {   $params [] = self::paramGet ( $name ); }
 
                 if ( count ( $entry ['job'] ) > 1 )
-                {   self::$__module = getclass ( $entry ['job'][0] ); }
+                {   self::$__module = get_class ( $entry ['job'][0] ); }
                 else
                 {   self::$__module = 'anonymouse'; }
 
