@@ -14,7 +14,7 @@ class url
 
     public function __construct ()
     {
-        schedule::paramAdd ( 'url', $this );
+        \schedule::paramAdd ( 'url', $this );
     }
 
     /**
@@ -35,15 +35,15 @@ class url
             'params' => $params
         ];
 
-        if ( isset ( $this->__level [ schedule::levelAt () ] ) == false )
+        if ( isset ( $this->__level [ \schedule::levelAt () ] ) == false )
         {
-            $this->__level [ schedule::levelAt () ] = true;
+            $this->__level [ \schedule::levelAt () ] = true;
 
             /**
              * I could have made this into a function sitting on the object instead of using an anonymouse function however then the function would have to be a public function and the code being run in there, is for internal use only so it wouldnt really fit
              */
             $urls =& $this->__urls;
-            schedule::jobAdd ( schedule::levelAt (), function () use ( $urls )
+            \schedule::jobAdd ( \schedule::levelAt (), function () use ( $urls )
             {
                 unset ( $this->__level [ schedule::levelAt () ] );
 
@@ -58,7 +58,7 @@ class url
                             $found = true;
                             unset ( $urls [ $lId ][ $jId ] );
 
-                            schedule::jobAdd ( $entry ['level'], $entry ['job'], $entry ['params'] );
+                            \schedule::jobAdd ( $entry ['level'], $entry ['job'], $entry ['params'] );
                         }
                     }
 
