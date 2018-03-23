@@ -13,14 +13,14 @@ define ( 'DB', 'vagt' );
  */
 function database ( string $db, string $host = 'localhost', string $user = 'hnvagt', string $pass = 'M@r!@db!' )
 {
-    static $databases = [];
+	static $databases = [];
 
-    if ( isset ( $databases [ $db ] ) == false )
-    {
-        $databases [ $db ] = new database ( $host, $user, $pass, $db );
-    }
+	if ( isset ( $databases [ $db ] ) == false )
+	{
+		$databases [ $db ] = new database ( $host, $user, $pass, $db );
+	}
 
-    return $databases [ $db ];
+	return $databases [ $db ];
 }
 
 /**
@@ -32,34 +32,34 @@ function database ( string $db, string $host = 'localhost', string $user = 'hnva
  */
 function cache ( string $db )
 {
-    static $caches = [];
+	static $caches = [];
 
-    if ( isset ( $caches [ $db ] ) == false )
-    {
-        $caches [ $db ] = new cache ();
-    }
+	if ( isset ( $caches [ $db ] ) == false )
+	{
+		$caches [ $db ] = new cache ();
+	}
 
-    return $caches [ $db ];
+	return $caches [ $db ];
 }
 
 spl_autoload_register ( function ( $class )
 {
-    if ( file_exists ( 'lib/'. $class .'.php' ) == true  )
-    {
-        require_once ( 'lib/'. $class .'.php' );
+	if ( file_exists ( 'lib/'. $class .'.php' ) == true  )
+	{
+		require_once ( 'lib/'. $class .'.php' );
 
-        return;
-    }
+		return;
+	}
 
-    $mod = schedule::lastModule ();
-    if ( $mod !== 'anonymouse' )
-    {
-        $mod = str_replace ( '\\', '/', $mod ) .'/'. $class .'.php';
-        if ( file_exists ( $mod ) == true )
-        {
-            require_once ( $mod );
+	$mod = schedule::lastModule ();
+	if ( $mod !== 'anonymouse' )
+	{
+		$mod = str_replace ( '\\', '/', $mod ) .'/'. $class .'.php';
+		if ( file_exists ( $mod ) == true )
+		{
+			require_once ( $mod );
 
-            return;
-        }
-    }
+			return;
+		}
+	}
 } );

@@ -6,10 +6,10 @@ include ( 'lib/initialize.php' );
 
 try
 {
-    schedule::prepare ();
-    schedule::run ();
+	schedule::prepare ();
+	schedule::run ();
 }
 catch ( Exception $e )
 {
-    var_dump ($e);
+	var_dump ($e);
 }
