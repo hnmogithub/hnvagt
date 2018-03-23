@@ -36,7 +36,7 @@ class schedule
      * @param array $job [ object, function ]
      * @param array $param [ param1, param2 ] which parameters to pass along to the job
      */
-    static public function jobAdd ( int $level, $job, $params )
+    static public function jobAdd ( int $level, $job, $params = [] )
     {
         if ( isset ( self::$jobs [ $level ] ) == false )
         {

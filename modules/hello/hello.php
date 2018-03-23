@@ -7,6 +7,6 @@ class hello
         /** @var $url \system\url */
         $url = \schedule::paramGet ('url');
 
-        $url->request ('/hello', [ $this, 'doPrint' ] );
+        $url->request ('/hello', 1, [ $this, 'doPrint' ] );
     }
 }

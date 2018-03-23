@@ -20,7 +20,7 @@ class url
     /**
      * Runs a job on level if it matches the url, does not take query string into account
      */
-    public function request ( string $url, $level, $job, $params )
+    public function request ( string $url, $level, $job, $params = [] )
     {
         /**
          * We store them based on length of url as we want to match the most precise url first, then we go down until we get an exact match
@@ -68,7 +68,7 @@ class url
                     }
                 }
 
-            }, [] );
+            } );
         }
     }
 }
