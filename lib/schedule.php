@@ -84,8 +84,11 @@ class schedule
             $file = basename ( $file );
             $path = $file .'/'. $file .'.php';
 
+            echo $path;
+
             if ( file_exists ( $path ) == true )
             {
+                echo 'this?';
                 require_once ( $path );
 
                 $file = '\\modules\\'. $file;
