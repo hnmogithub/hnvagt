@@ -115,6 +115,15 @@ abstract class base
 			//return $this;
 		}
 
+		var_dump ( '
+		UPDATE
+			`'. $this->__table .'`
+		SET
+			'. $this->__setBuild ( $key ) .'
+		WHERE
+			`'. $this->__id .'` = ?' );
+
+		var_dump ( array_merge ( $key, [ $this->data [ $this->__id ] ] ) );
 		database (DB)->query ('
 			UPDATE
 				`'. $this->__table .'`
