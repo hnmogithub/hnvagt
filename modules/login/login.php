@@ -15,9 +15,6 @@ class login
                 *
             FROM
                 `users`
-        ')->each ( function ( $row )
-        {
-            var_dump ( $row );
-        } );
+        ');
     }
 }
