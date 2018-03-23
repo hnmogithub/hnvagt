@@ -15,6 +15,6 @@ class login
                 *
             FROM
                 `users`
-        ');
+        ')->each ( function () {} );
     }
 }
