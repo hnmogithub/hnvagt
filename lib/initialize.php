@@ -1,8 +1,8 @@
 <?php
-/**
- * Class used to initlize various things we need
- */
-class initialize
+spl_autoload_register ( function ( $class )
 {
-    
-}
+    if ( file_exists ( '/lib/'. $class .'.php' ) == true  )
+    {
+        
+    }
+} );

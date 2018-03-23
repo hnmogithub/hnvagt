@@ -4,6 +4,8 @@ class login
 {
     public function __construct ()
     {
-        echo 'ran';
+        echo schedule::lastModule ();
+
+
     }
 }

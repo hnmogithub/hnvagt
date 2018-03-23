@@ -30,6 +30,21 @@ class schedule
     }
 
     /**
+     * Used to store which module we are currently running
+     */
+    static private $__module = 'anonymouse';
+
+    /**
+     * Gets which module we are currently running
+     * 
+     * @param string $module
+     */
+    static public function lastModule ()
+    {
+        return self::$__module;
+    }
+
+    /**
      * Adds a job to the scheduler
      * 
      * @param int $level
@@ -90,6 +105,12 @@ class schedule
                 foreach ( $entry ['params'] as $name )
                 {   $params [] = self::paramGet ( $name ); }
 
+                if ( count ( $entry ['job'] ) > 1 )
+                {   self::$__module = getclass ( $entry ['job'][0] ); }
+                else
+                {   self::$__module = 'anonymouse'; }
+
+
                 call_user_func_array ( $entry ['job'], $params );
                 unset ( self::$jobs [ $jId ][ $eId ] );
 
@@ -122,7 +143,7 @@ class schedule
      * @param string $directory which directory to load
      * @param string $namespace which namespace are the objects located in, if none provided, we use directory name as namespace
      */
-    static private function loadDirectory ( string $directory, string $namespace = null )
+    static public function loadDirectory ( string $directory, string $namespace = null )
     {
         $files = glob ( $directory .'/*', GLOB_ONLYDIR );
         if ( $namespace === null ) { $namespace = basename ( $directory ); }
