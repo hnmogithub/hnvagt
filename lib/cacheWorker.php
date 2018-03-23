@@ -18,5 +18,5 @@ interface cacheWorker
      * @param mixed $id
      * @param array $row
      */
-    public function set ( string $table, $id, $row );
+    public function set ( string $table, $id, array $row );
 }
