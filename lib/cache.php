@@ -11,7 +11,7 @@ class cache implements cacheWorker
 
     public function __construct ( $worker = null )
     {
-        if ( $worker = null )
+        if ( $worker == null )
         {
             $worker = 'memory';
         }
