@@ -25,7 +25,7 @@ class cache implements cacheWorker
         return $this->worker->get ( $table, $id );
     }
 
-    public function set ( string $table, $id, $row )
+    public function set ( string $table, $id, array $row )
     {
         return $this->worker->set ( $table, $id, $row );
     }
