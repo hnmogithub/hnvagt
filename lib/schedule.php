@@ -87,6 +87,7 @@ class schedule
             if ( file_exists ( $path ) == true )
             {
                 require_once ( $path );
+                $file = '\\modules\\'. $file;
                 $module = new $file ( self );
             }
         }
