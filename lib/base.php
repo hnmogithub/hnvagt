@@ -131,7 +131,7 @@ abstract class base
 				'. $this->__setBuild ( $key ) .'
 			WHERE
 				`'. $this->__id .'` = ?
-		', array_merge ( $key, [ $this->data [ $this->__id ] ] ) );
+		', array_values ( array_merge ( $key, [ $this->data [ $this->__id ] ] ) ) );
 
 		//Database::update ( $this->__table, $key, [ $this->__id => $this->data [ $this->__id ] ] );
 
