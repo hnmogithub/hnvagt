@@ -82,7 +82,7 @@ class schedule
         foreach ( $files as $file )
         {
             $file = basename ( $file );
-            $path = $file .'/'. $file .'.php';
+            $path = 'modules/'. $file .'/'. $file .'.php';
 
             echo $path;
 
