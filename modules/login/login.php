@@ -4,7 +4,7 @@ class login
 {
     public function __construct ()
     {
-        echo schedule::lastModule ();
+        echo \schedule::lastModule ();
 
 
     }
