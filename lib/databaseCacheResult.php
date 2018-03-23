@@ -40,7 +40,6 @@ class databaseCacheResult extends databaseResult
      */
     public function __construct ( string $database, string $table, string $id, PDOStatement $smth )
     {
-        die ( 'safe' );
         $this->database = $database;
         $this->table = $table;
         $this->id = $id;
