@@ -49,6 +49,7 @@ class databaseCacheResult extends databaseResult
     
     public function each ( $callback )
     {
+        return false;
         $skip = false;
         while ( $row = $this->smth->fetch ( PDO::FETCH_ASSOC ) )
         {
