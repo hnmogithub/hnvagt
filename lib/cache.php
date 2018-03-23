@@ -16,7 +16,8 @@ class cache implements cacheWorker
             $worker = 'memory';
         }
 
-        //$worker = 'cache'. ucfirst ($worker);
+        $worker = 'cache'. ucfirst ($worker);
+        var_dump ( $worker );
         //$this->worker = new $worker ();
     }
 
