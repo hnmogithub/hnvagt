@@ -6,7 +6,7 @@ class databaseResult
      * 
      * @var PDOStatement $smth
      */
-    private $smth = null;
+    protected $smth = null;
 
 
     /**
@@ -28,6 +28,12 @@ class databaseResult
     {
         while ( $row = $this->smth->fetch ( PDO::FETCH_ASSOC ) )
         {
+            if ( isset ( $row ['unique'] ) == true )
+            {
+                
+            }
+
+
             if ( call_user_func ( $callback, $row ) == false )
             {   break; }
         }
@@ -51,5 +57,15 @@ class databaseResult
     public function fetchAll ()
     {
         return $this->smth->fetchAll ( PDO::FETCH_ASSOC );
+    }
+
+    /**
+     * Fetches the amount of rows returned by the statement
+     * 
+     * @return int $length
+     */
+    public function length ()
+    {
+        return $this->smth->rowCount ();
     }
 }

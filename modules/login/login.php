@@ -10,7 +10,7 @@ class login
 
     public function run ()
     {
-        database ('vagt')->query ('
+        database ('vagt')->cache ( 'users', 'id', '
             SELECT
                 *
             FROM

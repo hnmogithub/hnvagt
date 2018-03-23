@@ -42,3 +42,22 @@ function database ( string $db, string $host = 'localhost', string $user = 'hnva
 
     return $databases [ $db ];
 }
+
+/**
+ * Gets the cache for the specifict database
+ * 
+ * @param string $database
+ * 
+ * @return cache $cache
+ */
+function cache ( string $db )
+{
+    static $caches = [];
+
+    if ( isset ( $caches [ $db ] ) == false )
+    {
+        $caches [ $db ] = new cache ();
+    }
+
+    return $caches [ $db ];
+}
