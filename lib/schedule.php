@@ -99,6 +99,7 @@ class schedule
         {
             self::$__at = $jId;
 
+            var_dump ( $jobs );
             while ( list ( $eId, $entry ) = each ( $jobs ) )
             {
                 $params = [];
@@ -115,7 +116,7 @@ class schedule
                 unset ( self::$jobs [ $jId ][ $eId ] );
 
                 ksort ( self::$jobs [ $jId ] );
-                reset ( self::$jobs [ $eId ] );
+                reset ( self::$jobs [ $jId ] );
             }
 
             if ( count ( self::$jobs [ $jId ] ) < 1 )
