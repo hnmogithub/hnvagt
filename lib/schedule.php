@@ -15,6 +15,21 @@ class schedule
     static private $param = [];
 
     /**
+     * Used to store which level we are currently running at
+     */
+    static private $__at = 0;
+
+    /**
+     * Gets which level we are currently running at
+     * 
+     * @return int $level
+     */
+    static public function levelAt ()
+    {
+        return self::$__at;
+    }
+
+    /**
      * Adds a job to the scheduler
      * 
      * @param int $level
@@ -54,52 +69,78 @@ class schedule
         return self::$param [ $name ];
     }
 
+    /**
+     * Runs though all added jobs
+     */
     static public function run ()
     {
+        /**
+         * Sorting and reseting on each pass incase more jobs were added by the jobs we just ran
+         */
         ksort ( self::$jobs );
+        reset ( self::$jobs );
 
-        foreach ( self::$jobs as $jId => $jobs )
+        while ( list ( $jId, $jobs ) = each ( self::$jobs ) )
         {
-            foreach ( $jobs as $eId => $entry )
+            self::$__at = $jId;
+
+            while ( list ( $eId, $entry ) = each ( $jobs ) )
             {
                 $params = [];
                 foreach ( $entry ['params'] as $name )
-                {
-                    $params [] = self::paramGet ( $name );
-                }
+                {   $params [] = self::paramGet ( $name ); }
 
                 call_user_func_array ( $entry ['job'], $params );
                 unset ( self::$jobs [ $jId ][ $eId ] );
+
+                ksort ( self::$jobs [ $jId ] );
+                reset ( self::$jobs [ $eId ] );
             }
+
+            if ( count ( self::$jobs [ $jId ] ) < 1 )
+            {   unset ( self::$jobs [ $jId ] ); }
+
+            ksort ( self::$jobs );
+            reset ( self::$jobs );
         }
     }
 
 
+    /**
+     * Function that prepares the scheduler to run
+     * loads all modules from /system/ and /modules/
+     */
     static public function prepare ()
     {
-        $files = glob ('modules/*', GLOB_ONLYDIR );
+        self::loadDirectory ('system');
+        self::loadDirectory ('modules');
+    }
+
+    /**
+     * Loads all modules in a certain directory
+     * 
+     * @param string $directory which directory to load
+     * @param string $namespace which namespace are the objects located in, if none provided, we use directory name as namespace
+     */
+    static private function loadDirectory ( string $directory, string $namespace = null )
+    {
+        $files = glob ( $directory .'/*', GLOB_ONLYDIR );
+        if ( $namespace === null ) { $namespace = basename ( $directory ); }
 
         foreach ( $files as $file )
         {
             $file = basename ( $file );
-            $path = 'modules/'. $file .'/'. $file .'.php';
-
-            echo $path;
+            $path = $directory .'/'. $file .'/'. $file .'.php';
 
             if ( file_exists ( $path ) == true )
             {
-                echo 'this?';
                 require_once ( $path );
 
-                $file = '\\modules\\'. $file;
-                try
+                $file = '\\'. $namespace .'\\'. $file;
+                if ( class_exists ( $file ) == true )
                 {
-                    echo 'here?';
-                    $module = new $file ( self );
-                }
-                catch ( Exception $e )
-                {
-                    var_dump ( $e );
+                    $module = new $file ();
+                    unset ( $module );
                 }
             }
         }
