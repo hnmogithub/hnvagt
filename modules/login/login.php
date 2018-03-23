@@ -22,6 +22,6 @@ class login
         } );
 
         $user = users::byId ( 2 );
-        var_dump ( $user );
+        var_dump ( $user->get ('name') );
     }
 }
