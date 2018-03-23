@@ -3,6 +3,6 @@ spl_autoload_register ( function ( $class )
 {
     if ( file_exists ( 'lib/'. $class .'.php' ) == true  )
     {
-
+        require_once ( 'lib/'. $class .'.php' );
     }
 } );
