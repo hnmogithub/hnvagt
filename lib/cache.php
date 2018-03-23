@@ -17,8 +17,7 @@ class cache implements cacheWorker
         }
 
         $worker = 'cache'. ucfirst ($worker);
-        var_dump ( $worker );
-        //$this->worker = new $worker ();
+        $this->worker = new $worker ();
     }
 
     public function get ( string $table, $id )
