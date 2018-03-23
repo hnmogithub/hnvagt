@@ -107,22 +107,37 @@ abstract class base
 		$data = array_merge ( $this->data, $key );
 		if ( isset ( $data [ $this->__id ] ) == false )
 		{
-			Database::insert ( $this->__table, $data );
-			$data [ $this->__id ] = Database::lastId ( $this->__table );
+			throw new Exception ( get_class($this) .': base, database row not inserted yet' );
+			//Database::insert ( $this->__table, $data );
+			//$data [ $this->__id ] = Database::lastId ( $this->__table );
 
-			$static = Static_Database::single ();
-			$static->set ( $this->__table .'.'. $data [ $this->__id ], $data );
-
-			$this->data = $data;
-			return $this;
+			//$this->data = $data;
+			//return $this;
 		}
 
-		Database::update ( $this->__table, $key, [ $this->__id => $this->data [ $this->__id ] ] );
+		database (DB)->query ('
+			UPDATE
+				`'. $this->__table .'`
+			SET
+				'. $this->__setBuild ( $key ) .'
+			WHERE
+				`'. $this->__id .'` = ?
+		', array_merge ( $key, [ $this->data [ $this->__id ] ] ) );
 
-		$static = Static_Database::single ();
-		$static->set ( $this->__table .'.'. $data [ $this->__id ], $this->data );
+		//Database::update ( $this->__table, $key, [ $this->__id => $this->data [ $this->__id ] ] );
 
 		$this->data = $data;
 		return $this;
+	}
+
+	private function __setBuild ( $table )
+	{
+		$string = [];
+		foreach ( $table as $key => $value )
+		{
+			$string [] = '`'. $key .'` = ?';
+		}
+
+		return join  (',', $string );
 	}
 }
