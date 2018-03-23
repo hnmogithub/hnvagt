@@ -58,9 +58,9 @@ class schedule
     {
         ksort ( self::$jobs );
 
-        foreach ( self::$jobs as $jobs )
+        foreach ( self::$jobs as $jId => $jobs )
         {
-            foreach ( $jobs as $entry )
+            foreach ( $jobs as $eId => $entry )
             {
                 $params = [];
                 foreach ( $entry ['params'] as $name )
@@ -69,6 +69,25 @@ class schedule
                 }
 
                 call_user_func_array ( $entry ['job'], $params );
+                unset ( self::$jobs [ $jId ][ $eId ] );
+            }
+        }
+    }
+
+
+    static public function prepare ()
+    {
+        $files = glob ('modules/*', GLOB_ONLYDIR );
+
+        foreach ( $files as $file )
+        {
+            $file = basename ( $file );
+            $path = $file .'/'. $file .'.php';
+
+            if ( file_exists ( $path ) == true )
+            {
+                require_once ( $path );
+                $module = new $file ( self );
             }
         }
     }
