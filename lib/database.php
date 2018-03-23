@@ -70,7 +70,7 @@ class database
      * 
      * @return databaseResult $result
      */
-    public function cache ( string $table, string $id, string $query, array $arguments )
+    public function cache ( string $table, string $id, string $query, array $arguments = [] )
     {
         $smth = $this->handle->prepare ( $query );
         $smth->execute ( $arguments );
