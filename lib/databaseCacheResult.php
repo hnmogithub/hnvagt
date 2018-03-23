@@ -44,7 +44,7 @@ class databaseCacheResult extends databaseResult
         $this->table = $table;
         $this->id = $id;
 
-        parent::__construct ( $smth );
+        $this->smth = $smth;
     }
     
     public function each ( $callback )
