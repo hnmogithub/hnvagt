@@ -29,9 +29,18 @@ class users
         }
     }
 
+    /**
+     * Gets a user by id
+     * 
+     * @param int $id
+     * 
+     * @throws Exception if user with id not found
+     * 
+     * @return user $user
+     */
     static public function byId ( int $id )
     {
-
+        return new user ( $id );
     }
 
     /**

@@ -24,6 +24,11 @@ class user extends baseArray
                     `id` = ?
                 LIMIT 1
             ', [ $id ] )->fetchOne ();
+
+            if ( $row == null )
+            {
+                throw new Exception ('user::__construct (), id not found');
+            }
         }
 
         $this->data = $row;
