@@ -22,7 +22,7 @@ class database
         $this->handle->setAttribute ( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
         $this->handle->setAttribute ( PDO::ATTR_EMULATE_PREPARES, false );
         $this->handle->exec ( 'SET NAMES "utf8";' );
-        $this->handle->exec ( 'SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""));' );
+        $this->handle->exec ( 'SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""));' );
     }
 
     /**
