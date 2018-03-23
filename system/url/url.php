@@ -53,7 +53,7 @@ class url
                     $found = false;
                     foreach ( $jobs as $jId => $entry )
                     {
-                        if ( preg_match ('/^'. $entry ['url'] .'/', $_SERVER ['QUERY_STRING'] ) )
+                        if ( preg_match ('/^'. preg_quote ( $entry ['url'] ) .'/', $_SERVER ['QUERY_STRING'] ) )
                         {
                             $found = true;
                             unset ( $urls [ $lId ][ $jId ] );
