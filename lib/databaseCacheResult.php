@@ -53,7 +53,7 @@ class databaseCacheResult extends databaseResult
         while ( $row = $this->smth->fetch ( PDO::FETCH_ASSOC ) )
         {
             // Cache it!
-            //cache ( $this->database )->set ( $this->table, $row [ $this->id ], $row );
+            cache ( $this->database )->set ( $this->table, $row [ $this->id ], $row );
 
             if ( call_user_func ( $callback, $row ) == false )
             {   break; }
