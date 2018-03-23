@@ -22,6 +22,6 @@ class login
         } );
 
         $user = users::byId ( 2 );
-        var_dump ( $user->set ('name', 'istasi') );
+        var_dump ( $user->set ('name', 'IsTasi') );
     }
 }
