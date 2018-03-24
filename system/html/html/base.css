@@ -14,14 +14,14 @@ body
 {
 	display: block;
 
-	&:nth-child(1)
-	{
-		animation-delay: 0s;
-	}
-	&:nth-child(2)
-	{
-		animation-delay: -10s;
-	}
+}
+.clutter:nth-child(1)
+{
+	animation-delay: 0s;
+}
+.clutter:nth-child(2)
+{
+	animation-delay: -10s;
 }
 
 .ball
@@ -42,10 +42,9 @@ body
 
 	width: 25%;
 	padding-top: 25%;
-
-	&.ball-1{ -webkit-animation-delay: 0s; animation-delay: 0s; top: 10%; }
-	&.ball-2{ -webkit-animation-delay: 0s; animation-delay: 1s; bottom: 10%; }
 }
+.ball-1{ -webkit-animation-delay: 0s; animation-delay: 0s; top: 10%; }
+.ball-2{ -webkit-animation-delay: 0s; animation-delay: 1s; bottom: 10%; }
 
 @keyframes move
 {
