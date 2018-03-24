@@ -28,7 +28,7 @@ class databaseResult
 	{
 		while ( $row = $this->smth->fetch ( PDO::FETCH_ASSOC ) )
 		{
-			if ( call_user_func ( $callback, $row ) == false )
+			if ( call_user_func ( $callback, $row ) === false )
 			{   break; }
 		}
 	}
