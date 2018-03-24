@@ -58,7 +58,7 @@ class loader
 					'css' => 'text/css;charset=utf-8',
 					'js' => 'text/javascript;charset=utf-8'
 				];
-				if ( header_sent () )
+				if ( headers_sent () )
 				{
 					die ( 'header already sent' );
 				}
