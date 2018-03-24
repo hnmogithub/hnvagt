@@ -31,3 +31,9 @@ html,body,.login-back
 {
 	color: white;
 }
+
+#login input
+{
+	background: #333;
+	color: white;
+}
