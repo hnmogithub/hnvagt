@@ -49,6 +49,13 @@ html,body,.login-back
 	padding: 3px;
 	text-indent: 8px;
 }
+#login input:focus
+{
+	border-color: #666;
+	outline: 0;
+	box-shadow: inset 0px 1px 1px rgba(0,0,0,0.075), 0px 0px 8px rgba(128,128,128,0.5);
+}
+
 #login input[type="submit"]
 {
 	text-indent: 0px;
