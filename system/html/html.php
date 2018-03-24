@@ -14,6 +14,8 @@ class html
 		$loader = new \Twig_Loader_Filesystem ('.');
 		$twig = new \Twig_Environment ( $loader );
 
+		var_dump ( template::get () );
+
 		$html = '';
 		foreach ( template::get () as $template )
 		{
