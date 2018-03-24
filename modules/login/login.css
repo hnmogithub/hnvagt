@@ -53,7 +53,7 @@ html,body,.login-back
 {
 	border-color: #666;
 	outline: 0;
-	box-shadow: inset 0px 1px 1px rgba(0,0,0,0.075), 0px 0px 8px rgba(128,128,128,0.5);
+	box-shadow: inset 0px 1px 1px rgba(0,0,0,0.075), 0px 0px 8px rgba(255,255,255,0.6);
 }
 
 #login input[type="submit"]
