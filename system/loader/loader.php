@@ -20,17 +20,20 @@ class loader
 	public function file ()
 	{
 		$file = explode ( '.', basename ( $_SERVER ['REQUEST_URI'] ) );
-		$extension = array_pop ( $file );
+		$extension = strtolower ( array_pop ( $file ) );
 
-		switch ( strtolower ( $extension ) )
+		switch ( $extension )
 		{
 			case 'css':
 			case 'js':
 				if ( file_exists ( '.'. $_SERVER ['REQUEST_URI'] ) == false )
-				{
-					throw new Response ( 'File not found ('. $_SERVER ['REQUEST_URI'] .')', 404 );
-				}
-
+				{	throw new Response ( 'File not found ('. $_SERVER ['REQUEST_URI'] .')', 404 ); }
+				$type = [
+					'css' => 'text/css;charset=utf-8',
+					'js' => 'text/javascript;charset=utf-8'
+				];
+				header ( 'Content-Type', $type [ $extension ] );
+				
 				$file [] = $extension;
 				die ( file_get_contents ( '.'. $_SERVER ['REQUEST_URI'] ) );
 		}
