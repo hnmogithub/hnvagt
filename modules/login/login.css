@@ -30,6 +30,7 @@ html,body,.login-back
 #login > div
 {
 	padding: 5px;
+	width: 300px;
 }
 
 #login .title
