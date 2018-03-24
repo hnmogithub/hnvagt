@@ -19,6 +19,7 @@ class login
 	public function ajax ()
 	{
 		var_dump ( $_POST );
+		die ();
 	}
 
 	public function run ()
