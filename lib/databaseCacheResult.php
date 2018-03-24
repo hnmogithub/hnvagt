@@ -55,7 +55,7 @@ class databaseCacheResult extends databaseResult
 			// Cache it!
 			cache ( $this->database )->set ( $this->table, $row [ $this->id ], $row );
 
-			if ( call_user_func ( $callback, $row ) == false )
+			if ( call_user_func ( $callback, $row ) === false )
 			{   break; }
 		}
 	}
