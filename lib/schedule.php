@@ -139,12 +139,11 @@ class schedule
 
 	/**
 	 * Function that prepares the scheduler to run
-	 * loads all modules from /system/ and /modules/
+	 * loads all modules from /system/
 	 */
 	static public function prepare ()
 	{
 		self::loadDirectory ('system');
-		self::loadDirectory ('modules');
 	}
 
 	/**
