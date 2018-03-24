@@ -10,11 +10,11 @@ class html
 
 	public function run ()
 	{
-		$loader = new Twig_Loader_Array ([
+		$loader = new \Twig_Loader_Array ([
 			'index' => 'Hello {{ name }}'
 		]);
 		
-		$twig = new Twig_Environment ( $loader );
+		$twig = new \Twig_Environment ( $loader );
 		echo $twig->render ('index', [ 'name' => 'testing' ] );
 	}
 }
