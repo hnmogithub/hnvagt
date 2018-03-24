@@ -10,6 +10,7 @@ r ( function ()
 			'url': 'ajax/login',
 			'data': data,
 			'processData': false,
+			'contentType': false,
 
 			'type': 'POST',
 			'success': function ( data )
