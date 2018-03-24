@@ -11,7 +11,11 @@ function r ( callback )
 	{
 		for ( k in save )
 		{
-			setTimeout ( save [k], 0 );
+			if ( typeof (save[k] ) == 'function' )
+			{
+				setTimeout ( save [k], 0 );
+				save [k] = undefined;
+			}
 		}
 	}
 	else
