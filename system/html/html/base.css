@@ -2,3 +2,49 @@ body
 {
 	background: #333;
 }
+
+.clutter
+{
+	display: block;
+
+	&:nth-child(1)
+	{
+		animation-delay: 0s;
+	}
+	&:nth-child(2)
+	{
+		animation-delay: -10s;
+	}
+}
+
+.ball
+{
+	border-radius: 50%;
+
+	display: inline-block;
+	position: absolute;
+	left: 50px;
+
+	background:rgba(255,255,255, 0.3);
+
+	filter: blur(@intensitypx);
+
+	width: 25%;
+	height: 25%;
+
+	&.ball-1{ animation-delay: 0s; top: 10%; }
+	&.ball-2{ animation-delay: 1s; bottom: 10%; }
+}
+
+@keyframes move
+{
+	0%{
+		transform: translate3d(10%,0,0);
+	}
+	50%{
+		transform: translate3d(90%,0,0);
+	}
+	100%{
+		transform: translate3d(10%,0,0);
+	}
+}
