@@ -43,7 +43,12 @@ class template
 	 */
 	static public function addCSS ( string $path )
 	{
-		self::$css [] = str_replace ( '\\', '/', schedule::lastModule () ) .'/'. $path;
+		if ( substr ( $path, 0, 1 ) != '/' )
+		{
+			$path = str_replace ( '\\', '/', schedule::lastModule () ) .'/'. $path;
+		}
+		
+		self::$css [] = $path;
 	}
 
 	/**
