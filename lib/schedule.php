@@ -5,6 +5,16 @@
 class schedule
 {
 	/**
+	 * Default run levels
+	 */
+	static public $RUN_INIT = 0;
+	static public $RUN_EARLY = 10;
+	static public $RUN_MIDDLE = 20;
+	static public $RUN_HTML = 30;
+	static public $RUN_LATE = 40;
+
+
+	/**
 	 * Contains the jobs
 	 */
 	static private $jobs = [];
@@ -153,17 +163,30 @@ class schedule
 			$file = basename ( $file );
 			$path = $directory .'/'. $file .'/'. $file .'.php';
 
-			if ( file_exists ( $path ) == true )
-			{
-				require_once ( $path );
-
-				$file = '\\'. $namespace .'\\'. $file;
-				if ( class_exists ( $file ) == true )
-				{
-					$module = new $file ();
-					unset ( $module );
-				}
-			}
+			self::load ( $path, $namespace );
 		}
+	}
+
+	/**
+	 * Loads a module
+	 * 
+	 * @param string $file path to file
+	 * @param string $namespace which namespace is the class inside the file in
+	 */
+	static public function load ( string $file, string $namespace = null )
+	{
+		if ( file_exists ( $file ) == false )
+		{	throw new InvalidArgumentException ( 'schedule::load (), file provided does not exist' ); }
+
+		if ( $namespace == null )
+		{	$namespace = basename ( dirname ( $file ) ); }
+
+		require_once ( $file );
+
+		$class = '\\'. $namespace .'\\'. substr ( basename ( $file ), 0, -4 );
+		if ( class_exists ( $file ) == false )
+		{	throw new Exception ( 'schedule::load (), class not found in file provided' ); }
+
+		$module = new $class ();
 	}
 }

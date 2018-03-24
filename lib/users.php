@@ -1,6 +1,8 @@
 <?php
 class users
 {
+	static private $users = [];
+
 	/**
 	 * Gets a user by name
 	 * 
@@ -24,7 +26,12 @@ class users
 		if ( $result->length () > 0 )
 		{
 			$row = $result->fetchOne ();
-			return new user ( $row ['id'] );
+
+			if ( isset ( self::$users [ $row ['id'] ] ) == false )
+			{	self::$users [ $row ['id'] ] = new user ( $row ['id'] ); }
+
+			return self::$users [ $row ['id'] ];
+
 		}
 		else
 		{
@@ -43,7 +50,10 @@ class users
 	 */
 	static public function byId ( int $id )
 	{
-		return new user ( $id );
+		if ( isset ( self::$users [ $id ] ) == false )
+		{	self::$users [ $id ] = new user ( $id ); }
+
+		return self::$users [ $id ];
 	}
 
 	/**
@@ -56,7 +66,13 @@ class users
 		if ( session_status () == PHP_SESSION_NONE )
 		{   session_start (); }
 
-		
+		if ( isset ( $_SESSION ['user_id'] ) == false )
+		{	$_SESSION ['user_id'] = 1; }
+
+		if ( isset ( self::$users [ $_SESSION ['user_id'] ] ) == false )
+		{	self::$users [ $_SESSION ['user_id'] ] = new user ( $_SESSION ['user_id'] ); }
+
+		return self::$users [ $_SESSION ['user_id'] ];
 	}
 
 	/**
@@ -69,6 +85,6 @@ class users
 	 */
 	static public function login ( string $username, string $password )
 	{
-
+		
 	}
 }
