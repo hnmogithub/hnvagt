@@ -14,13 +14,9 @@ class html
 		$loader = new \Twig_Loader_Filesystem ( dirname ( $_SERVER ['SCRIPT_FILENAME'] ) .'/' );
 		$twig = new \Twig_Environment ( $loader );
 
-		var_dump ( template::get () );
-
 		$html = '';
 		foreach ( template::get () as $template )
 		{
-			echo 'loading: '. $template ['path'];
-
 			$html .= $twig->render ( $template ['path'], $template ['environment'] );
 		}
 
