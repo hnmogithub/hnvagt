@@ -12,6 +12,7 @@ class loader
 	{
 		schedule::add ( schedule::$RUN_INIT, [ $this, 'file' ] );
 		schedule::add ( schedule::$RUN_INIT, [ $this, 'load' ] );
+		schedule::paramAdd ( 'loader', $this );
 	}
 
 	/**
