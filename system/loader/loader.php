@@ -1,6 +1,7 @@
 <?php namespace system;
 use \schedule as schedule;
 use \users as users;
+use \Response as Response;
 
 /**
  * Module responsible for loading modules depending on which user is logged in
