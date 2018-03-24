@@ -97,6 +97,7 @@ class url
 			$urls =& $this->__urls;
 			schedule::add ( schedule::levelAt (), function () use ( $urls )
 			{
+				echo 'runs';
 				unset ( $this->__level [ schedule::levelAt () ] );
 
 				krsort ( $urls );
