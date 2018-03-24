@@ -58,10 +58,10 @@ class loader
 					'css' => 'text/css;charset=utf-8',
 					'js' => 'text/javascript;charset=utf-8'
 				];
+				echo $type [ $extension ];
 				//header ( 'Content-Type', $type [ $extension ] );
 				
-				var_dump ( file_get_contents ( '.'. $url ) );
-				die ('here?');
+				die ( file_get_contents ( '.'. $url ) );
 		}
 	}
 
