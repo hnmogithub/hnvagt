@@ -12,6 +12,7 @@ class loader
 	{
 		schedule::add ( schedule::$RUN_INIT, [ $this, 'file' ] );
 		schedule::add ( schedule::$RUN_INIT, [ $this, 'load' ] );
+
 		schedule::paramAdd ( 'loader', $this );
 	}
 
@@ -44,7 +45,7 @@ class loader
 		//if ( isset ( $this->aliases [ $url ] ) == true )
 		//{	$url = $this->aliases [ $url ]; }
 
-		echo $url;
+		die ( $url );
 
 		$file = explode ( '.', basename ( $url ) );
 		$extension = strtolower ( array_pop ( $file ) );
