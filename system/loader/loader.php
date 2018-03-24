@@ -15,7 +15,6 @@ class loader
 	public function load ()
 	{
 		$id = users::current ()->id ();
-		var_dump ( $id );
 
 		database (DB)->query ('
 			SELECT
@@ -56,8 +55,7 @@ class loader
 				`mr_g`.`user_id` = ?
 		', [ $id, $id ] )->each ( function ( $row )
 		{
-			echo 'path: '. $row ['path'] . "\n";
-			//schedule::load ( $row ['path'], $row ['namespace'] );
+			schedule::load ( $row ['path'], $row ['namespace'] );
 		} );
 	}
 }
