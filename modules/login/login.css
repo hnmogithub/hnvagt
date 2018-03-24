@@ -27,6 +27,11 @@ html,body,.login-back
 	justify-content: center;
 }
 
+#login > div
+{
+	padding: 5px;
+}
+
 #login .title
 {
 	color: white;
