@@ -85,6 +85,8 @@ class users
 	 */
 	static public function login ( string $username, string $password )
 	{
+		putenv('LDAPTLS_REQCERT=never');
+
 		$settings = settings ('users');
 		$conn = ldap_connect ( (string) $settings ['host'] );
 
