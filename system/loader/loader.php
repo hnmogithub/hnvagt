@@ -44,6 +44,8 @@ class loader
 		if ( isset ( $this->aliases [ $url ] ) == true )
 		{	$url = $this->aliases [ $url ]; }
 
+		echo $url;
+
 		$file = explode ( '.', basename ( $url ) );
 		$extension = strtolower ( array_pop ( $file ) );
 
