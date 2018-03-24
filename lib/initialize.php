@@ -62,4 +62,16 @@ spl_autoload_register ( function ( $class )
 			return;
 		}
 	}
+
+	if ( strstr ( $class, '_'  ) )
+	{
+		$file = 'lib/'. str_replace ( '_', '/', $class ) .'.php';
+
+		if ( file_exists ( $file ) == true )
+		{
+			require_once ( $file );
+
+			return;
+		}
+	}
 } );

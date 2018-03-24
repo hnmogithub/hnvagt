@@ -6,14 +6,14 @@ class login
 {
 	public function __construct ()
 	{
-		schedule::jobAdd ( schedule::$RUN_INIT, [ $this, 'check' ] );
+		schedule::add ( schedule::$RUN_INIT, [ $this, 'check' ] );
 	}
 
 	public function check ()
 	{
 		if ( users::current () == users::byId ( 1 ) )
 		{
-			
+
 		}
 	}
 }
