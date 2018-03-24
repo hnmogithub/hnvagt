@@ -184,8 +184,8 @@ class schedule
 		require_once ( $file );
 
 		$class = '\\'. $namespace .'\\'. substr ( basename ( $file ), 0, -4 );
-		if ( class_exists ( $file ) == false )
-		{	throw new Exception ( 'schedule::load (), class not found in file provided' ); }
+		if ( class_exists ( $class ) == false )
+		{	throw new Exception ( 'schedule::load (), class not found in file provided ('. $file .')' ); }
 
 		$module = new $class ();
 	}
