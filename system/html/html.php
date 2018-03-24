@@ -12,6 +12,7 @@ class html
 	public function run ()
 	{
 		template::addCSS ('base.css');
+		$dump = template::dump ();
 
 		$loader = new \Twig_Loader_Filesystem ( dirname ( $_SERVER ['SCRIPT_FILENAME'] ) .'/' );
 		$twig = new \Twig_Environment ( $loader, [
@@ -19,7 +20,7 @@ class html
 		] );
 
 		$html = '';
-		foreach ( template::get () as $template )
+		foreach ( $dump ['templates'] as $template )
 		{
 			$html .= $twig->render ( $template ['path'], $template ['environment'] );
 		}

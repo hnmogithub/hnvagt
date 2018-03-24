@@ -2,6 +2,20 @@
 class template
 {
 	/**
+	 * Stores css files to include on the page
+	 * 
+	 * @var array $css
+	 */
+	static private $css = [];
+
+	/**
+	 * Stores javascript files to include on the page
+	 * 
+	 * @var array $js
+	 */
+	static private $js = [];
+
+	/**
 	 * Stores templates added
 	 * 
 	 * @var array $templates
@@ -22,11 +36,20 @@ class template
 		];
 	}
 
+	static public function addCSS ( string $path )
+	{
+		self::$css [] = str_replace ( '\\', '/', schedule::lastModule () ) .'/'.  $path
+	}
+
 	/**
 	 * Gets all templates and environments added
 	 */
-	static public function get ()
+	static public function dump ()
 	{
-		return self::$templates;
+		return [
+			'templates' => self::$templates,
+			'css' => self::$css,
+			'js' => self::$js
+		];
 	}
 }
