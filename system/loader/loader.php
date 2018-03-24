@@ -58,7 +58,7 @@ class loader
 					'css' => 'text/css;charset=utf-8',
 					'js' => 'text/javascript;charset=utf-8'
 				];
-				header ( 'Content-Type', $type [ $extension ] );
+				//header ( 'Content-Type', $type [ $extension ] );
 				
 				var_dump ( file_get_contents ( '.'. $url ) );
 				die ('here?');
