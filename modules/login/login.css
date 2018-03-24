@@ -21,4 +21,13 @@ html,body,.login-back
 	border-radius: 3px;
 
 	padding: 5px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#login .title
+{
+	color: white;
 }

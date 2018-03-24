@@ -12,12 +12,13 @@ class html
 
 	public function init ( $url )
 	{
-		$url->alias ( '/base/base.css', '/system/html/html/base.css' );
+		
 	}
 
 	public function run ()
 	{
-		template::addCSS ('/base/base.css');
+		template::addCSS ('html/base.css');
+		template::addCSS ('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 		$dump = template::dump ();
 
 		$loader = new \Twig_Loader_Filesystem ( dirname ( $_SERVER ['SCRIPT_FILENAME'] ) .'/' );
