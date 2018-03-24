@@ -11,7 +11,7 @@ class html
 		schedule::add ( schedule::$RUN_INIT, [ $this, 'init' ], ['url'] );
 	}
 
-	public function init ( $loader )
+	public function init ( $url )
 	{
 		$url->alias ( '/base/base.css', '/system/html/html/base.css' );
 	}
