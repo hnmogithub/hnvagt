@@ -13,7 +13,7 @@ class user extends baseArray
 	 */
 	public function __construct ( int $id )
 	{
-		parent::__construct ( 'users', 'id' );
+		baseArray::__construct ( 'users', 'id' );
 
 		$row = cache (DB)->get ('users', $id );
 		if ( $row == null )

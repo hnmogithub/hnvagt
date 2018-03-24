@@ -2,14 +2,14 @@
 /**
  * Repressents a setting row
  */
-class setting extends Base_Array
+class setting extends baseArray
 {
 	/**
 	 *
 	 */
 	public function __construct ( int $id )
 	{
-		Base_Array::__construct ('settings', 'id');
+		baseArray::__construct ('settings', 'id');
 
 		// --
 		$row = cache(DB)->get ('settings', $id);
