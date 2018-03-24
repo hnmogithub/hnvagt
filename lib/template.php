@@ -31,14 +31,19 @@ class template
 	static public function add ( string $path, array $environment = [] )
 	{
 		self::$templates [] = [
-			'path' => str_replace ( '\\', '/', schedule::lastModule () ) .'/'.  $path,
+			'path' => str_replace ( '\\', '/', schedule::lastModule () ) .'/'. $path,
 			'environment' => $environment
 		];
 	}
 
+	/**
+	 * Adds a CSS file to be loaded
+	 * 
+	 * @param string $path path to css file
+	 */
 	static public function addCSS ( string $path )
 	{
-		self::$css [] = str_replace ( '\\', '/', schedule::lastModule () ) .'/'.  $path
+		self::$css [] = str_replace ( '\\', '/', schedule::lastModule () ) .'/'. $path;
 	}
 
 	/**
