@@ -12,7 +12,7 @@ class login
 
 	public function init ( $url )
 	{
-		$url->request ( '/ajax/login', [ $this, 'ajax' ] );
+		$url->request ( '/ajax/login', schedule::$RUN_INIT, [ $this, 'ajax' ] );
 		//$url->alias ( '/login/login.css', '/modules/login/login.css' );
 	}
 
