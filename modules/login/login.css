@@ -1,0 +1,17 @@
+.login-back
+{
+	display: flex;
+
+	align-items: center;
+	justify-content: center;
+}
+
+#login
+{
+	width: 50%;
+	height: 200px;
+
+	background: #666;
+	box-shadow: #222;
+	border: 1px solid black;
+}
