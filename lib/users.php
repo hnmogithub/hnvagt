@@ -85,6 +85,15 @@ class users
 	 */
 	static public function login ( string $username, string $password )
 	{
-		ldap_connect (  );
+		$settings = settings ('users');
+		$conn = ldap_connect ( $settings ['host'] );
+
+		if ( $conn == false )
+		{	throw new Response ('Unable to connect to ldap', 400); }
+
+		if ( ldap_bind ( $conn ) == false )
+		{	throw new Response ('Unable to bind ldap', 400); }
+
+		die ( 'so far so good' );
 	}
 }

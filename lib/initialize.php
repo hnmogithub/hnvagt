@@ -42,6 +42,25 @@ function cache ( string $db )
 	return $caches [ $db ];
 }
 
+/**
+ * Gets the settings belonging to owner provided
+ * 
+ * @param string $owner
+ * 
+ * @return settings $settings
+ */
+function settings ( string $owner )
+{
+	static $settings = [];
+
+	if ( isset ( $settings [ $owner ] ) == false )
+	{
+		$settings [ $owner ] = new settings ( $owner );
+	}
+
+	return $settings [ $owner ];
+}
+
 spl_autoload_register ( function ( $class )
 {
 	if ( file_exists ( 'lib/'. $class .'.php' ) == true  )
