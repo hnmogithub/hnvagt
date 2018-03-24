@@ -20,6 +20,6 @@ class html
 			$html .= $twig->render ( $template ['path'], $template ['environment'] );
 		}
 
-		echo $html;
+		echo $twig->render ('system/base/base.html', [ 'body' => $html ] );
 	}
 }
