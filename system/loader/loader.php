@@ -58,16 +58,7 @@ class loader
 					'css' => 'text/css;charset=utf-8',
 					'js' => 'text/javascript;charset=utf-8'
 				];
-				if ( headers_sent () )
-				{
-					die ( 'header already sent' );
-				}
-				else
-				{
-					die ( 'headers not sent' );
-				}
-				die ('');
-				header ( 'content-type', $type [ $extension ] );
+				header ( 'Content-Type:'. $type [ $extension ] );
 				
 				die ( file_get_contents ( '.'. $url ) );
 		}
