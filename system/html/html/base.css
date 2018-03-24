@@ -26,6 +26,10 @@ body
 
 .ball
 {
+	animation-name: move;
+	animation-duration: 60s;
+	animation-iteration-count: infinite;
+
 	border-radius: 50%;
 
 	display: inline-block;
@@ -39,8 +43,8 @@ body
 	width: 25%;
 	padding-top: 25%;
 
-	&.ball-1{ animation-delay: 0s; top: 10%; }
-	&.ball-2{ animation-delay: 1s; bottom: 10%; }
+	&.ball-1{ -webkit-animation-delay: 0s; animation-delay: 0s; top: 10%; }
+	&.ball-2{ -webkit-animation-delay: 0s; animation-delay: 1s; bottom: 10%; }
 }
 
 @keyframes move
