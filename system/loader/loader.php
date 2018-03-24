@@ -26,7 +26,7 @@ class loader
 		{
 			case 'css':
 			case 'js':
-				if ( file_exists ( $_SERVER ['REQUEST_URI'] ) == false )
+				if ( file_exists ( '.'. $_SERVER ['REQUEST_URI'] ) == false )
 				{
 					throw new Response ( 'File not found ('. $_SERVER ['REQUEST_URI'] .')', 404 );
 				}
