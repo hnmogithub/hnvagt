@@ -91,9 +91,9 @@ class users
 		if ( $conn == false )
 		{	throw new Response ('Unable to connect to ldap', 400); }
 
-		if ( ldap_bind ( $conn ) == false )
+		if ( ldap_bind ( $conn, $username, $password ) == false )
 		{	throw new Response ('Unable to bind ldap', 400); }
 
-		die ( 'so far so good' );
+		echo 'success?';
 	}
 }
