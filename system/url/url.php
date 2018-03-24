@@ -97,7 +97,6 @@ class url
 			$urls =& $this->__urls;
 			schedule::add ( schedule::levelAt (), function () use ( $urls )
 			{
-				echo 'runs';
 				unset ( $this->__level [ schedule::levelAt () ] );
 
 				krsort ( $urls );
@@ -106,6 +105,7 @@ class url
 					$found = false;
 					foreach ( $jobs as $jId => $entry )
 					{
+						var_dump ( $entry );
 						if ( preg_match ('/^'. preg_quote ( $entry ['url'], '/' ) .'/', $_SERVER ['QUERY_STRING'] ) )
 						{
 							$found = true;
