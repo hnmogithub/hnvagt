@@ -27,10 +27,17 @@ html,body,.login-back
 	justify-content: center;
 }
 
+#login > h1
+{
+	color: #ccc;
+}
+
 #login > div
 {
 	padding: 5px;
 	width: 300px;
+	
+	flex-grow: 2;
 }
 
 #login .title
