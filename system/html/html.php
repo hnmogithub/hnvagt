@@ -6,9 +6,8 @@ class html
 {
 	public function __construct ()
 	{
-		schedule::add ( schedule::$RUN_HTML, [ $this, 'run' ] );
-
 		schedule::add ( schedule::$RUN_INIT, [ $this, 'init' ], ['url'] );
+		schedule::add ( schedule::$RUN_HTML, [ $this, 'run' ] );
 	}
 
 	public function init ( $url )
@@ -38,6 +37,9 @@ class html
 			$body .= $twig->render ( $template ['path'], $template ['environment'] );
 		}
 
-		echo $twig->render ('system/html/html/base.twig', [ 'body' => $body ] );
+		echo $twig->render ('system/html/html/base.twig', [
+			'head' => $head,
+			'body' => $body
+		] );
 	}
 }
