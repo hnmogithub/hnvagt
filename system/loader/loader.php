@@ -60,7 +60,8 @@ class loader
 				];
 				header ( 'Content-Type', $type [ $extension ] );
 				
-				die ( file_get_contents ( '.'. $url ) );
+				var_dump ( file_get_contents ( '.'. $url ) );
+				die ('here?');
 		}
 	}
 
