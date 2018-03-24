@@ -10,13 +10,20 @@ class loader
 
 	public function load ()
 	{
-		/*
 		database (DB)->query ('
 			SELECT
-				`path`
+				`m`.`path`,
+				`m`.`namespace`
 			FROM
-				`
-		');
-		*/
+				`modules` `m`
+			
+			INNER JOIN
+				`modules_relations` `mr`
+			ON
+				`mr`.`module_id` = `m`.`id`
+
+			WHERE
+				`mr`.`user_id` = ?
+		', [ users::current ()->id () ]);
 	}
 }

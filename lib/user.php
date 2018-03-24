@@ -1,4 +1,7 @@
 <?php
+/**
+ * Class used for handling user related calls
+ */
 class user extends baseArray
 {
 	protected $data = [];
@@ -32,5 +35,15 @@ class user extends baseArray
 		}
 
 		$this->data = $row;
+	}
+
+	/**
+	 * Gets the user id
+	 * 
+	 * @return int $id
+	 */
+	public function id ()
+	{
+		return $this->get ('id');
 	}
 }
