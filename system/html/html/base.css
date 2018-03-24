@@ -48,7 +48,7 @@ html, body
 	padding-top: 25%;
 }
 .ball-1{ -webkit-animation-delay: 0s; animation-delay: 0s; top: 10%; }
-.ball-2{ -webkit-animation-delay: 0s; animation-delay: 1s; bottom: 10%; }
+.ball-2{ -webkit-animation-delay: 0s; animation-delay: 0s; top: 50%; left: 50%; }
 
 @keyframes move
 {
