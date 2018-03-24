@@ -7,11 +7,18 @@ class html
 	public function __construct ()
 	{
 		schedule::add ( schedule::$RUN_HTML, [ $this, 'run' ] );
+
+		schedule::add ( schedule::$RUN_INIT, [ $this, 'init' ], ['loader'] );
+	}
+
+	public function init ( $loader )
+	{
+		$loader->uriAlias ( '/base/base.css', 'system/html/html/base.css' );
 	}
 
 	public function run ()
 	{
-		template::addCSS ('html/base.css');
+		template::addCSS ('/base/base.css');
 		$dump = template::dump ();
 
 		$loader = new \Twig_Loader_Filesystem ( dirname ( $_SERVER ['SCRIPT_FILENAME'] ) .'/' );

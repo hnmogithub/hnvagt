@@ -15,18 +15,42 @@ class loader
 	}
 
 	/**
+	 * Contains uri aliases
+	 * 
+	 * @var array $aliases
+	 */
+	private $aliases = [];
+
+	/**
+	 * Generation of aliases for raw files
+	 * 
+	 * @param string $new 
+	 * @param string $real 
+	 */
+	public function uriAlias ( string $new, string $real )
+	{
+		$this->aliases [ $new ] = $real;
+	}
+
+
+
+	/**
 	 * Lets check if we are asking for a file, if we are, return that file
 	 */
 	public function file ()
 	{
-		$file = explode ( '.', basename ( $_SERVER ['REQUEST_URI'] ) );
+		$url = $_SERVER ['REQUEST_URI'];
+		if ( isset ( $this->aliases [ $url ] ) == true )
+		{	$url = $this->aliases [ $url ]; }
+
+		$file = explode ( '.', basename ( $url ) );
 		$extension = strtolower ( array_pop ( $file ) );
 
 		switch ( $extension )
 		{
 			case 'css':
 			case 'js':
-				if ( file_exists ( '.'. $_SERVER ['REQUEST_URI'] ) == false )
+				if ( file_exists ( '.'. $url ) == false )
 				{	throw new Response ( 'File not found ('. $_SERVER ['REQUEST_URI'] .')', 404 ); }
 				$type = [
 					'css' => 'text/css;charset=utf-8',
@@ -35,7 +59,7 @@ class loader
 				header ( 'Content-Type', $type [ $extension ] );
 				
 				$file [] = $extension;
-				die ( file_get_contents ( '.'. $_SERVER ['REQUEST_URI'] ) );
+				die ( file_get_contents ( '.'. $url ) );
 		}
 	}
 
