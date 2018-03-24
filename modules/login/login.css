@@ -61,6 +61,8 @@ html,body,.login-back
 
 	padding: 3px;
 	text-indent: 8px;
+
+	box-sizing: border-box;
 }
 #login .inputs input:focus
 {
@@ -72,6 +74,4 @@ html,body,.login-back
 #login .inputs input[type="submit"]
 {
 	text-indent: 0px;
-
-	box-sizing: border-box;
 }
