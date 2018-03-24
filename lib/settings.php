@@ -30,7 +30,7 @@ class settings implements ArrayAccess
 				`owner` = ?
 		', [ $owner ] )->each ( function ( $row ) use ( $data )
 		{
-			$setting = new Setting ( $row ['id'] );
+			$setting = new setting ( $row ['id'] );
 
 			$data [ $setting->get ('key') ] = $setting;
 		} );
