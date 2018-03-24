@@ -30,11 +30,6 @@ class schedule
 	static private $__at = 0;
 
 	/**
-	 * Contains the namespaces of modules loaded
-	 */
-	static public $namespaces = [];
-
-	/**
 	 * Gets which level we are currently running at
 	 * 
 	 * @return int $level
@@ -192,6 +187,5 @@ class schedule
 		{	throw new Exception ( 'schedule::load (), class not found in file provided ('. $file .')' ); }
 
 		$module = new $class ();
-		self::$namespaces [ get_class ( $module ) ] = $namespace;
 	}
 }
