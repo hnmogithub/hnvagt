@@ -28,7 +28,7 @@ class settings implements ArrayAccess
 
 			WHERE
 				`owner` = ?
-		', [ $owner ] )->each ( function ( $row ) use ( $data )
+		', [ $owner ] )->each ( function ( $row ) use ( &$data )
 		{
 			echo $row ['id'] . "\n";
 			$setting = new setting ( $row ['id'] );
