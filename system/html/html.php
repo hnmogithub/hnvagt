@@ -13,8 +13,9 @@ class html
 	public function init ( $url )
 	{
 		template::addCSS ('html/base.css');
-		template::addCSS ('//fonts.googleapis.com/css?family=Source+Sans+Pro');
+		template::addJS ('html/base.js');
 
+		template::addCSS ('//fonts.googleapis.com/css?family=Source+Sans+Pro');
 		template::addJS ('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js');
 	}
 
