@@ -176,7 +176,7 @@ class schedule
 	static public function load ( string $file, string $namespace = null )
 	{
 		if ( file_exists ( $file ) == false )
-		{	throw new InvalidArgumentException ( 'schedule::load (), file provided does not exist' ); }
+		{	throw new InvalidArgumentException ( 'schedule::load (), file provided does not exist ('. $file .')' ); }
 
 		if ( $namespace == null )
 		{	$namespace = basename ( dirname ( $file ) ); }
