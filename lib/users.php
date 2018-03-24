@@ -86,6 +86,7 @@ class users
 	static public function login ( string $username, string $password )
 	{
 		$settings = settings ('users');
+		var_dump  ($settings ['host']);
 		$conn = ldap_connect ( $settings ['host'] );
 
 		if ( $conn == false )
