@@ -32,7 +32,7 @@ class loader
 				}
 
 				$file [] = $extension;
-				die ( file_get_contents ( $_SERVER ['REQUEST_URI'] ) );
+				die ( file_get_contents ( '.'. $_SERVER ['REQUEST_URI'] ) );
 		}
 	}
 
