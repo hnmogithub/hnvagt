@@ -37,6 +37,8 @@ html,body,.login-back
 	color: #ccc;
 
 	width: 100%;
+
+	text-indent: 30px;
 }
 
 #login .inputs > div
