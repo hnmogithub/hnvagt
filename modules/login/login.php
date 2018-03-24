@@ -1,6 +1,9 @@
 <?php namespace modules;
 use \schedule as schedule;
 use \template as template;
+use \users as users;
+use \Response as Response;
+
 
 class login
 {
@@ -18,8 +21,16 @@ class login
 
 	public function ajax ()
 	{
-		var_dump ( $_POST );
-		die ();
+		if ( isset ( $_POST ['username'] ) == false || isset ( $_POST ['password'] ) == false )
+		{	throw new Response ('Missing argument', 422); }
+
+		$username = $_POST ['username'];
+		$password = $_POST ['password'];
+
+		if ( users::login ( $username, $password ) === true )
+		{	die ('1'); }
+		else
+		{	die ('0'); }
 	}
 
 	public function run ()

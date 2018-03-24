@@ -85,6 +85,6 @@ class users
 	 */
 	static public function login ( string $username, string $password )
 	{
-		
+		ldap_connect (  );
 	}
 }

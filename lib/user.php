@@ -21,10 +21,13 @@ class user extends baseArray
 			$row = database(DB)->cache ('users', 'id', '
 				SELECT
 					*
+
 				FROM
 					`users`
+
 				WHERE
 					`id` = ?
+
 				LIMIT 1
 			', [ $id ] )->fetchOne ();
 
