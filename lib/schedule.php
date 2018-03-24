@@ -185,6 +185,7 @@ class schedule
 		if ( $namespace == null )
 		{	$namespace = basename ( dirname ( $file ) ); }
 
+		echo 'loading: '. $file . "\n";
 		require_once ( $file );
 
 		$class = '\\'. $namespace .'\\'. substr ( basename ( $file ), 0, -4 );
