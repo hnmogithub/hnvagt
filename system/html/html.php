@@ -11,6 +11,8 @@ class html
 
 	public function run ()
 	{
+		//template::addCSS ('')
+
 		$loader = new \Twig_Loader_Filesystem ( dirname ( $_SERVER ['SCRIPT_FILENAME'] ) .'/' );
 		$twig = new \Twig_Environment ( $loader );
 
