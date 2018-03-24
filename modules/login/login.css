@@ -43,7 +43,7 @@ html,body,.login-back
 	padding: 5px;
 	width: 300px;
 	
-	flex-grow: 2;
+	flex-grow: 1;
 }
 
 #login .inputs .title
