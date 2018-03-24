@@ -8,12 +8,12 @@ class html
 	{
 		schedule::add ( schedule::$RUN_HTML, [ $this, 'run' ] );
 
-		schedule::add ( schedule::$RUN_INIT, [ $this, 'init' ], ['loader'] );
+		schedule::add ( schedule::$RUN_INIT, [ $this, 'init' ], ['url'] );
 	}
 
 	public function init ( $loader )
 	{
-		$loader->uriAlias ( '/base/base.css', '/system/html/html/base.css' );
+		$url->alias ( '/base/base.css', '/system/html/html/base.css' );
 	}
 
 	public function run ()
@@ -26,12 +26,18 @@ class html
 			'cache' => 'tmp/Twig/'
 		] );
 
-		$html = '';
-		foreach ( $dump ['templates'] as $template )
+		$head = '';
+		foreach ( $dump ['css'] as $file )
 		{
-			$html .= $twig->render ( $template ['path'], $template ['environment'] );
+			$head .= $twig->render ( 'system/html/html/snippets/css.twig', [ 'file' => $file ] );
 		}
 
-		echo $twig->render ('system/html/html/base.html', [ 'body' => $html ] );
+		$body = '';
+		foreach ( $dump ['templates'] as $template )
+		{
+			$body .= $twig->render ( $template ['path'], $template ['environment'] );
+		}
+
+		echo $twig->render ('system/html/html/base.twig', [ 'body' => $body ] );
 	}
 }
