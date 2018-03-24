@@ -30,6 +30,8 @@ html,body,.login-back
 #login > h1
 {
 	color: #ccc;
+
+	width: 100%;
 }
 
 #login > div
