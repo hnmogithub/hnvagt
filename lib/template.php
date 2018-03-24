@@ -55,6 +55,24 @@ class template
 	}
 
 	/**
+	 * Adds a javascript file to be loaded
+	 * 
+	 * @param string $path path to javascript file
+	 */
+	static public function addJS ( string $path )
+	{
+		if ( substr ( $path, 0, 4 ) == 'http' )
+		{	throw new Exception ('template::addJS (), path added starts with http, do not add paths like this, use //domain.ads/asd/asd.js instead' ); }
+
+		if ( substr ( $path, 0, 1 ) != '/' )
+		{
+			$path = str_replace ( '\\', '/', schedule::lastModule () ) .'/'. $path;
+		}
+
+		self::$js [] = $path;
+	}
+
+	/**
 	 * Gets all templates and environments added
 	 */
 	static public function dump ()

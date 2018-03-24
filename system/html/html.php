@@ -12,13 +12,14 @@ class html
 
 	public function init ( $url )
 	{
-		
+		template::addCSS ('html/base.css');
+		template::addCSS ('//fonts.googleapis.com/css?family=Source+Sans+Pro');
+
+		template::addJS ('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js');
 	}
 
 	public function run ()
 	{
-		template::addCSS ('html/base.css');
-		template::addCSS ('//fonts.googleapis.com/css?family=Source+Sans+Pro');
 		$dump = template::dump ();
 
 		$loader = new \Twig_Loader_Filesystem ( dirname ( $_SERVER ['SCRIPT_FILENAME'] ) .'/' );
@@ -29,7 +30,12 @@ class html
 		$head = '';
 		foreach ( $dump ['css'] as $file )
 		{
-			$head .= $twig->render ( 'system/html/html/snippets/css.twig', [ 'file' => $file ] );
+			$head .= $twig->render ( 'system/html/html/snippets/css.twig', [ 'file' => $file, 'defer' => substr ( $file, 0, 2 ) == '//' ] );
+		}
+
+		foreach ( $dump ['js'] as $file )
+		{
+			$head .= $twig->render ( 'system/html/html/snippets/js.twig', [ 'file' => $file, 'defer' => substr ( $file, 0, 2 ) == '//' ] );
 		}
 
 		$body = '';
