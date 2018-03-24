@@ -106,6 +106,8 @@ class url
 					foreach ( $jobs as $jId => $entry )
 					{
 						var_dump ( $entry );
+						var_dump ( '/^'. preg_quote ( $entry ['url'], '/' ) .'/' );
+						var_dump ( $_SERVER ['QUERY_STRING'] );
 						if ( preg_match ('/^'. preg_quote ( $entry ['url'], '/' ) .'/', $_SERVER ['QUERY_STRING'] ) )
 						{
 							$found = true;
