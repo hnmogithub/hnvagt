@@ -41,8 +41,8 @@ class loader
 	public function file ()
 	{
 		$url = $_SERVER ['REQUEST_URI'];
-		if ( isset ( $this->aliases [ $url ] ) == true )
-		{	$url = $this->aliases [ $url ]; }
+		//if ( isset ( $this->aliases [ $url ] ) == true )
+		//{	$url = $this->aliases [ $url ]; }
 
 		echo $url;
 
