@@ -3,6 +3,13 @@ body
 	background: #333;
 }
 
+.clutter-container
+{
+	padding: 20px;
+
+	filter: contrast(50);
+}
+
 .clutter
 {
 	display: block;
@@ -27,10 +34,10 @@ body
 
 	background:rgba(255,255,255, 0.3);
 
-	filter: blur(@intensitypx);
+	filter: blur(10px);
 
 	width: 25%;
-	height: 25%;
+	padding-top: 25%;
 
 	&.ball-1{ animation-delay: 0s; top: 10%; }
 	&.ball-2{ animation-delay: 1s; bottom: 10%; }
