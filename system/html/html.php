@@ -1,5 +1,6 @@
 <?php namespace system;
 use \schedule as schedule;
+use \templates as templates;
 
 class html
 {
