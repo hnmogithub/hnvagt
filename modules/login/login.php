@@ -12,12 +12,12 @@ class login
 
 	public function init ( $url )
 	{
-		$url->alias ( '/login/login.css', '/modules/login/login.css' );
+		//$url->alias ( '/login/login.css', '/modules/login/login.css' );
 	}
 
 	public function run ()
 	{
-		template::addCSS ('/login/login.css');
+		template::addCSS ('login.css');
 		template::add ('login.twig', [] );
 	}
 }
