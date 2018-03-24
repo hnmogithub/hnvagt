@@ -63,10 +63,9 @@ spl_autoload_register ( function ( $class )
 		}
 	}
 
-	if ( strstr ( $class, '_'  ) )
+	if ( strpos ( $class, '_'  ) )
 	{
 		$file = 'lib/'. str_replace ( '_', '/', $class ) .'.php';
-		echo $file;
 
 		if ( file_exists ( $file ) == true )
 		{
