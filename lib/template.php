@@ -43,11 +43,14 @@ class template
 	 */
 	static public function addCSS ( string $path )
 	{
+		if ( substr ( $path, 0, 4 ) == 'http' )
+		{	throw new Exception ('template::addCSS (), path added starts with http, do not add paths like this, use //domain.ads/asd/asd.css instead' ); }
+
 		if ( substr ( $path, 0, 1 ) != '/' )
 		{
 			$path = str_replace ( '\\', '/', schedule::lastModule () ) .'/'. $path;
 		}
-		
+
 		self::$css [] = $path;
 	}
 
