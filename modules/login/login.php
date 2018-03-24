@@ -1,6 +1,6 @@
 <?php namespace modules;
 use \schedule as schedule;
-use \templates as template;
+use \template as template;
 
 class login
 {

@@ -1,6 +1,6 @@
 <?php namespace system;
 use \schedule as schedule;
-use \templates as templates;
+use \template as template;
 
 class html
 {
@@ -15,7 +15,7 @@ class html
 		$twig = new \Twig_Environment ( $loader );
 
 		$html = '';
-		foreach ( templates::get () as $template )
+		foreach ( template::get () as $template )
 		{
 			echo 'loading: '. $template ['path'];
 
