@@ -1,4 +1,4 @@
-$('form').on ('submit', function ( e )
+$('#login').on ('submit', function ( e )
 {
 	var data = new FormData ();
 	data.append ( 'username', $('#login input[name="username"]').val () );
