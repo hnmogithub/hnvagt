@@ -35,5 +35,7 @@ html,body,.login-back
 #login input
 {
 	background: #333;
-	color: white;
+	color: #ccc;
+
+	border: #111;
 }
