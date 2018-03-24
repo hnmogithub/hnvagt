@@ -11,6 +11,7 @@ class login
 
 	public function check ()
 	{
+		echo 'ran';
 		template::add ('login.twig', [] );
 	}
 }
