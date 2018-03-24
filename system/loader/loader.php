@@ -14,6 +14,9 @@ class loader
 
 	public function load ()
 	{
+		$id = users::current ()->id ();
+		var_dump ( $id );
+
 		database (DB)->query ('
 			SELECT
 				`m`.`path`,
@@ -51,7 +54,7 @@ class loader
 				`mr_u`.`id` = ?
 				OR
 				`mr_g`.`user_id` = ?
-		', [ users::current ()->id (), users::current ()->id () ] )->each ( function ( $row )
+		', [ $id, $id ] )->each ( function ( $row )
 		{
 			echo 'path: '. $row ['path'] . "\n";
 			schedule::load ( $row ['path'], $row ['namespace'] );
