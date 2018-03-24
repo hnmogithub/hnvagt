@@ -28,7 +28,7 @@ class loader
 			case 'js':
 				if ( file_exists ( $_SERVER ['REQUEST_URI'] ) == false )
 				{
-					throw new Response ( 'File not found', 404 );
+					throw new Response ( 'File not found ('. $_SERVER ['REQUEST_URI'] .')', 404 );
 				}
 
 				$file [] = $extension;
