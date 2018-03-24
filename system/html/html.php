@@ -18,7 +18,7 @@ class html
 	public function run ()
 	{
 		template::addCSS ('html/base.css');
-		template::addCSS ('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+		template::addCSS ('//fonts.googleapis.com/css?family=Source+Sans+Pro');
 		$dump = template::dump ();
 
 		$loader = new \Twig_Loader_Filesystem ( dirname ( $_SERVER ['SCRIPT_FILENAME'] ) .'/' );
