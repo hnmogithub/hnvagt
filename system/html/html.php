@@ -11,7 +11,7 @@ class html
 
 	public function run ()
 	{
-		template::addCSS ('base.css');
+		template::addCSS ('html/base.css');
 		$dump = template::dump ();
 
 		$loader = new \Twig_Loader_Filesystem ( dirname ( $_SERVER ['SCRIPT_FILENAME'] ) .'/' );
@@ -25,6 +25,6 @@ class html
 			$html .= $twig->render ( $template ['path'], $template ['environment'] );
 		}
 
-		echo $twig->render ('system/html/base/base.html', [ 'body' => $html ] );
+		echo $twig->render ('system/html/html/base.html', [ 'body' => $html ] );
 	}
 }
