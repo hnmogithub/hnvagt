@@ -21,7 +21,9 @@ html,body,.login-back
 	border-radius: 3px;
 
 	padding: 5px;
-
+}
+#login .inputs
+{
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -34,7 +36,7 @@ html,body,.login-back
 	width: 100%;
 }
 
-#login > div
+#login .inputs > div
 {
 	padding: 5px;
 	width: 300px;
@@ -42,12 +44,12 @@ html,body,.login-back
 	flex-grow: 2;
 }
 
-#login .title
+#login .inputs .title
 {
 	color: white;
 }
 
-#login input
+#login .inputs input
 {
 	background: #CCC;
 	color: #333;
@@ -58,14 +60,14 @@ html,body,.login-back
 	padding: 3px;
 	text-indent: 8px;
 }
-#login input:focus
+#login .inputs input:focus
 {
 	border-color: #666;
 	outline: 0;
 	box-shadow: inset 0px 1px 1px rgba(0,0,0,0.075), 0px 0px 8px rgba(255,255,255,0.6);
 }
 
-#login input[type="submit"]
+#login .inputs input[type="submit"]
 {
 	text-indent: 0px;
 }
