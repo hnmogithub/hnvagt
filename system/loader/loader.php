@@ -53,6 +53,7 @@ class loader
 				`mr_g`.`user_id` = ?
 		', [ users::current ()->id (), users::current ()->id () ] )->each ( function ( $row )
 		{
+			echo 'path: '. $row ['path'] . "\n";
 			schedule::load ( $row ['path'], $row ['namespace'] );
 		} );
 	}
