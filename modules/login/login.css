@@ -43,4 +43,11 @@ html,body,.login-back
 	color: #ccc;
 
 	border: #111;
+
+	padding: 3px;
+	text-indent: 8px;
+}
+#login input[type="submit"]
+{
+	text-indent: 0px;
 }
