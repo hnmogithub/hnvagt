@@ -62,6 +62,11 @@ class loader
 				{
 					die ( 'header already sent' );
 				}
+				else
+				{
+					die ( 'headers not sent' );
+				}
+				die ('');
 				header ( 'content-type', $type [ $extension ] );
 				
 				die ( file_get_contents ( '.'. $url ) );
