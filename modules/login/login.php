@@ -15,7 +15,7 @@ class login
 		$url->alias ( '/login/login.css', '/system/login/login.css' );
 	}
 
-	public function check ()
+	public function run ()
 	{
 		template::addCSS ('/login/login.css');
 		template::add ('login.twig', [] );
