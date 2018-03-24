@@ -17,7 +17,7 @@ class template
 	static public function add ( string $path, array $environment = [] )
 	{
 		self::$templates [] = [
-			'path' => schedule::$namespaces [ schedule::lastModule () ] .'/'. schedule::lastModule () .'/'.  $path,
+			'path' => schedule::lastModule () .'/'.  $path,
 			'environment' => $environment
 		];
 	}
