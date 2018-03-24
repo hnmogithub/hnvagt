@@ -79,7 +79,7 @@ class template
 	 */
 	static public function getUrl ()
 	{
-		return str_replace ( '\\', '/', schedule::lastModule () );
+		return '/'. str_replace ( '\\', '/', schedule::lastModule () );
 	}
 
 
