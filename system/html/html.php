@@ -13,7 +13,7 @@ class html
 
 	public function init ( $loader )
 	{
-		$loader->uriAlias ( '/base/base.css', 'system/html/html/base.css' );
+		$loader->uriAlias ( '/base/base.css', '/system/html/html/base.css' );
 	}
 
 	public function run ()
