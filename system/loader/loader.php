@@ -52,7 +52,6 @@ class loader
 		{
 			case 'css':
 			case 'js':
-				var_dump ( file_exists ( '.'. $url ) );
 				die ( $extension );
 				if ( file_exists ( '.'. $url ) == false )
 				{	throw new Response ( 'File not found ('. $_SERVER ['REQUEST_URI'] .')', 404 ); }
@@ -62,7 +61,6 @@ class loader
 				];
 				header ( 'Content-Type', $type [ $extension ] );
 				
-				$file [] = $extension;
 				die ( file_get_contents ( '.'. $url ) );
 		}
 	}
