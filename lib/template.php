@@ -6,7 +6,7 @@ class template
 	 * 
 	 * @var array $templates
 	 */
-	private $templates = [];
+	static private $templates = [];
 
 	/**
 	 * Adds a template to the environment
