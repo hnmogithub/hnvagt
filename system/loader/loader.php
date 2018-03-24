@@ -10,11 +10,13 @@ class loader
 
 	public function load ()
 	{
+		/*
 		database (DB)->query ('
 			SELECT
 				`path`
 			FROM
 				`
 		');
+		*/
 	}
 }
