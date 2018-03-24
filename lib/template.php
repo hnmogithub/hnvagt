@@ -31,7 +31,7 @@ class template
 	static public function add ( string $path, array $environment = [] )
 	{
 		self::$templates [] = [
-			'path' => str_replace ( '\\', '/', schedule::lastModule () ) .'/'. $path,
+			'path' => self::getUrl () .'/'. $path,
 			'environment' => $environment
 		];
 	}
@@ -48,7 +48,7 @@ class template
 
 		if ( substr ( $path, 0, 1 ) != '/' )
 		{
-			$path = str_replace ( '\\', '/', schedule::lastModule () ) .'/'. $path;
+			$path = self::getUrl () .'/'. $path;
 		}
 
 		self::$css [] = $path;
@@ -66,11 +66,22 @@ class template
 
 		if ( substr ( $path, 0, 1 ) != '/' )
 		{
-			$path = str_replace ( '\\', '/', schedule::lastModule () ) .'/'. $path;
+			$path = self::getUrl () .'/'. $path;
 		}
 
 		self::$js [] = $path;
 	}
+
+	/**
+	 * Gets the url needed to target the current module
+	 * 
+	 * @return string $path
+	 */
+	static public function getUrl ()
+	{
+		return str_replace ( '\\', '/', schedule::lastModule () );
+	}
+
 
 	/**
 	 * Gets all templates and environments added

@@ -12,12 +12,20 @@ class login
 
 	public function init ( $url )
 	{
+		$url->request ( '/ajax/login', [ $this, 'ajax' ] );
 		//$url->alias ( '/login/login.css', '/modules/login/login.css' );
+	}
+
+	public function ajax ()
+	{
+		var_dump ( $_POST );
 	}
 
 	public function run ()
 	{
 		template::addCSS ('login.css');
-		template::add ('login.twig', [] );
+		template::add ('login.twig', [
+			'js' => template::getUrl (). '/login.js'
+		] );
 	}
 }
