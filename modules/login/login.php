@@ -12,7 +12,7 @@ class login
 
 	public function init ( $url )
 	{
-		$url->alias ( '/login/login.css', '/system/login/login.css' );
+		$url->alias ( '/login/login.css', '/modules/login/login.css' );
 	}
 
 	public function run ()
