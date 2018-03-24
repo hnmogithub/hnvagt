@@ -1,6 +1,5 @@
 <?php namespace modules;
 use \schedule as schedule;
-use \users as users;
 
 class login
 {
@@ -11,9 +10,6 @@ class login
 
 	public function check ()
 	{
-		if ( users::current () == users::byId ( 1 ) )
-		{
-
-		}
+		template::add ('login.twig', [] );
 	}
 }

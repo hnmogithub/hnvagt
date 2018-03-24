@@ -10,11 +10,17 @@ class html
 
 	public function run ()
 	{
-		$loader = new \Twig_Loader_Array ([
-			'index' => 'Hello {{ name }}'
-		]);
-		
+		$loader = new \Twig_Loader_Filesystem ('.');
 		$twig = new \Twig_Environment ( $loader );
-		echo $twig->render ('index', [ 'name' => 'testing' ] );
+
+		$html = '';
+		foreach ( templates::get () as $template )
+		{
+			echo 'loading: '. $template ['path'];
+
+			$html .= $twig->render ( $template ['path'], $template ['environment'] );
+		}
+
+		echo $html;
 	}
 }
