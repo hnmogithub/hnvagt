@@ -47,12 +47,13 @@ class loader
 
 		$file = explode ( '.', basename ( $url ) );
 		$extension = strtolower ( array_pop ( $file ) );
-		die ( $extension );
 
 		switch ( $extension )
 		{
 			case 'css':
 			case 'js':
+				var_dump ( file_exists ( '.'. $url ) );
+				die ( $extension );
 				if ( file_exists ( '.'. $url ) == false )
 				{	throw new Response ( 'File not found ('. $_SERVER ['REQUEST_URI'] .')', 404 ); }
 				$type = [
