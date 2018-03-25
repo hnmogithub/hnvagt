@@ -166,7 +166,7 @@ class users
 	{
 		if ( $conn !== null )
 		{
-			$result = ldap_search ( $conn, 'DC=hnext,DC=lan', 'email='. $username, ['objectGUID', 'givenname'] );
+			$result = ldap_search ( $conn, 'DC=hnext,DC=lan', 'CN=Test Bruger 1', ['objectGUID', 'givenname'] );
 
 			var_dump ( ldap_get_entries ( $conn, $result ) );
 		}
