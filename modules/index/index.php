@@ -8,6 +8,8 @@ class index
 	{
 		schedule::add ( schedule::$RUN_INIT, [ $this, 'check' ], ['url'] );
 		schedule::paramAdd ( 'index', $this );
+
+		echo 'im here';
 	}
 
 	/**
