@@ -103,10 +103,10 @@ class users
 		//if ( ldap_sasl_bind ( $conn, null, $password, 'DIGEST-MD5', null, $username ) == false )
 		//{	throw new Response ('Unable to GSSAPI bind ldap', 400); }
 		
-		if ( ldap_bind ( $conn, $username, $password ) == false )
+		if ( @ldap_bind ( $conn, $username, $password ) == false )
 		{	throw new Response ('Unable to bind ldap', 400); }
 
-		$output = ob_end_flush ();
+		$output = error_get_last ();
 		var_dump ( $output );
 
 		echo 'success?';
