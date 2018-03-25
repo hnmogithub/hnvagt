@@ -1,6 +1,7 @@
 <?php namespace modules;
 use \schedule as schedule;
 use \template as template;
+use \users as users;
 
 class index
 {
@@ -38,13 +39,14 @@ class index
 	 */
 	public function init ( $url )
 	{
-		$url->request ( '^/$', (schedule::$RUN_HTML - 1), [ $this, 'run' ], ['html'] );
+		$url->request ( '^/$', (schedule::$RUN_HTML - 1), [ $this, 'asIndex' ], ['html'] );
+		$url->request ( '^/.+', (schedule::$RUN_HTML - 1), [ $this, 'asBar' ], ['html'] );
 	}
 
 	/**
 	 * So the url registered our job in the scheduler, so lets parse the icons the other modules may have added to us
 	 */
-	public function run ( $html )
+	public function asIndex ( $html )
 	{
 		template::addCSS ('web/index.css');
 
@@ -54,6 +56,28 @@ class index
 			$icons .= $html->render ( 'web/snippets/icon.twig', $icon );
 		}
 
-		template::add ( 'web/index.twig', [ 'icons' => $icons ] );
+		template::add ( 'web/index.twig', [
+			'icons' => $icons,
+			'user' => users::current ()
+		] );
+	}
+
+	/**
+	 * So the url registered our job in the scheduler, so lets parse the icons the other modules may have added to us
+	 */
+	public function asBar ( $html )
+	{
+		template::addCSS ('web/bar.css');
+
+		$icons = '';
+		foreach ( $this->icons as $icon )
+		{
+			$icons .= $html->render ( 'web/snippets/icon.twig', $icon );
+		}
+
+		template::add ( 'web/bar.twig', [
+			'icons' => $icons,
+			'user' => users::current ()
+		] );
 	}
 }

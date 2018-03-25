@@ -35,6 +35,11 @@ body,html
 	text-indent: 30px;
 }
 
+#index > .name
+{
+	float: right;
+}
+
 .icons
 {
 	height: 100%;
