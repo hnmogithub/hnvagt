@@ -26,7 +26,7 @@ class index
 	{
 		$this->icons [] = [
 			'text' => $text,
-			'icon' => template::getUrl (). $icon,
+			'icon' => template::getUrl () .'/'. $icon,
 			'uri' => $uri
 		];
 
