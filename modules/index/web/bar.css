@@ -23,7 +23,13 @@
 
 #bar .icons .icon .image
 {
-	
+	width: 15px;
+	height: 20px;
+}
+#bar .icons .icon .image img
+{
+	width: 100%;
+	height: 100%;
 }
 
 #bar .icons .icon .text
