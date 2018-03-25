@@ -116,7 +116,7 @@ class users
 			{
 				if ( substr ( $errstr, 0, 4 ) == 'ldap' )
 				{
-					if ( strpos ( $errstr, 'strong(er) authentication required' ) !== false )
+					if ( strpos ( strtolower ( $errstr ), 'strong(er) authentication required' ) !== false )
 					{
 						$login = true;
 						return true;
