@@ -108,7 +108,7 @@ class url
 			 * I could have made this into a function sitting on the object instead of using an anonymouse function however then the function would have to be a public function and the code being run in there, is for internal use only so it wouldnt really fit
 			 */
 			$urls =& $this->__urls;
-			schedule::add ( schedule::levelAt (), function () use ( $urls )
+			schedule::add ( schedule::levelAt (), function () use ( &$urls )
 			{
 				unset ( $this->__level [ schedule::levelAt () ] );
 
@@ -123,7 +123,6 @@ class url
 						{	$url = '^'. $url; }
 						$url = '/'. $url .'/';
 
-						var_dump ( $url );
 						if ( preg_match ( $url, $_SERVER ['REQUEST_URI'] ) )
 						{
 							$found = true;
