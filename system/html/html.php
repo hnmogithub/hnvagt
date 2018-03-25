@@ -35,7 +35,7 @@ class html
 	 */
 	public function render ( string $template, array $environment = [] )
 	{
-		$template = template::getUrl () . $template;
+		$template = template::getUrl () .'/'. $template;
 
 		return $this->twig->render ( $template, $environment );
 	}
