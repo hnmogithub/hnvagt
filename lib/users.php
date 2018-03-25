@@ -162,16 +162,22 @@ class users
 	}
 
 	/** */
-	static private function __loggedIn ( string $username )
+	static private function __loggedIn ( string $username, $conn = null )
 	{
+		if ( $conn !== null )
+		{
+			$result = ldap_search ( $conn, 'DC=hnext,DC=lan', 'email='. $username, ['objectGUID', 'givenname'] );
+
+			var_dump ( ldap_get_entries ( $conn, $result ) );
+		}
+		die ('asd');
+		/*
 		if ( strpos ( $username, '\\' ) !== false )
 		{	list (, $username ) = explode ( '\\', $username, 2 ); }
 		$username = str_replace ( '@', '', $username );
 		$username = str_replace ( '.', '', $username );
 
-		var_dump ( $username );
-
-		database(DB)->cache ('users', 'id', '
+		$result = database(DB)->cache ('users', 'id', '
 			SELECT
 				*
 
@@ -181,5 +187,11 @@ class users
 			WHERE
 				`name` = ?
 		', [ $username ] );
+
+		if ( $result->length () == 0 )
+		{
+
+		}
+		*/
 	}
 }
