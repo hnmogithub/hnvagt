@@ -106,7 +106,7 @@ class users
 		if ( ldap_bind ( $conn, $username, $password ) == false )
 		{	throw new Response ('Unable to bind ldap', 400); }
 
-		$output = ob_end_clean ();
+		$output = ob_end_flush ();
 		var_dump ( $output );
 
 		echo 'success?';
