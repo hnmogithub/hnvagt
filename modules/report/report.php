@@ -1,7 +1,7 @@
 <?php namespace modules;
 use \schedule as schedule;
 
-class report_index
+class report
 {
 	public function __construct ()
 	{
