@@ -12,6 +12,12 @@
 	font-size: 90%;
 }
 
+#bar .icons
+{
+	display: flex;
+	justify-content: flex-start;
+}
+
 #bar .icons .icon
 {
 	width: 100px;
@@ -34,5 +40,7 @@
 
 #bar .icons .icon .text
 {
-	
+	text-indent: 10px;
+
+	color: #CCC;
 }
