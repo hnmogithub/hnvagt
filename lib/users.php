@@ -124,13 +124,9 @@ class users
 						}
 						break;
 					case 'ldap_start_tls()':
-						if ( strpos ( strtolower ( $errstr ), 'unable to start' ) !== false )
-						{	$error [] = 'Start-TLS Not enabled on Server, ldaps impossible'; }
-						else
-						{	$error [] = $errstr; }
+						$error [] = $errstr;
 
 						return true;
-						break;
 					case 'ldap_sasl_bind()':
 						if ( strpos ( strtolower ( $errstr ), 'invalid credentials' ) !== false )
 						{	$error [] = 'GSSAPI Login failed'; }
