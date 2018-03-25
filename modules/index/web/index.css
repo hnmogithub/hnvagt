@@ -17,4 +17,17 @@ body,html
 
 	border: 1px solid black;
 	background: white;
+
+	text-align: center;
+}
+
+.icon img
+{
+	height: 68px;
+	width: 100%;
+}
+
+.icon .text
+{
+	color: black;
 }
