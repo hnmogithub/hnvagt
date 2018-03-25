@@ -115,11 +115,19 @@ class url
 					$found = false;
 					foreach ( $jobs as $jId => $entry )
 					{
-						if ( preg_match ('/^'. str_replace ( '/', '\\/', $entry ['url'] ) .'/', $_SERVER ['REQUEST_URI'] ) )
+						$url = $entry ['url'];
+						$url = str_replace ( '/', '\\/', $url );
+						if ( substr ( $url, 0, 1 ) !== '^' )
+						{	$url = '^'. $url; }
+						$url = '/'. $url .'/';
+
+						var_dump ( $url, $_SERVER ['REQUEST_URI'] );
+						if ( preg_match ( $url, $_SERVER ['REQUEST_URI'] ) )
 						{
 							$found = true;
 							unset ( $urls [ $lId ][ $jId ] );
 
+							echo 'adding job';
 							schedule::add ( $entry ['level'], $entry ['job'], $entry ['params'] );
 						}
 					}
