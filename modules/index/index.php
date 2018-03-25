@@ -4,6 +4,9 @@ use \template as template;
 
 class index
 {
+	/** @var array $icons */
+	private $icons = [];
+
 	public function __construct ()
 	{
 		schedule::add ( schedule::$RUN_INIT, [ $this, 'init' ], ['url'] );
@@ -46,7 +49,7 @@ class index
 		$icons = '';
 		foreach ( $this->icons as $icon )
 		{
-			$icons .= $html->render ('web/snippets/icon.twig', $icon );
+			$icons .= $html->render ( 'web/snippets/icon.twig', $icon );
 		}
 
 		template::add ( 'web/index.twig', [ 'icons' => $icons ] );
