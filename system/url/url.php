@@ -42,9 +42,11 @@ class url
 		{
 			case 'css':
 			case 'js':
+			case 'png':
 				if ( file_exists ( '.'. $url ) == false )
 				{	throw new Response ( 'File not found ('. $_SERVER ['REQUEST_URI'] .')', 404 ); }
 				$type = [
+					'png' => 'image/png',
 					'css' => 'text/css;charset=utf-8',
 					'js' => 'text/javascript;charset=utf-8'
 				];
