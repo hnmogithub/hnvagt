@@ -1,0 +1,17 @@
+.icons
+{
+	height: 100%;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.icons
+{
+	width: 90px;
+	height: 90px;
+
+	border: 1px solid black;
+	background: white;
+}

@@ -46,6 +46,8 @@ class index
 	 */
 	public function run ( $html )
 	{
+		template::addCSS ('web/index.css');
+
 		$icons = '';
 		foreach ( $this->icons as $icon )
 		{
