@@ -19,17 +19,23 @@ r ( function ()
 				if ( data.state == 0 )
 				{
 					var err = $('#login .error');
+					clearTimeout ( err.data ('time') );
+
 					err.animate ({
 						'opacity': 1
-					}, 100, function ()
+					}, 100 );
+					
+					var time = setTimeout ( (function (err)
 					{
-						clearTimeout ( $(this).data ('time') );
-						var time = setTimeout ( function ()
+						return function ()
 						{
-							$(this).animate ({'opacity':0}, 100);
-						}, 500 );
-						$(this).data ('time', time);
-					});
+							err.animate ({
+								'opacity': 0
+							}, 100 );
+						}
+					})(err), 600 );
+
+					err.data ('time',time);
 				}
 				else
 				{
