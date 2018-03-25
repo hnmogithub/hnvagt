@@ -61,7 +61,6 @@ body,html
 	padding: 3px;
 
 	text-decoration: none;
-	transition: box-shadow .3s;
 }
 .icon:hover
 {

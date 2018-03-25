@@ -10,6 +10,6 @@ class report
 
 	public function init ( $index )
 	{
-		$index->add ( 'Report', 'image.png', '/report/' );
+		$index->add ( 'Report', 'web/image/icon-briefcase.png', '/report/' );
 	}
 }
