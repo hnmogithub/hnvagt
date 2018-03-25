@@ -7,7 +7,7 @@ r ( function ()
 		data.append ( 'password', $('#login input[name="password"]').val () );
 
 		$.ajax ({
-			'url': 'ajax/login',
+			'url': '/ajax/login',
 			'data': data,
 			'processData': false,
 			'contentType': false,
