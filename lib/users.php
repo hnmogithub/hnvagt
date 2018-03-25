@@ -103,7 +103,7 @@ class users
 
 		ldap_set_option($conn, LDAP_OPT_PROTOCOL_VERSION, 3);
 		ldap_set_option($conn, LDAP_OPT_REFERRALS, 0);
-		ldap_set_option($conn, LDAPT_OPT_ENCRYPT, 1);
+		//ldap_set_option($conn, LDAPT_OPT_ENCRYPT, 1);
 
 		
 		// GSSAPI does not work
