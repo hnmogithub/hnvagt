@@ -37,6 +37,7 @@ class index
 
 	public function run ()
 	{
+		echo 'i am in here';
 		template::add ( 'web/index.twig' );
 	}
 }
