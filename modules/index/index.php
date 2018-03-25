@@ -52,6 +52,7 @@ class index
 			$icons .= $html->render ( 'web/snippets/icon.twig', $icon );
 		}
 
+		var_dump ( $icons );
 		template::add ( 'web/index.twig', [ 'icons' => $icons ] );
 	}
 }
