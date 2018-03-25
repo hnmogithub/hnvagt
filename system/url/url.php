@@ -115,8 +115,7 @@ class url
 					$found = false;
 					foreach ( $jobs as $jId => $entry )
 					{
-						$url = $entry ['url'];
-						$url = str_replace ( '/', '\\/', $url );
+						$url = str_replace ( '/', '\\/', $entry ['url'] );
 						if ( substr ( $url, 0, 1 ) !== '^' )
 						{	$url = '^'. $url; }
 						$url = '/'. $url .'/';
@@ -127,7 +126,7 @@ class url
 							$found = true;
 							unset ( $urls [ $lId ][ $jId ] );
 
-							echo 'adding job';
+							echo 'adding job: '. $entry ['job'][1];
 							schedule::add ( $entry ['level'], $entry ['job'], $entry ['params'] );
 						}
 					}
