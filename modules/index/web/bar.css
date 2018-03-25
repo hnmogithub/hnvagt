@@ -11,3 +11,22 @@
 	color: #666;
 	font-size: 90%;
 }
+
+#bar .icons .icon
+{
+	width: 100px;
+	height: 20px;
+	
+	display: flex;
+	justify-content: flex-start;
+}
+
+#bar .icons .icon .image
+{
+	
+}
+
+#bar .icons .icon .text
+{
+	
+}
