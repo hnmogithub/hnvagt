@@ -23,7 +23,7 @@ r ( function ()
 
 					err.animate ({
 						'opacity': 1
-					}, 100 );
+					}, 200 );
 					
 					var time = setTimeout ( (function (err)
 					{
@@ -31,9 +31,9 @@ r ( function ()
 						{
 							err.animate ({
 								'opacity': 0
-							}, 100 );
+							}, 200 );
 						}
-					})(err), 600 );
+					})(err), 700 );
 
 					err.data ('time',time);
 				}
