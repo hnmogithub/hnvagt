@@ -1,0 +1,13 @@
+#bar > .name
+{
+	float: right;
+	color: #999;
+
+	font-size: 70%;
+}
+
+#bar > .name .subtle
+{
+	color: #666;
+	font-size: 90%;
+}
