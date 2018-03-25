@@ -132,7 +132,7 @@ class users
 			return false;
 		} );
 
-		$result = @ldap_bind ( $conn, $username, $password ); // false here would normally be because of invalid password, however... 
+		$result = ldap_bind ( $conn, $username, $password ); // false here would normally be because of invalid password, however... 
 		if ( $result == true )
 		{	return true; }
 		//else
