@@ -18,7 +18,18 @@ r ( function ()
 			{
 				if ( data.state == 0 )
 				{
-					
+					var err = $('#login .error');
+					err.animation ({
+						'opacity': 1
+					}, 100, function ()
+					{
+						clearTimeout ( $(this).data ('time') );
+						var time = setTimeout ( function ()
+						{
+							$(this).animate ({'opacity':0}, 100);
+						}, 500 );
+						$(this).data ('time', time);
+					});
 				}
 				else
 				{
