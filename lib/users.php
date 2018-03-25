@@ -183,8 +183,6 @@ class users
 		$username = str_replace ( '@', '', $username );
 		$username = str_replace ( '.', '', $username );
 
-		var_dump  ($username);
-
 		$result = database(DB)->cache ('users', 'id', '
 			SELECT
 				*
@@ -197,9 +195,8 @@ class users
 
 			LIMIT 1
 		', [ $username ] );
-		var_dump ( $result->length () );
 
-		if ( $result->length () == 0 )
+		if ( $result->length () < 1 )
 		{
 			database(DB)->query ('
 				INSERT INTO
@@ -232,7 +229,7 @@ class users
 		{
 			$row = $result->fetchOne ();
 
-			$user = users::byId ( $id );
+			$user = users::byId ( $row ['id'] );
 		}
 
 		$user->set ('login', date ( 'Y-m-d H:i:s') );
