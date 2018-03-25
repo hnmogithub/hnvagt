@@ -131,7 +131,7 @@ class users
 							return true;
 						}
 						break;
-					case 'ldaps_sasl_bind()':
+					case 'ldap_sasl_bind()':
 						if ( strpos ( strtolower ( $errstr ), 'invalid credentials' ) !== false )
 						{
 							$error [] = 'GSSAPI Login failed';
