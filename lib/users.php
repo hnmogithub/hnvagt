@@ -174,7 +174,7 @@ class users
 				list (, $username ) = explode ( '\\', $username, 2 );
 				$result = ldap_search ( $conn, 'OU=HNEXT,DC=hnext,DC=lan', 'CN='. $username );
 
-				var_dump ( ldap_get_entries ( $result ) );
+				var_dump ( ldap_get_entries ( $conn, $result ) );
 			}
 			else
 			{
@@ -192,6 +192,6 @@ class users
 
 			WHERE
 				`name` = ?
-		');
+		', [ $username ] );
 	}
 }
