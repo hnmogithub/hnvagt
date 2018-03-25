@@ -4,7 +4,7 @@ use \template as template;
 use \users as users;
 use \Response as Response;
 
-
+echo 'da hell?';
 class login
 {
 	public function __construct ()
