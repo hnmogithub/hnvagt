@@ -92,6 +92,7 @@ class users
 	 */
 	static public function login ( string $username, string $password )
 	{
+		self::$error = '';
 		putenv('LDAPTLS_REQCERT=never');
 
 		$settings = settings ('users');
