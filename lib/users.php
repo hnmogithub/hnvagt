@@ -96,9 +96,11 @@ class users
 		if ( $conn == false )
 		{	throw new Response ('Unable to connect to ldap', 400); }
 
+		// Since the LDAP Server is setup by a troll
+		//ob_start (); 
 
-		if ( ldap_sasl_bind ( $conn, null, $password, 'DIGEST-MD5', null, $username ) == false )
-		{	throw new Response ('Unable to GSSAPI bind ldap', 400); }
+		//if ( ldap_sasl_bind ( $conn, null, $password, 'DIGEST-MD5', null, $username ) == false )
+		//{	throw new Response ('Unable to GSSAPI bind ldap', 400); }
 		
 		if ( ldap_bind ( $conn, $username, $password ) == false )
 		{	throw new Response ('Unable to bind ldap', 400); }
