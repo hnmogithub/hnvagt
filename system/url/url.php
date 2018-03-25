@@ -122,6 +122,7 @@ class url
 						{	$url = '^'. $url; }
 						$url = '/'. $url .'/';
 
+						var_dump ( $url );
 						if ( preg_match ( $url, $_SERVER ['REQUEST_URI'] ) )
 						{
 							$found = true;
