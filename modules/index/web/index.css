@@ -38,6 +38,15 @@ body,html
 #index > .name
 {
 	float: right;
+	color: #999;
+
+	font-size: 70%;
+}
+
+#index > .name .subtle
+{
+	color: #666;
+	font-size: 90%;
 }
 
 .icons
