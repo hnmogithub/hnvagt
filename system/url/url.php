@@ -86,7 +86,6 @@ class url
 	 */
 	public function request ( string $url, int $level, array $job, array $params = [] )
 	{
-		echo 'requesting: '. $url ."\n";
 		/**
 		 * We store them based on length of url as we want to match the most precise url first, then we go down until we get an exact match
 		 */
@@ -128,7 +127,6 @@ class url
 							$found = true;
 							unset ( $urls [ $lId ][ $jId ] );
 
-							echo 'adding';
 							schedule::add ( $entry ['level'], $entry ['job'], $entry ['params'] );
 						}
 					}

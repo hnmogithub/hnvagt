@@ -67,7 +67,6 @@ class index
 	 */
 	public function asBar ( $html )
 	{
-		die ( 'here?' );
 		template::addCSS ('web/bar.css');
 
 		$icons = '';
