@@ -96,7 +96,7 @@ class users
 		putenv('LDAPTLS_REQCERT=never');
 
 		$settings = settings ('users');
-		$conn = ldap_connect ( (string) $settings ['host'], 636 );
+		$conn = ldap_connect ( (string) $settings ['host'] );
 
 		if ( $conn == false )
 		{	throw new Response ('Unable to connect to ldap', 400); }
