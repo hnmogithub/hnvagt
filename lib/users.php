@@ -114,7 +114,7 @@ class users
 				list ( $function ) = explode ( ':', $errstr, 2 );
 				switch ( $function )
 				{
-					case 'ldap_bind':
+					case 'ldap_bind()':
 						if ( strpos ( strtolower ( $errstr ), 'strong(er) authentication required' ) !== false )
 						{
 							$error [] = 'Simple Bind still does not work';
@@ -123,7 +123,7 @@ class users
 							return true;
 						}
 						break;
-					case 'ldap_start_tls':
+					case 'ldap_start_tls()':
 						if ( strpos ( strtolower ( $errstr ), 'unable to start' ) !== false )
 						{
 							$error [] = 'Start-TLS Not enabled on Server, ldaps impossible';
@@ -131,7 +131,7 @@ class users
 							return true;
 						}
 						break;
-					case 'ldaps_sasl_bind':
+					case 'ldaps_sasl_bind()':
 						if ( strpos ( strtolower ( $errstr ), 'invalid credentials' ) !== false )
 						{
 							$error [] = 'GSSAPI Login failed';
