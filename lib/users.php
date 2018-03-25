@@ -98,11 +98,12 @@ class users
 		$settings = settings ('users');
 		$conn = ldap_connect ( (string) $settings ['host'] );
 
-		ldap_set_option($conn, LDAP_OPT_PROTOCOL_VERSION, 3);
-		ldap_set_option($conn, LDAP_OPT_REFERRALS, 0);
-
 		if ( $conn == false )
 		{	throw new Response ('Unable to connect to ldap', 400); }
+
+		ldap_set_option($conn, LDAP_OPT_PROTOCOL_VERSION, 3);
+		ldap_set_option($conn, LDAP_OPT_REFERRALS, 0);
+		ldap_set_option($conn, LDAPT_OPT_ENCRYPT, 1);
 
 		
 		// GSSAPI does not work
@@ -119,7 +120,7 @@ class users
 				{
 					if ( strpos ( strtolower ( $errstr ), 'strong(er) authentication required' ) !== false )
 					{
-						self::$error = 'Simple bind still does not work';
+						self::$error = 'Simple Bind still does not work';
 
 						$login = true;
 						return true;
