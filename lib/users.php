@@ -144,18 +144,51 @@ class users
 		{	ldap_start_tls ( $conn ); }
 
 		if ( ldap_sasl_bind ( $conn, null, $password, 'DIGEST-MD5', null, $username ) == true )
-		{	return true; }
+		{	self::__loggedIn ( $username, $conn ); return true; }
 
 		$result = @ldap_bind ( $conn, $username, $password );
 		if ( ldap_get_option($conn, LDAP_OPT_DIAGNOSTIC_MESSAGE, $err) == true )
 		{	self::$error [] = $err; }
 
 		if ( $result == true )
-		{	return true; }
-		//else
-		//{	return false; }
-		restore_error_handler (); // Lets restore back from our shit-code to normal code
+		{	self::__loggedIn ( $username, $conn ); return true; }
+		restore_error_handler ();
 
+		if ( $login == true )
+		{
+			self::__loggedIn ( $username );
+		}
 		return $login;
+	}
+
+	/** */
+	static private function __loggedIn ( string $username, resource $conn = null )
+	{
+		if ( $conn !== null )
+		{
+			if ( strpos ( $username, '\\' ) !== false )
+			{
+				list (, $username ) = explode ( '\\', $username, 2 );
+				$result = ldap_search ( $conn, 'OU=HNEXT,DC=hnext,DC=lan', 'CN='. $username );
+
+				var_dump ( ldap_get_entries ( $result ) );
+			}
+			else
+			{
+
+			}
+			
+		}
+
+		database(DB)->cache ('users', 'id', '
+			SELECT
+				*
+
+			FROM
+				`users`
+
+			WHERE
+				`name` = ?
+		');
 	}
 }
