@@ -28,9 +28,19 @@ class login
 		$password = $_POST ['password'];
 
 		if ( users::login ( $username, $password ) === true )
-		{	die ('1'); }
+		{
+			die (json_encode ([
+				'state' => 1,
+				'error' => users::$error
+			]));
+		}
 		else
-		{	die ('0'); }
+		{
+			die (json_encode ([
+				'state' => 0,
+				'error' => users::$error
+			]));
+		}
 	}
 
 	public function run ()

@@ -1,6 +1,13 @@
 <?php
 class users
 {
+	/**
+	 * Incase of ldap error when logging in, error will be saved here
+	 * 
+	 * @var string $error
+	 */
+	static public $error = '';
+
 	static private $users = [];
 
 	/**
@@ -103,7 +110,7 @@ class users
 		
 		// Since the LDAP Server is setup by a troll, Start-TLS does not work, GSSAPI does not work, Simple Bind does not work. We have to force this abit with a workaround, but we shall have our access.
 		$login = false;
-		set_error_handler ( function ( $errno, $errstr, $errfile, $errline ) use ( $login )
+		set_error_handler ( function ( $errno, $errstr, $errfile, $errline ) use ( &$login )
 		{
 			if ( $errno === 2 )
 			{
