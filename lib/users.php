@@ -97,7 +97,7 @@ class users
 		{	throw new Response ('Unable to connect to ldap', 400); }
 
 		// Since the LDAP Server is setup by a troll, Start-TLS does not work, GSSAPI does not work, Simple Bind does not work. We have to force this abit with a workaround, but we shall have our access.
-		ob_start ();
+		//ob_start ();
 
 		// GSSAPI does not work
 		//if ( ldap_sasl_bind ( $conn, null, $password, 'DIGEST-MD5', null, $username ) == false )
