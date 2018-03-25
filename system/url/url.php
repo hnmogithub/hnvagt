@@ -120,13 +120,11 @@ class url
 						{	$url = '^'. $url; }
 						$url = '/'. $url .'/';
 
-						var_dump ( $url, $_SERVER ['REQUEST_URI'] );
 						if ( preg_match ( $url, $_SERVER ['REQUEST_URI'] ) )
 						{
 							$found = true;
 							unset ( $urls [ $lId ][ $jId ] );
 
-							echo 'adding job: '. $entry ['job'][1];
 							schedule::add ( $entry ['level'], $entry ['job'], $entry ['params'] );
 						}
 					}
