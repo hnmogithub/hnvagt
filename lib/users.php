@@ -114,6 +114,7 @@ class users
 		$login = false;
 		set_error_handler ( function ( $errno, $errstr, $errfile, $errline ) use ( &$login )
 		{
+			return false;
 			if ( $errno === 2 )
 			{
 				if ( substr ( $errstr, 0, 4 ) == 'ldap' )
