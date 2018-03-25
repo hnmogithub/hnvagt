@@ -19,7 +19,6 @@ class loader
 	public function load ()
 	{
 		$id = users::current ()->id ();
-		var_dump ( $id, $_SERVER ['REQUEST_URI'] );
 
 		database (DB)->query ('
 			SELECT
