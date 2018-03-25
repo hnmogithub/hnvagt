@@ -24,6 +24,7 @@ html,body,.login-back
 	padding: 5px;
 	margin: 5px;
 }
+
 #login .inputs
 {
 	display: flex;
@@ -68,6 +69,7 @@ html,body,.login-back
 
 	box-sizing: border-box;
 }
+
 #login .inputs input:focus
 {
 	border-color: #666;

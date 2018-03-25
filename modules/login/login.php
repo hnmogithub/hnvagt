@@ -16,7 +16,6 @@ class login
 	public function init ( $url )
 	{
 		$url->request ( '/ajax/login', schedule::$RUN_INIT, [ $this, 'ajax' ] );
-		//$url->alias ( '/login/login.css', '/modules/login/login.css' );
 	}
 
 	public function ajax ()
@@ -45,9 +44,9 @@ class login
 
 	public function run ()
 	{
-		template::addCSS ('login.css');
-		template::add ('login.twig', [
-			'js' => template::getUrl (). '/login.js'
+		template::addCSS ('web/login.css');
+		template::add ('web/login.twig', [
+			'js' => template::getUrl (). '/web/login.js'
 		] );
 	}
 }

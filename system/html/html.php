@@ -12,8 +12,8 @@ class html
 
 	public function init ( $url )
 	{
-		template::addCSS ('html/base.css');
-		template::addJS ('html/base.js');
+		template::addCSS ('web/base.css');
+		template::addJS ('web/base.js');
 
 		template::addCSS ('//fonts.googleapis.com/css?family=Source+Sans+Pro');
 		template::addJS ('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js');
@@ -31,12 +31,12 @@ class html
 		$head = '';
 		foreach ( $dump ['css'] as $file )
 		{
-			$head .= $twig->render ( 'system/html/html/snippets/css.twig', [ 'file' => $file, 'defer' => substr ( $file, 0, 2 ) == '//' ] );
+			$head .= $twig->render ( 'system/html/web/snippets/css.twig', [ 'file' => $file, 'defer' => substr ( $file, 0, 2 ) == '//' ] );
 		}
 
 		foreach ( $dump ['js'] as $file )
 		{
-			$head .= $twig->render ( 'system/html/html/snippets/js.twig', [ 'file' => $file, 'defer' => substr ( $file, 0, 2 ) == '//' ] );
+			$head .= $twig->render ( 'system/html/web/snippets/js.twig', [ 'file' => $file, 'defer' => substr ( $file, 0, 2 ) == '//' ] );
 		}
 
 		$body = '';
@@ -45,7 +45,7 @@ class html
 			$body .= $twig->render ( $template ['path'], $template ['environment'] );
 		}
 
-		echo $twig->render ('system/html/html/base.twig', [
+		echo $twig->render ('system/html/web/base.twig', [
 			'head' => $head,
 			'body' => $body
 		] );
