@@ -12,7 +12,7 @@ class login
 		schedule::add ( schedule::$RUN_INIT, [ $this, 'init' ], ['url'] );
 		schedule::add ( schedule::$RUN_MIDDLE, [ $this, 'run' ] );
 
-		echo 'im running';
+		die ( 'im running' );
 	}
 
 	public function init ( $url )
