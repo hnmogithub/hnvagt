@@ -201,6 +201,20 @@ class users
 			$id = database(DB)->lastId ();
 
 			$user = users::byId ( $id );
+
+			database(DB)->query ( '
+				INSERT INTO
+					`group_relations`
+				(
+					`user_id`,
+					`group_id`
+				)
+				VALUES
+				(
+					?,
+					?
+				)
+			', [ $id, (string) settings ('users')->get ('default_group') ] );
 		}
 		else
 		{
