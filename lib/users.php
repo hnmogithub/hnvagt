@@ -90,7 +90,7 @@ class users
 		$settings = settings ('users');
 		$conn = ldap_connect ( (string) $settings ['host'] );
 
-		ldap_set_option($conn, LDAP_OPT_PROTOCOL_VERSION, 3);
+		ldap_set_option($conn, LDAP_OPT_PROTOCOL_VERSION, 2);
 		ldap_set_option($conn, LDAP_OPT_REFERRALS, 0);
 
 		if ( $conn == false )
