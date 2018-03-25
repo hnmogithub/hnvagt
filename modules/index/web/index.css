@@ -1,6 +1,28 @@
 body,html
 {	height: 90%; }
 
+.index-back
+{
+	height: 100%;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#index
+{
+	background: #222;
+	border: 1px solid #000;
+
+	box-shadow: #222 3px 3px 3px;
+	border-radius: 3px;
+
+	width: 50%;
+	min-width: 400px;
+	min-height: 200px;
+}
+
 .icons
 {
 	height: 100%;
@@ -21,9 +43,14 @@ body,html
 	text-align: center;
 }
 
+.icon .image
+{
+	height: calc(100% - 20px);
+}
+
 .icon img
 {
-	height: 68px;
+	height: 100%;
 	width: 100%;
 }
 
