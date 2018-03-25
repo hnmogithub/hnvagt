@@ -20,7 +20,7 @@ class html
 		schedule::paramAdd ( 'html', $this );
 
 		$this->loader = new \Twig_Loader_Filesystem ( dirname ( $_SERVER ['SCRIPT_FILENAME'] ) .'/' );
-		$this->twig = new \Twig_Environment ( $loader, [
+		$this->twig = new \Twig_Environment ( $this->loader, [
 			//'cache' => 'tmp/Twig/'
 		] );
 	}
