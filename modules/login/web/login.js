@@ -39,7 +39,7 @@ r ( function ()
 				}
 				else
 				{
-					window.location.reload ();
+					//window.location.reload ();
 				}
 			}
 		});
