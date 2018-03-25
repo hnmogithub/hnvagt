@@ -128,6 +128,7 @@ class url
 							$found = true;
 							unset ( $urls [ $lId ][ $jId ] );
 
+							echo 'adding';
 							schedule::add ( $entry ['level'], $entry ['job'], $entry ['params'] );
 						}
 					}
