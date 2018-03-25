@@ -49,7 +49,7 @@ body,html
 	font-size: 90%;
 }
 
-.icons
+#index #index .icons .icons
 {
 	height: 100%;
 
@@ -60,7 +60,7 @@ body,html
 	margin-bottom: 20px;
 }
 
-.icon
+#index .icons .icon
 {
 	width: 90px;
 	height: 120px;
@@ -77,24 +77,19 @@ body,html
 
 	text-decoration: none;
 }
-.icon:hover
-{
-	border-bottom: 1px solid #ccc;
-	border-right: 1px solid transparent;
-}
 
-.icon .image
+#index .icons .icon .image
 {
 	height: calc(100% - 20px);
 }
 
-.icon img
+#index .icons .icon img
 {
 	height: 100%;
 	width: 100%;
 }
 
-.icon .text
+#index .icons .icon .text
 {
 	color: #ccc;
 }

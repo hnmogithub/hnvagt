@@ -52,6 +52,13 @@
 	text-decoration: none;
 }
 
+
+#bar .icons .icon:hover
+{
+	border-bottom: 1px solid #ccc;
+	border-right: 1px solid transparent;
+}
+
 #bar .icons .icon:hover
 {
 	text-decoration: underline;
