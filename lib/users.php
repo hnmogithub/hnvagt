@@ -162,26 +162,14 @@ class users
 	}
 
 	/** */
-	static private function __loggedIn ( string $username, $conn = null )
+	static private function __loggedIn ( string $username )
 	{
-		if ( $conn !== null )
-		{
-			if ( is_resource ( $conn ) == false )
-			{	throw new InvalidArgumentException ('Argument 2 passed to users::__loggedIn() must be an instance of resource or null'); }
+		if ( strpos ( $username, '\\' ) !== false )
+		{	list (, $username ) = explode ( '\\', $username, 2 ); }
+		$username = str_replace ( '@', '', $username );
+		$username = str_replace ( '.', '', $username );
 
-			if ( strpos ( $username, '\\' ) !== false )
-			{
-				list (, $username ) = explode ( '\\', $username, 2 );
-				$result = ldap_search ( $conn, 'OU=HNEXT,DC=hnext,DC=lan', 'CN='. $username );
-
-				var_dump ( ldap_get_entries ( $conn, $result ) );
-			}
-			else
-			{
-
-			}
-			
-		}
+		var_dump ( $username );
 
 		database(DB)->cache ('users', 'id', '
 			SELECT
