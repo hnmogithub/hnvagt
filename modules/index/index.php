@@ -8,8 +8,6 @@ class index
 	{
 		schedule::add ( schedule::$RUN_INIT, [ $this, 'check' ], ['url'] );
 		schedule::paramAdd ( 'index', $this );
-
-		echo 'im here';
 	}
 
 	/**
@@ -34,7 +32,7 @@ class index
 
 	public function check ( $url )
 	{
-		$url->request ( '/', (schedule::$RUN_HTML - 1), [ $this, 'run' ] );
+		$url->request ( '/$', (schedule::$RUN_HTML - 1), [ $this, 'run' ] );
 	}
 
 	public function run ()
