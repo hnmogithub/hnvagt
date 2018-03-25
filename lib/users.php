@@ -104,7 +104,7 @@ class users
 		ldap_set_option($conn, LDAP_OPT_PROTOCOL_VERSION, 3);
 		ldap_set_option($conn, LDAP_OPT_REFERRALS, 0);
 		
-		// Since the LDAP Server is setup by a troll, Start-TLS does not work, GSSAPI does not work, Simple Bind does not work. We have to force this abit with a workaround, but we shall have our access.
+		// Incase the LDAP Server is setup by a troll, Start-TLS does not work, GSSAPI does not work, Simple Bind does not work. We have to force this abit with a workaround, but we shall have our access.
 		$login = false;
 		$error =& self::$error;
 		set_error_handler ( function ( $errno, $errstr, $errfile, $errline ) use ( &$login, &$error )
