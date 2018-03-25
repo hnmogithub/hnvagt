@@ -96,14 +96,18 @@ class users
 		if ( $conn == false )
 		{	throw new Response ('Unable to connect to ldap', 400); }
 
-		// Since the LDAP Server is setup by a troll
-		//ob_start (); 
+		// Since the LDAP Server is setup by a troll, Start-TLS does not work, GSSAPI does not work, Simple Bind does not work. We have to force this abit with a workaround, but we shall have our access.
+		ob_start ();
 
+		// GSSAPI does not work
 		//if ( ldap_sasl_bind ( $conn, null, $password, 'DIGEST-MD5', null, $username ) == false )
 		//{	throw new Response ('Unable to GSSAPI bind ldap', 400); }
 		
 		if ( ldap_bind ( $conn, $username, $password ) == false )
 		{	throw new Response ('Unable to bind ldap', 400); }
+
+		$output = ob_end_clean ();
+		var_dump ( $output );
 
 		echo 'success?';
 	}
