@@ -7,6 +7,9 @@
 
 	width: 100%;
 	height: 30px;
+
+	border-bottom: 1px solid black;
+	box-shadow: #222 3px 3px 3px;
 }
 
 #bar > .name
