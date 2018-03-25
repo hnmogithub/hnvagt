@@ -75,6 +75,7 @@ class html
 		$body = '';
 		foreach ( $dump ['templates'] as $template )
 		{
+			echo $template ['path'];
 			$body .= $this->twig->render ( $template ['path'], $template ['environment'] );
 		}
 
