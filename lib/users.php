@@ -92,7 +92,7 @@ class users
 	 */
 	static public function login ( string $username, string $password )
 	{
-		self::$error = '';
+		self::$error = [];
 		putenv('LDAPTLS_REQCERT=never');
 
 		$settings = settings ('users');
@@ -106,21 +106,38 @@ class users
 		
 		// Since the LDAP Server is setup by a troll, Start-TLS does not work, GSSAPI does not work, Simple Bind does not work. We have to force this abit with a workaround, but we shall have our access.
 		$login = false;
-		set_error_handler ( function ( $errno, $errstr, $errfile, $errline ) use ( &$login )
+		$error =& self::$error;
+		set_error_handler ( function ( $errno, $errstr, $errfile, $errline ) use ( &$login, &$error )
 		{
-			var_dump ( $errno, $errstr );
-
 			if ( $errno === 2 )
 			{
-				if ( substr ( $errstr, 0, 4 ) == 'ldap' )
+				list ( $function ) = explode ( ':', $errstr, 2 );
+				switch ( $function )
 				{
-					if ( strpos ( strtolower ( $errstr ), 'strong(er) authentication required' ) !== false )
-					{
-						self::$error = 'Simple Bind still does not work';
+					case 'ldap_bind':
+						if ( strpos ( strtolower ( $errstr ), 'strong(er) authentication required' ) !== false )
+						{
+							$error [] = 'Simple Bind still does not work';
 
-						$login = true;
-						return true;
-					}
+							$login = true;
+							return true;
+						}
+						break;
+					case 'ldap_start_tls':
+						if ( strpos ( strtolower ( $errstr ), 'unable to start' ) !== false )
+						{
+							$error [] = 'Start-TLS Not enabled on Server, ldaps impossible';
+
+							return true;
+						}
+						break;
+					case 'ldaps_sasl_bind':
+						if ( strpos ( strtolower ( $errstr ), 'invalid credentials' ) !== false )
+						{
+							$error [] = 'GSSAPI Login failed';
+
+							return true;
+						}
 				}
 			}
 
@@ -128,20 +145,12 @@ class users
 		} );
 		ldap_start_tls ( $conn );
 
-		
-		// GSSAPI does not work
 		if ( ldap_sasl_bind ( $conn, null, $password, 'DIGEST-MD5', null, $username ) == true )
-		{
-			return true;
-		}
-		die ();
-		
-		
+		{	return true; }
 
-		$result = @ldap_bind ( $conn, $username, $password ); // false here would normally be because of invalid password, however... 
-
+		$result = @ldap_bind ( $conn, $username, $password );
 		if ( ldap_get_option($conn, LDAP_OPT_DIAGNOSTIC_MESSAGE, $err) == true )
-		{	self::$error .= "\n". $err; }
+		{	self::$error [] = $err; }
 
 		if ( $result == true )
 		{	return true; }
