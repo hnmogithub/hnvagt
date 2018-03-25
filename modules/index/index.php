@@ -6,7 +6,7 @@ class index
 {
 	public function __construct ()
 	{
-		schedule::add ( schedule::$RUN_INIT, [ $this, 'check' ], ['url'] );
+		schedule::add ( schedule::$RUN_INIT, [ $this, 'init' ], ['url'] );
 		schedule::paramAdd ( 'index', $this );
 	}
 
@@ -23,20 +23,32 @@ class index
 	{
 		$this->icons [] = [
 			'text' => $text,
-			'class' => $class,
+			'icon' => template::getUrl (). $icon,
 			'uri' => $uri
 		];
 
 		return $this;
 	}
 
-	public function check ( $url )
+	/**
+	 * Register the index page through the url
+	 */
+	public function init ( $url )
 	{
-		$url->request ( '^/$', (schedule::$RUN_HTML - 1), [ $this, 'run' ] );
+		$url->request ( '^/$', (schedule::$RUN_HTML - 1), [ $this, 'run' ], ['html'] );
 	}
 
-	public function run ()
+	/**
+	 * So the url registered our job in the scheduler, so lets parse the icons the other modules may have added to us
+	 */
+	public function run ( $html )
 	{
-		template::add ( 'web/index.twig' );
+		$icons = '';
+		foreach ( $this->icons as $icon )
+		{
+			$icons .= $html->render ('web/snippets/icon.twig', $icon );
+		}
+
+		template::add ( 'web/index.twig', [ 'icons' => $icons ] );
 	}
 }
