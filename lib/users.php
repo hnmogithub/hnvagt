@@ -197,6 +197,7 @@ class users
 
 			LIMIT 1
 		', [ $username ] );
+		var_dump ( $result->length () );
 
 		if ( $result->length () == 0 )
 		{
