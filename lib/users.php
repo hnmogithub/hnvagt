@@ -105,7 +105,7 @@ class users
 		
 		set_error_handler ( function ( $errno, $errstr, $errfile, $errline )
 		{
-			var_dump ( $errno, $errstr );
+			var_dump ( E_USER_WARNING, $errno, $errstr );
 		} );
 
 		if ( @ldap_bind ( $conn, $username, $password ) == false )
