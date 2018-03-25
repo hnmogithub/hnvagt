@@ -183,6 +183,8 @@ class users
 		$username = str_replace ( '@', '', $username );
 		$username = str_replace ( '.', '', $username );
 
+		var_dump  ($username);
+
 		$result = database(DB)->cache ('users', 'id', '
 			SELECT
 				*
