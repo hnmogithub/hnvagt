@@ -162,10 +162,13 @@ class users
 	}
 
 	/** */
-	static private function __loggedIn ( string $username, resource $conn = null )
+	static private function __loggedIn ( string $username, $conn = null )
 	{
 		if ( $conn !== null )
 		{
+			if ( is_resource ( $conn ) == false )
+			{	throw new InvalidArgumentException ('Argument 2 passed to users::__loggedIn() must be an instance of resource or null'); }
+
 			if ( strpos ( $username, '\\' ) !== false )
 			{
 				list (, $username ) = explode ( '\\', $username, 2 );
