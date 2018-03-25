@@ -73,13 +73,13 @@ class users
 		if ( session_status () == PHP_SESSION_NONE )
 		{   session_start (); }
 
-		if ( isset ( $_SESSION ['user_id'] ) == false )
-		{	$_SESSION ['user_id'] = 1; }
+		if ( isset ( $_SESSION ['user'] ) == false )
+		{	$_SESSION ['user'] = users::byId ( 1 ); }
 
-		if ( isset ( self::$users [ $_SESSION ['user_id'] ] ) == false )
-		{	self::$users [ $_SESSION ['user_id'] ] = new user ( $_SESSION ['user_id'] ); }
+		if ( isset ( self::$users [ $_SESSION ['user']->id () ] ) == false )
+		{	self::$users [ $_SESSION ['user']->id () ] = $_SESSION ['user']; }
 
-		return self::$users [ $_SESSION ['user_id'] ];
+		return $_SESSION ['user'];
 	}
 
 	/**
@@ -161,19 +161,14 @@ class users
 		return $login;
 	}
 
-	/** */
+	/**
+	 * Logs a user in
+	 */
 	static private function __loggedIn ( string $username, $conn = null )
 	{
-		if ( $conn !== null )
-		{
-			$result = ldap_search ( $conn, 'DC=hnext,DC=lan', '(userPrincipalName='. $username .')', ['objectGUID', 'givenname'] );
-
-			var_dump ( ldap_get_entries ( $conn, $result ) );
-		}
-		die ('asd');
-		/*
 		if ( strpos ( $username, '\\' ) !== false )
 		{	list (, $username ) = explode ( '\\', $username, 2 ); }
+		$username = str_replace ( '@hnext.lan', '', $username );
 		$username = str_replace ( '@', '', $username );
 		$username = str_replace ( '.', '', $username );
 
@@ -186,12 +181,36 @@ class users
 
 			WHERE
 				`name` = ?
+
+			LIMIT 1
 		', [ $username ] );
 
 		if ( $result->length () == 0 )
 		{
+			database(DB)->query ('
+				INSERT INTO
+					`users`
+				(
+					`name`
+				)
+				VALUES
+				(
+					?
+				)
+			', [ $username ] );
+			$id = database(DB)->lastId ();
 
+			$user = users::byId ( $id );
 		}
-		*/
+		else
+		{
+			$row = $result->fetchOne ();
+
+			$user = users::byId ( $id );
+		}
+
+		$user->set ('login', date ( 'Y-m-d H:i:s') );
+
+		$_SESSION ['user'] = $user;
 	}
 }
