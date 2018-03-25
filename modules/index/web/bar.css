@@ -48,7 +48,15 @@
 	border-right: 1px solid #999;
 	margin-left: 10px;
 	padding-right: 10px;
+
+	text-decoration: none;
 }
+
+#bar .icons .icon:hover
+{
+	text-decoration: underline;
+}
+
 #bar .icons .icon:last-child
 {
 	border-right: 0px;
