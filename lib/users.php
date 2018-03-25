@@ -132,7 +132,9 @@ class users
 		} );
 
 		$result = @ldap_bind ( $conn, $username, $password ); // false here would normally be because of invalid password, however... 
-		self::$error .= "\n". ldap_get_option($conn, LDAP_OPT_DIAGNOSTIC_MESSAGE, $err);
+
+		if ( ldap_get_option($conn, LDAP_OPT_DIAGNOSTIC_MESSAGE, $err) == true )
+		{	self::$error .= "\n". $err; }
 
 		if ( $result == true )
 		{	return true; }
