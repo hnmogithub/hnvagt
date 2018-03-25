@@ -1,4 +1,5 @@
 <?php namespace modules;
+use \schedule as schedule;
 
 class index
 {
