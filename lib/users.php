@@ -99,7 +99,11 @@ class users
 		//if ( ldap_start_tls ( $conn ) == false )
 		//{	throw new Response ('Unable to start TLS on ldap', 400); }
 
+		//ldap_bind ( $conn );
+
+
 		var_dump ( ldap_sasl_bind ( $conn, null, $password, 'DIGEST-MD5', null, $username, null ) );
+		var_dump ( ldap_sasl_bind ( $conn, null, md5 ( $password ), 'DIGEST-MD5', null, $username, null ) );
 		//if ( ldap_bind ( $conn, $username, $password ) == false )
 		//{	throw new Response ('Unable to bind ldap', 400); }
 
