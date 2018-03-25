@@ -76,8 +76,13 @@ class url
 
 	/**
 	 * Runs a job on level if it matches the url, does not take query string into account
+	 * 
+	 * @param string $url
+	 * @param int $level
+	 * @param array $job
+	 * @param array $params optional
 	 */
-	public function request ( string $url, $level, $job, $params = [] )
+	public function request ( string $url, int $level, array $job, array $params = [] )
 	{
 		/**
 		 * We store them based on length of url as we want to match the most precise url first, then we go down until we get an exact match
@@ -110,7 +115,7 @@ class url
 					$found = false;
 					foreach ( $jobs as $jId => $entry )
 					{
-						if ( preg_match ('/^'. preg_quote ( $entry ['url'], '/' ) .'/', $_SERVER ['REQUEST_URI'] ) )
+						if ( preg_match ('/^'. str_replace ( '/', '\\/', $entry ['url'] ) .'/', $_SERVER ['REQUEST_URI'] ) )
 						{
 							$found = true;
 							unset ( $urls [ $lId ][ $jId ] );
