@@ -96,23 +96,37 @@ class users
 		if ( $conn == false )
 		{	throw new Response ('Unable to connect to ldap', 400); }
 
-		// Since the LDAP Server is setup by a troll, Start-TLS does not work, GSSAPI does not work, Simple Bind does not work. We have to force this abit with a workaround, but we shall have our access.
-		//ob_start ();
-
+		
 		// GSSAPI does not work
 		//if ( ldap_sasl_bind ( $conn, null, $password, 'DIGEST-MD5', null, $username ) == false )
 		//{	throw new Response ('Unable to GSSAPI bind ldap', 400); }
 		
-		set_error_handler ( function ( $errno, $errstr, $errfile, $errline )
+		// Since the LDAP Server is setup by a troll, Start-TLS does not work, GSSAPI does not work, Simple Bind does not work. We have to force this abit with a workaround, but we shall have our access.
+		$login = false;
+		set_error_handler ( function ( $errno, $errstr, $errfile, $errline ) use ( $login )
 		{
-			var_dump ( E_USER_WARNING, $errno, $errstr );
+			if ( $errno === 2 )
+			{
+				if ( substr ( $errstr, 0, 4 ) == 'ldap' )
+				{
+					if ( strpos ( $errstr, 'strong(er) authentication required' ) !== false )
+					{
+						$login = true;
+						return true;
+					}
+				}
+			}
+
+			return false;
 		} );
 
-		if ( @ldap_bind ( $conn, $username, $password ) == false )
-		{	throw new Response ('Unable to bind ldap', 400); }
+		$result = @ldap_bind ( $conn, $username, $password ); // false here would normally be because of invalid password, however... 
+		//if ( $result == false )
+		//{	return false; }
+		//else
+		//{	return true; }
+		restore_error_handler (); // Lets restore back from our shit-code to normal code
 
-		restore_error_handler ();
-
-		echo 'success?';
+		return $login;
 	}
 }
