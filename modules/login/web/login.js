@@ -19,7 +19,7 @@ r ( function ()
 				if ( data.state == 0 )
 				{
 					var err = $('#login .error');
-					err.animation ({
+					err.animate ({
 						'opacity': 1
 					}, 100, function ()
 					{
