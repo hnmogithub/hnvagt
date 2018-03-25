@@ -118,6 +118,8 @@ class users
 				{
 					if ( strpos ( strtolower ( $errstr ), 'strong(er) authentication required' ) !== false )
 					{
+						self::$error = 'Simple bind still does not work';
+
 						$login = true;
 						return true;
 					}
@@ -128,10 +130,10 @@ class users
 		} );
 
 		$result = @ldap_bind ( $conn, $username, $password ); // false here would normally be because of invalid password, however... 
-		//if ( $result == false )
-		//{	return false; }
+		if ( $result == true )
+		{	return true; }
 		//else
-		//{	return true; }
+		//{	return false; }
 		restore_error_handler (); // Lets restore back from our shit-code to normal code
 
 		return $login;
