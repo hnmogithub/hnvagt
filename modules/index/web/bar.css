@@ -1,9 +1,21 @@
+#bar
+{
+	background: #222;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+
+	width: 100%;
+	height: 30px;
+}
+
 #bar > .name
 {
 	float: right;
 	color: #999;
 
 	font-size: 70%;
+	margin-right: 10px;
 }
 
 #bar > .name .subtle
@@ -16,6 +28,9 @@
 {
 	display: flex;
 	justify-content: flex-start;
+	align-items: center;
+
+	margin-left: 10px;
 }
 
 #bar .icons .icon
@@ -25,6 +40,14 @@
 	
 	display: flex;
 	justify-content: flex-start;
+
+	border-right: 1px solid #999;
+	margin-left: 10px;
+	padding-right: 10px;
+}
+#bar .icons .icon:last-child
+{
+	border-right: 0px;
 }
 
 #bar .icons .icon .image
