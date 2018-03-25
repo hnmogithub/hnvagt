@@ -103,18 +103,13 @@ class users
 
 		ldap_set_option($conn, LDAP_OPT_PROTOCOL_VERSION, 3);
 		ldap_set_option($conn, LDAP_OPT_REFERRALS, 0);
-		//ldap_set_option($conn, LDAPT_OPT_ENCRYPT, 1);
-
-		
-		// GSSAPI does not work
-		if ( ldap_sasl_bind ( $conn, null, $password, 'DIGEST-MD5', null, $username ) == false )
-		{	throw new Response ('Unable to GSSAPI bind ldap', 400); }
 		
 		// Since the LDAP Server is setup by a troll, Start-TLS does not work, GSSAPI does not work, Simple Bind does not work. We have to force this abit with a workaround, but we shall have our access.
-		/*
 		$login = false;
 		set_error_handler ( function ( $errno, $errstr, $errfile, $errline ) use ( &$login )
 		{
+			var_dump ( $errno, $errstr );
+
 			if ( $errno === 2 )
 			{
 				if ( substr ( $errstr, 0, 4 ) == 'ldap' )
@@ -131,7 +126,17 @@ class users
 
 			return false;
 		} );
-		*/
+		ldap_start_tls ( $conn );
+
+		
+		// GSSAPI does not work
+		if ( ldap_sasl_bind ( $conn, null, $password, 'DIGEST-MD5', null, $username ) == true )
+		{
+			return true;
+		}
+		die ();
+		
+		
 
 		$result = @ldap_bind ( $conn, $username, $password ); // false here would normally be because of invalid password, however... 
 
