@@ -101,9 +101,9 @@ class users
 		if ( $conn == false )
 		{	throw new Response ('Unable to connect to ldap', 400); }
 
-		ldap_set_option($conn, LDAP_OPT_PROTOCOL_VERSION, 3);
-		ldap_set_option($conn, LDAP_OPT_REFERRALS, 0);
-		
+		ldap_set_option ($conn, LDAP_OPT_PROTOCOL_VERSION, 3);
+		ldap_set_option ($conn, LDAP_OPT_REFERRALS, 0);
+
 		// Incase the LDAP Server is setup by a troll, Start-TLS does not work, GSSAPI does not work, Simple Bind does not work. We have to force this abit with a workaround, but we shall have our access.
 		$login = false;
 		$error =& self::$error;
@@ -139,7 +139,9 @@ class users
 
 			return false;
 		} );
-		ldap_start_tls ( $conn );
+
+		if ( (string) $settings->get('tls') !== "0" )
+		{	ldap_start_tls ( $conn ); }
 
 		if ( ldap_sasl_bind ( $conn, null, $password, 'DIGEST-MD5', null, $username ) == true )
 		{	return true; }
