@@ -13,9 +13,17 @@ r ( function ()
 			'contentType': false,
 
 			'type': 'POST',
+			'dataType': 'json',
 			'success': function ( data )
 			{
-				
+				if ( data.state == 0 )
+				{
+					
+				}
+				else
+				{
+					window.location.reload ();
+				}
 			}
 		});
 
