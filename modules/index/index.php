@@ -32,7 +32,7 @@ class index
 
 	public function check ( $url )
 	{
-		$url->request ( '/$', (schedule::$RUN_HTML - 1), [ $this, 'run' ] );
+		$url->request ( '^/$', (schedule::$RUN_HTML - 1), [ $this, 'run' ] );
 	}
 
 	public function run ()
