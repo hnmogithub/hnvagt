@@ -13,7 +13,9 @@ class loader
 		schedule::add ( schedule::$RUN_INIT, [ $this, 'load' ] );
 	}
 
-
+	/**
+	 * Load the various modules thats assigned to the user, either directly or though a group
+	 */
 	public function load ()
 	{
 		$id = users::current ()->id ();
@@ -26,6 +28,11 @@ class loader
 
 			FROM
 				`modules` `m`
+
+			INNER JOIN
+				`modules_urls` `mu`
+			ON
+				`m`.`id` = `mu`.`module_id`
 			
 			LEFT JOIN
 				`modules_relations` `mr_u`
@@ -52,9 +59,13 @@ class loader
 				`mr_g`.`module_id` = `m`.`id`
 				
 			WHERE
-				`mr_u`.`id` = ?
-				OR
-				`mr_g`.`user_id` = ?
+				(
+					`mr_u`.`id` = ?
+					OR
+					`mr_g`.`user_id` = ?
+				)
+				AND
+				? LIKE CONCAT(`mu`.`url`, "%")
 		', [ $id, $id ] )->each ( function ( $row )
 		{
 			schedule::load ( $row ['path'], $row ['namespace'] );

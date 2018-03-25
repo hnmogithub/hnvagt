@@ -2,10 +2,15 @@
 use \schedule as schedule;
 use \Response as Response;
 
+/**
+ * Handles things related to urls
+ */
 class url 
 {
 	/**
 	 * Used to store urls
+	 * 
+	 * @var array $__urls
 	 */
 	private $__urls = [];
 
