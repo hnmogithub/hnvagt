@@ -67,7 +67,7 @@ class loader
 				)
 				AND
 				? LIKE CONCAT(`mu`.`url`, "%")
-		', [ $_SERVER ['REQUEST_URI'], $id, $id ] )->each ( function ( $row )
+		', [ $id, $id, $_SERVER ['REQUEST_URI'] ] )->each ( function ( $row )
 		{
 			echo $row ['path'];
 			schedule::load ( $row ['path'], $row ['namespace'] );
