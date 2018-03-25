@@ -1,5 +1,6 @@
 <?php namespace modules;
 use \schedule as schedule;
+use \template as template;
 
 class index
 {
