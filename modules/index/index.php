@@ -1,7 +1,7 @@
 <?php namespace modules;
 use \schedule as schedule;
 use \template as template;
-use \users as users;
+use \user as user;
 
 class index
 {

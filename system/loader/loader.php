@@ -1,6 +1,6 @@
 <?php namespace system;
 use \schedule as schedule;
-use \users as users;
+use \user as user;
 use \Response as Response;
 
 /**
