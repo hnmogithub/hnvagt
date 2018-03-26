@@ -68,7 +68,7 @@ class report extends baseArray
 			self::$__typesByOther [ $type->isOther () ][] = $type;
 		}
 
-		return $__typesById [ $id ];
+		return self::$__typesById [ $id ];
 	}
 
 	/**
