@@ -1,8 +1,8 @@
 <?php namespace modules;
-use \schedule as schedule;
-use \template as template;
-use \users as users;
-use \Response as Response;
+use \schedule;
+use \template;
+use \users;
+use \Response;
 
 class login
 {

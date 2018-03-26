@@ -1,7 +1,7 @@
 <?php namespace modules;
-use \schedule as schedule;
-use \template as template;
-use \user as user;
+use \schedule;
+use \template;
+use \user;
 use \reports;
 
 /**

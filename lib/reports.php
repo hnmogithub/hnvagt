@@ -25,7 +25,7 @@ class reports
 			$ids [] = $user->id ();
 		}
 
-		$result = database(DB)->cache ('
+		$result = database(DB)->cache ('reports', 'id', '
 			SELECT
 				*
 
@@ -42,12 +42,12 @@ class reports
 				'. $page * $limit .','. $limit .'
 		', $ids );
 
-		$users = [];
+		$reports = [];
 		$result->each ( function ( $row ) use ( &$users )
 		{
-			$users [] = user::byId ( $row ['id'] );
+			$reports [] = report::byId ( $row ['id'] );
 		} );
 
-		return $users;
+		return $reports;
 	}
 }

@@ -1,5 +1,5 @@
 <?php namespace modules;
-use \schedule as schedule;
+use \schedule;
 
 class logout
 {

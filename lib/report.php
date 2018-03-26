@@ -5,6 +5,25 @@
 class report extends baseArray
 {
 	/**
+	 * Gets a report by id
+	 * 
+	 * @param int $id
+	 * 
+	 * @return report $report
+	 */
+	static public function byId ( int $id )
+	{
+		static $reports = [];
+
+		if ( isset ( $reports [ $id ] ) == false )
+		{
+			$reports [ $id ] = new report ( $id );
+		}
+
+		return $reports;
+	}
+	
+	/**
 	 * Gets a source by an id
 	 * 
 	 * @param int $id
