@@ -60,7 +60,7 @@ class report extends baseArray
 	 */
 	static public function typeById ( int $id )
 	{
-		static $type = [];
+		static $types = [];
 
 		if ( isset ( self::$__typesById [ $id ] ) == false )
 		{
@@ -70,7 +70,7 @@ class report extends baseArray
 			self::$__typesByOther [ $type->isOther () ][] = $type;
 		}
 
-		return $type [ $id ];
+		return $types [ $id ];
 	}
 
 	/**
