@@ -1,6 +1,6 @@
 <div id="register-content">
 {% for report in reports %}
-	<div class="report">
+	<a class="report">
 		<div class="date">
 			<div class="date-from">
 				{{ report.from }}
@@ -41,6 +41,6 @@
 		<div class="description">
 			{{ report.description }}
 		</div>
-	</div>
+	</a>
 {% endfor %}
 </div>
