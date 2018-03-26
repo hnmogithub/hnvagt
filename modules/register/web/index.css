@@ -1,0 +1,18 @@
+#register-content .report
+{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+#register-content .report .date
+{
+	display: flex;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+}
+
+#register-content .report .date > div
+{
+	min-width: 100px;
+}

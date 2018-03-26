@@ -29,6 +29,8 @@ class register
 	 */
 	public function run ()
 	{
+		template::addCSS ('web/index.css');
+		
 		if ( isset ( $_SESSION ['register_filter'] ) == false )
 		{	$_SESSION ['register_filter'] = [ user::current () ]; }
 		$filter =& $_SESSION ['register_filter'];
