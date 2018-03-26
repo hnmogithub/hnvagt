@@ -1,5 +1,6 @@
 <?php namespace modules;
 use \schedule as schedule;
+use \template as template;
 
 /**
  * Module for handling registering to the register of tasks done by those who handles registers
