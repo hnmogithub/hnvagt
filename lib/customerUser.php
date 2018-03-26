@@ -2,8 +2,10 @@
 /**
  * Class for handling a customer user
  */
-class customerUser
+class customerUser extends baseArray
 {
+	protected $data = [];
+
 	public function __construct ( int $id )
 	{
 		baseArray::__construct ( 'customers_users', 'id' );
