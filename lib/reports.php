@@ -25,8 +25,6 @@ class reports
 			$ids [] = $user->id ();
 		}
 
-		var_dump ( $ids );
-
 		$result = database(DB)->cache ('reports', 'id', '
 			SELECT
 				*
