@@ -1,3 +1,15 @@
+#register-content > h1
+{
+	text-align: center;
+
+	color: #CCC;
+}
+
+#register-content > hr
+{
+	border: 1px solid #111;
+}
+
 #register-content .report
 {
 	display: flex;
@@ -10,14 +22,17 @@
 
 	box-shadow: #222 3px 3px 3px;
 }
+
 #register-content .report:nth-child(odd)
 {
 	background: #555;
 }
+
 #register-content .report:nth-child(even)
 {
 	background: #666;
 }
+
 #register-content .report:hover
 {
 	box-shadow: inset 0px 1px 1px rgba(0,0,0,0.075), 0px 0px 8px rgba(255,255,255,0.6);
