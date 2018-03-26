@@ -114,7 +114,6 @@ class url
 				krsort ( $urls );
 				foreach ( $urls as $lId => $jobs )
 				{
-					$found = false;
 					foreach ( $jobs as $jId => $entry )
 					{
 						$url = str_replace ( '/', '\\/', $entry ['url'] );
@@ -124,16 +123,10 @@ class url
 
 						if ( preg_match ( $url, $_SERVER ['REQUEST_URI'] ) )
 						{
-							$found = true;
 							unset ( $urls [ $lId ][ $jId ] );
 
 							schedule::add ( $entry ['level'], $entry ['job'], $entry ['params'] );
 						}
-					}
-
-					if ( $found === true )
-					{
-						break;
 					}
 				}
 
