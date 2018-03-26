@@ -104,6 +104,8 @@ class url
 			$this->__level [ schedule::levelAt () ] = true;
 
 			/**
+			 * This aproach is stupidly overcomplex, the original idea was to have only the first responder per level being run, however, why?
+			 * 
 			 * I could have made this into a function sitting on the object instead of using an anonymouse function however then the function would have to be a public function and the code being run in there, is for internal use only so it wouldnt really fit
 			 */
 			$urls =& $this->__urls;
