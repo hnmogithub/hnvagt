@@ -5,6 +5,25 @@
 class customer extends baseArray
 {
 	/**
+	 * Gets a customer by id
+	 * 
+	 * @param int $id
+	 * 
+	 * @return customer $customer
+	 */
+	static public function byId ( int $id )
+	{
+		static $customers = [];
+
+		if ( isset ( $customers [ $id ] ) == false )
+		{
+			$customers [ $id ] = new customer ( $id );
+		}
+
+		return $customers [ $id ];
+	}
+
+	/**
 	 * Gets the customer type by id
 	 * 
 	 * @param int $id
