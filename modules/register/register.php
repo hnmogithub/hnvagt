@@ -33,6 +33,9 @@ class register
 		{	$_SESSION ['register_filter'] = [ user::current () ]; }
 		$filter =& $_SESSION ['register_filter'];
 
+		$reports = reports::byUsers ( $filter );
+		var_dump ( $reports );
+
 		template::add ('web/index.twig', [
 			'reports' => reports::byUsers ( $filter ),
 			'filter' => $filter
