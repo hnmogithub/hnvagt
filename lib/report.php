@@ -179,7 +179,7 @@ class report extends baseArray
 	 */
 	public function customerUser ()
 	{
-		return customer::userById ( $this->get ('user') );
+		return customer::userById ( $this->get ('customerUser') );
 	}
 
 
