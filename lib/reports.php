@@ -20,7 +20,7 @@ class reports
 		foreach ( $users as $user )
 		{
 			if ( !($user instanceof user) )
-			{	throw new InvalidArgumentException ('reports::byUsers (), array provided must only contain user objects.' ); }
+			{	throw new InvalidArgumentException ('reports::byUsers (), array provided must only contain user objects.'); }
 
 			$ids [] = $user->id ();
 		}

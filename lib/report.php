@@ -103,7 +103,7 @@ class report extends baseArray
 	 */
 
 
-	public function __construct ()
+	public function __construct ( int $id )
 	{
 		baseArray::__construct ( 'reports', 'id' );
 
