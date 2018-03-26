@@ -13,6 +13,8 @@
 
 #register-content .report
 {
+	display: block;
+
 	border: 1px solid black;
 	padding: 3px;
 	margin: 5px;
@@ -54,7 +56,7 @@
 	min-width: 140px;
 }
 
-#register-content .report > div
+#register-content .report .line > div
 {
 	min-width: 200px;
 	flex-grow: 1;
