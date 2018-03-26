@@ -18,7 +18,7 @@ class register
 	{
 		$index->add ( 'Register', 'web/image/icon-register.png', '/register/' );
 
-		$url->register ('/register/', schedule::$RUN_MIDDLE, [ $this, 'run' ] );
+		$url->request ('/register/', schedule::$RUN_MIDDLE, [ $this, 'run' ] );
 	}
 
 	/**
