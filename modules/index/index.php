@@ -67,6 +67,7 @@ class index
 	 */
 	public function asBar ( $html )
 	{
+		die ('ran');
 		template::addCSS ('web/bar.css');
 
 		$icons = '';
