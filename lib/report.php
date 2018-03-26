@@ -4,6 +4,8 @@
  */
 class report extends baseArray
 {
+	protected $data = [];
+
 	/**
 	 * Gets a report by id
 	 * 
