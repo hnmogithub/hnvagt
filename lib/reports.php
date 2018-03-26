@@ -45,7 +45,7 @@ class reports
 		', $ids );
 
 		$reports = [];
-		$result->each ( function ( $row ) use ( &$users )
+		$result->each ( function ( $row ) use ( &$reports )
 		{
 			$reports [] = report::byId ( $row ['id'] );
 		} );
