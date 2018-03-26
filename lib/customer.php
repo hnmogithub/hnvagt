@@ -53,7 +53,7 @@ class customer extends baseArray
 	{
 		static $users = [];
 
-		if ( isset ( $users [ $id ] ) == true )
+		if ( isset ( $users [ $id ] ) == false )
 		{
 			$users [ $id ] = new customerUser ( $id );
 		}
