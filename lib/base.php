@@ -135,15 +135,4 @@ abstract class base
 		$this->data = $data;
 		return $this;
 	}
-
-	private function __setBuild ( $table )
-	{
-		$string = [];
-		foreach ( $table as $key => $value )
-		{
-			$string [] = '`'. $key .'` = ?';
-		}
-
-		return join  (',', $string );
-	}
 }

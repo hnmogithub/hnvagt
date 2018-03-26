@@ -1,0 +1,42 @@
+<div id="register-content">
+{% for report in reports %}
+	<div class="date-from">
+		{{ report.from }}
+	</div>
+	<div class="date-to">
+		{{ report.to }}
+	</div>
+
+	<div class="source">
+		{{ report.source () }}
+	</div>
+
+	<div class="type">
+		{{ report.type () }}
+	</div>
+
+	<div class="customer">
+		{{ report.customer ().name }}
+	</div>
+
+	<div class="customer_user">
+		{{ report.customerUser () }}
+	</div>
+
+	<div class="location">
+		{{ report.location }}
+	</div>
+
+	<div class="ticket">
+		{{ report.ticket }}
+	</div>
+
+	<div class="servers">
+		{{ report.servers () }}
+	</div>
+
+	<div class="description">
+		{{ report.description }}
+	</div>
+{% endfor %}
+</div>

@@ -58,7 +58,7 @@ class index
 
 		template::add ( 'web/index.twig', [
 			'icons' => $icons,
-			'user' => users::current ()
+			'user' => user::current ()
 		] );
 	}
 
@@ -77,7 +77,7 @@ class index
 
 		template::add ( 'web/bar.twig', [
 			'icons' => $icons,
-			'user' => users::current ()
+			'user' => user::current ()
 		] );
 	}
 }

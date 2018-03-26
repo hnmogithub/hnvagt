@@ -4,7 +4,43 @@
  */
 class user extends baseArray
 {
-	protected $data = [];
+	/**
+	 * Gets a user by id
+	 * 
+	 * @param int $id
+	 * 
+	 * @throws Exception if user with id not found
+	 * 
+	 * @return user $user
+	 */
+	static public function byId ( int $id )
+	{
+		static $users = [];
+
+		if ( isset ( $users [ $id ] ) == false )
+		{
+			$users [ $id ] = new user ( $id );
+		}
+
+		return $users [ $id ];
+	}
+
+	/**
+	 * Gets the current logged in user
+	 * 
+	 * @return user $user
+	 */
+	static public function current ()
+	{
+		if ( session_status () == PHP_SESSION_NONE )
+		{   session_start (); }
+
+		if ( isset ( $_SESSION ['user'] ) == false )
+		{	$_SESSION ['user'] = user::byId ( 1 ); }
+
+		return $_SESSION ['user'];
+	}
+
 
 	/**
 	 * Constructor for the user class

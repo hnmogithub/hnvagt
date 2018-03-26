@@ -8,82 +8,8 @@ class users
 	 */
 	static public $error = '';
 
-	static private $users = [];
-
 	/**
-	 * Gets a user by name
-	 * 
-	 * @param string $name
-	 * 
-	 * @throws Exception if user with name not found
-	 * 
-	 * @return user $user
-	 */
-	static public function byName ( string $name )
-	{
-		$result = database (DB)->cache ('users', 'id', '
-			SELECT
-				*
-			FROM
-				`users`
-			WHERE
-				`name` = ?
-		', [ $name ] );
-
-		if ( $result->length () > 0 )
-		{
-			$row = $result->fetchOne ();
-
-			if ( isset ( self::$users [ $row ['id'] ] ) == false )
-			{	self::$users [ $row ['id'] ] = new user ( $row ['id'] ); }
-
-			return self::$users [ $row ['id'] ];
-
-		}
-		else
-		{
-			throw new Exception ('users: user by name not found');
-		}
-	}
-
-	/**
-	 * Gets a user by id
-	 * 
-	 * @param int $id
-	 * 
-	 * @throws Exception if user with id not found
-	 * 
-	 * @return user $user
-	 */
-	static public function byId ( int $id )
-	{
-		if ( isset ( self::$users [ $id ] ) == false )
-		{	self::$users [ $id ] = new user ( $id ); }
-
-		return self::$users [ $id ];
-	}
-
-	/**
-	 * Gets the current logged in user
-	 * 
-	 * @return user $user
-	 */
-	static public function current ()
-	{
-		if ( session_status () == PHP_SESSION_NONE )
-		{   session_start (); }
-
-		if ( isset ( $_SESSION ['user'] ) == false )
-		{	$_SESSION ['user'] = users::byId ( 1 ); }
-
-		if ( isset ( self::$users [ $_SESSION ['user']->id () ] ) == false )
-		{	self::$users [ $_SESSION ['user']->id () ] = $_SESSION ['user']; }
-
-		return $_SESSION ['user'];
-	}
-
-	/**
-	 * Attempts to login a user
+	 * Authenticates a login
 	 * 
 	 * @param string $username
 	 * @param string $password
@@ -163,7 +89,7 @@ class users
 	}
 
 	/**
-	 * Logs a user in, creates the user if its not already created
+	 * Does the actually logging in, creates the user if its not already created
 	 * 
 	 * @param string $username
 	 */
@@ -209,11 +135,11 @@ class users
 					?
 				)
 			', [ $username ] );
-			$user = users::byId ( database(DB)->lastId () );
+			$user = user::byId ( database(DB)->lastId () );
 
 			database(DB)->query ( '
 				INSERT INTO
-					`group_relations`
+					`groups_relations`
 				(
 					`user_id`,
 					`group_id`
@@ -229,7 +155,7 @@ class users
 		{
 			$row = $result->fetchOne ();
 
-			$user = users::byId ( $row ['id'] );
+			$user = user::byId ( $row ['id'] );
 		}
 
 		$user->set ('login', date ( 'Y-m-d H:i:s') );

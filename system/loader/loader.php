@@ -18,7 +18,7 @@ class loader
 	 */
 	public function load ()
 	{
-		$id = users::current ()->id ();
+		$id = user::current ()->id ();
 
 		database (DB)->query ('
 			SELECT
@@ -49,7 +49,7 @@ class loader
 					`modules_relations` `mr`
 
 				INNER JOIN
-					`group_relations` `gr`
+					`groups_relations` `gr`
 				ON
 					`gr`.`group_id` = `mr`.`id`
 					AND
