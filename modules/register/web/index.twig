@@ -1,9 +1,10 @@
 <div id="register-content">
 	<h1>Tasks performed</h1>
 	<hr>
+
 	<div class="reports">
 	{% for report in reports %}
-		<a class="report">
+		<a class="report" href="javascript:void(0);" data-id="{{ report.id }}">
 			<div class="date">
 				<div class="date-from">
 					{{ report.from }}

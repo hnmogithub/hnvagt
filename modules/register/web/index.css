@@ -1,6 +1,7 @@
 #register-content > h1
 {
-	text-align: center;
+	text-indent: 30px;
+	margin-top: 60px;
 
 	color: #CCC;
 }
@@ -48,4 +49,10 @@
 #register-content .report .date > div
 {
 	min-width: 140px;
+}
+
+#register-content .report > div
+{
+	min-width: 200px;
+	flex-grow: 1;
 }
