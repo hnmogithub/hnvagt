@@ -36,7 +36,7 @@ class reports
 		.'
 
 			ORDER BY
-				`'. database(DB)->quote ($sort[0]) .'` '. database(DB)->quote (strtoupper ($sort[1]) ) .'
+				`'. substr ( database(DB)->quote ($sort[0]), 1, -1 ) .'` '. substr ( database(DB)->quote (strtoupper ($sort[1]) ), 1, -1 ) .'
 
 			LIMIT
 				'. $page * $limit .','. $limit .'
