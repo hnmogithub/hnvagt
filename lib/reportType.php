@@ -1,6 +1,12 @@
 <?php
+/**
+ * Handles report type related things
+ */
 class reportType extends baseArray
 {
+	/** @var array $data Used by baseArray, setting so we got access to it */
+	protected $data = [];
+
 	public function __construct ( int $id )
 	{
 		baseArray::__construct ('reports_types', 'id');

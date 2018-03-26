@@ -4,6 +4,7 @@
  */
 class customerUser extends baseArray
 {
+	/** @var array $data Used by baseArray, setting so we got access to it */
 	protected $data = [];
 
 	public function __construct ( int $id )

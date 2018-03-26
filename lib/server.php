@@ -23,6 +23,9 @@ class server extends baseArray
 		return $servers [ $id ];
 	}
 
+	/** @var array $data Used by baseArray, setting so we got access to it */
+	protected $data = [];
+
 	public function __construct ( int $id )
 	{
 		baseArray::__construct ( 'servers', 'id' );

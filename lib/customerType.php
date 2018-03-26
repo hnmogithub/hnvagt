@@ -1,6 +1,12 @@
 <?php
+/**
+ * Handles customer type related things
+ */
 class customerType extends baseArray
 {
+	/** @var array $data Used by baseArray, setting so we got access to it */
+	protected $data = [];
+
 	public function __construct ( int $id )
 	{
 		baseArray::__construct ( 'customers_types', 'id' );

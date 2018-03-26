@@ -41,6 +41,8 @@ class user extends baseArray
 		return $_SESSION ['user'];
 	}
 
+	/** @var array $data Used by baseArray, setting so we got access to it */
+	protected $data = [];
 
 	/**
 	 * Constructor for the user class

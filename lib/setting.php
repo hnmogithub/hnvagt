@@ -1,9 +1,12 @@
 <?php
 /**
- * Repressents a setting row
+ * Handles setting related things
  */
 class setting extends baseArray
 {
+	/** @var array $data Used by baseArray, setting so we got access to it */
+	protected $data = [];
+
 	/**
 	 *
 	 */
