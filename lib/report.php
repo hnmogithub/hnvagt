@@ -22,7 +22,7 @@ class report extends baseArray
 			$reports [ $id ] = new report ( $id );
 		}
 
-		return $reports;
+		return $reports [ $id ];
 	}
 	
 	/**
