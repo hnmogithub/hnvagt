@@ -2,6 +2,7 @@
 use \schedule as schedule;
 use \template as template;
 use \user as user;
+use \reports;
 
 /**
  * Module for handling registering to the register of tasks done by those who handles registers
