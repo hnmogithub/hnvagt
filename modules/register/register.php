@@ -27,6 +27,13 @@ class register
 	 */
 	public function run ()
 	{
-		template::add ('web/index.twig');
+		if ( isset ( $_SESSION ['register_filter'] ) == false )
+		{	$_SESSION ['register_filter'] = [ user::current () ]; }
+		$filter =& $_SESSION ['register_filter'];
+
+		template::add ('web/index.twig', [
+			'reports' => reports::byUsers ( $filter ),
+			'filter' => $filter
+		] );
 	}
 }
