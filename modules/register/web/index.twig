@@ -1,46 +1,50 @@
 <div id="register-content">
-{% for report in reports %}
-	<a class="report">
-		<div class="date">
-			<div class="date-from">
-				{{ report.from }}
+	<h1>Tasks performed</h1>
+	<hr>
+	<div class="reports">
+	{% for report in reports %}
+		<a class="report">
+			<div class="date">
+				<div class="date-from">
+					{{ report.from }}
+				</div>
+				<div class="date-to">
+					{{ report.to }}
+				</div>
 			</div>
-			<div class="date-to">
-				{{ report.to }}
+
+			<div class="source">
+				{{ report.source () }}
 			</div>
-		</div>
 
-		<div class="source">
-			{{ report.source () }}
-		</div>
+			<div class="type">
+				{{ report.type () }}
+			</div>
 
-		<div class="type">
-			{{ report.type () }}
-		</div>
+			<div class="customer">
+				{{ report.customer ().name }}
+			</div>
 
-		<div class="customer">
-			{{ report.customer ().name }}
-		</div>
+			<div class="customer_user">
+				{{ report.customerUser () }}
+			</div>
 
-		<div class="customer_user">
-			{{ report.customerUser () }}
-		</div>
+			<div class="location">
+				{{ report.location }}
+			</div>
 
-		<div class="location">
-			{{ report.location }}
-		</div>
+			<div class="ticket">
+				{{ report.ticket }}
+			</div>
 
-		<div class="ticket">
-			{{ report.ticket }}
-		</div>
+			<div class="servers">
+				{{ report.servers () }}
+			</div>
 
-		<div class="servers">
-			{{ report.servers () }}
-		</div>
-
-		<div class="description">
-			{{ report.description }}
-		</div>
-	</a>
-{% endfor %}
+			<div class="description">
+				{{ report.description }}
+			</div>
+		</a>
+	{% endfor %}
+	</div>
 </div>
