@@ -35,7 +35,9 @@ class report extends baseArray
 		static $sources = [];
 
 		if ( isset ( $sources [ $id ] ) == false )
-		{	$sources [ $id ] = new reportSource ( $id ); }
+		{
+			$sources [ $id ] = new reportSource ( $id );
+		}
 
 		return $sources [ $id ];
 	}
