@@ -15,6 +15,10 @@ r ( function ()
 	setTimeout ( function ()
 	{
 		$('#register-new').css('transition', 'right .5s');
-		$('#register-new').css('right', '0%');
+
+		setTimeout ( function ()
+		{
+			$('#register-new').css('right', '0%');
+		}, 0 );
 	}, 0 );
 } );
