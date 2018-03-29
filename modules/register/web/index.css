@@ -15,11 +15,14 @@
 {
 	display: block;
 
-	border: 1px solid black;
+	border: 1px solid #000;
 	padding: 3px;
 	margin: 5px;
 
 	box-shadow: #222 3px 3px 3px;
+
+	color: #CCC;
+	text-decoration: none;
 }
 
 #register-content .report .line
@@ -49,6 +52,10 @@
 	display: flex;
 	justify-content: flex-start;
 	flex-wrap: wrap;
+}
+#register-content .report .date .date-from::before
+{
+	content: "Date from";
 }
 
 #register-content .report .date > div
