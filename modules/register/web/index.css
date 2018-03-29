@@ -120,6 +120,14 @@
 	content: "Servers:";
 }
 
+#register-content .report .description::before
+{
+	color: #AAA;
+	font-size: 80%;
+	content: "Description:\00000a";
+	white-space: pre;
+}
+
 #register-content .report .date > div
 {
 	min-width: 140px;
