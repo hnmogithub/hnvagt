@@ -43,32 +43,29 @@
 	margin-top: 5px;
 }
 
-#register-new .date::before
-{
-	font-size: 90%;
-	font-weight: bold;
-
-	margin-left: 5px;
-	color: #AAA;
-	content: "Date\00000a";
-}
-#register-new .date > div
+#register-new .date
 {
 	display: flex;
 	justify-content: flex-start;
 	flex-wrap: wrap;
+}
 
+#register-new .date > div
+{
 	margin-bottom: 5px;
+
+	flex-grow: 1;
+	min-width: 400px;
+	width: calc(50% - 60px);
 }
 
 #register-new .date > div > input
-{
-	flex-grow: 1;
-}
+{	width: 100%; }
 
 #register-new .date .date-from::before
 {
 	width: 50px;
+	display: inline-block;
 
 	font-size: 80%;
 	color: #AAA;
@@ -78,6 +75,7 @@
 #register-new .date .date-to::before
 {
 	width: 50px;
+	display: inline-block;
 
 	font-size: 80%;
 	color: #AAA;
