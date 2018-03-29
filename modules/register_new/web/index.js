@@ -9,4 +9,8 @@ r ( function ()
 			'format': '%Y-%m-%d %H:%i'
 		} );
 	} );
+
+	$('#register-new').css('right', '-51%');
+	$('#register-new').css('transition', 'right .5s');
+	$('#register-new').css('right', '0%');
 } );
