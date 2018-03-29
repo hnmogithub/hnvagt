@@ -12,6 +12,7 @@ r ( function ()
 
 	$('#register-new').css('right', '-51%');
 	
+	/*
 	setTimeout ( function ()
 	{
 		$('#register-new').css('transition', 'right .5s');
@@ -21,4 +22,5 @@ r ( function ()
 			$('#register-new').css('right', '0%');
 		}, 0 );
 	}, 0 );
+	*/
 } );
