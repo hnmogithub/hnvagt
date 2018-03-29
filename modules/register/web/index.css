@@ -125,8 +125,12 @@
 	color: #AAA;
 	font-size: 80%;
 	content: "Created by: ";
+}
 
-	margin-right: -5px;
+#register-content .report .user
+{
+	float: right;
+	margin-right: 5px;
 }
 
 #register-content .report .description::before
