@@ -12,7 +12,10 @@ r ( function ()
 
 	$('#register-new-backdrop').on ('click', function ()
 	{
-		$('#register-new').css ('animation-name', 'registerNewHide');
+		$('#register-new').css ({
+			'right': '-51%',
+			'animation-name': 'registerNewHide'
+		});
 		setTimeout ( function ()
 		{
 			window.location = '/register/';
