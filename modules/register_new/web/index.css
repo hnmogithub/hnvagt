@@ -18,6 +18,9 @@
 	z-index: 10;
 }
 
+#register-new h1
+{	color: #CCC; }
+
 #register-new input
 {
 	background: #CCC;
@@ -54,6 +57,7 @@
 	width: 100%;
 
 	content: "Date";
+	color: #CCC;
 	
 	font-weight: bold;
 	font-size: 90%;
