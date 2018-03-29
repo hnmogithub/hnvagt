@@ -18,6 +18,25 @@
 	z-index: 10;
 }
 
+#register-new input
+{
+	background: #CCC;
+	color: #333;
+	border: #111;
+
+	width: 100%;
+	padding: 3px;
+	text-indent: 8px;
+	box-sizing: border-box;
+}
+#register-new input:focus
+{
+	border-color: #666;
+	outline: 0;
+
+	box-shadow: inset 0px 1px 1px rgba(0,0,0, 0.075), 0px 0px 8px rgba(255,255,255, 0.6);
+}
+
 .AnyTime-win
 {
 	z-index: 10;
