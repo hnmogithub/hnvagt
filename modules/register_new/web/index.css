@@ -29,6 +29,7 @@
 	text-indent: 8px;
 	box-sizing: border-box;
 }
+
 #register-new input:focus
 {
 	border-color: #666;
@@ -36,6 +37,26 @@
 
 	box-shadow: inset 0px 1px 1px rgba(0,0,0, 0.075), 0px 0px 8px rgba(255,255,255, 0.6);
 }
+
+#register-new .date > div
+{
+	display: flex;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+}
+
+#register-new .date > div > input
+{
+	flex-grow: 1;
+}
+
+#register-new .date .date-from::before
+{
+	width: 50px;
+
+	content: "From: ";
+}
+
 
 .AnyTime-win
 {
