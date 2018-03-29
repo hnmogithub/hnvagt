@@ -35,4 +35,12 @@ r ( function ()
 			window.location = '/register/';
 		}, 500 );
 	});
+
+	$(document).on ('keypress', function (e)
+	{
+		if ( e.keyCode == 27 )
+		{
+			$('#register-new-backdrop').trigger ('click');
+		}
+	});
 } );
