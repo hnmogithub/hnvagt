@@ -11,7 +11,6 @@ class register_new
 	public function __construct ()
 	{
 		schedule::add ( schedule::$RUN_INIT, [ $this, 'init' ], [ 'url' ] );
-		echo 'works';
 	}
 
 	public function init ( $url )
