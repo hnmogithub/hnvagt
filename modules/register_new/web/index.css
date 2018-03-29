@@ -17,11 +17,11 @@
 
 	z-index: 10;
 
-	animation-name: register-new;
+	animation-name: registerNew;
 	animation-delay: .5s;
 }
 
-@keyframes register-new {
+@keyframes registerNew {
 	0% { right: -51%; }
 	100% { right: 0%; }
 }
