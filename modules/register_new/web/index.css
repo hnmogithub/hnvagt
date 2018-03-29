@@ -24,7 +24,7 @@
 	color: #333;
 	border: #111;
 
-	width: 100%;
+	min-width: 780px;
 	padding: 3px;
 	text-indent: 8px;
 	box-sizing: border-box;
@@ -54,9 +54,19 @@
 {
 	width: 50px;
 
+	font-size: 80%;
+	color: #AAA;
 	content: "From: ";
 }
 
+#register-new .date .date-to::before
+{
+	width: 50px;
+
+	font-size: 80%;
+	color: #AAA;
+	content: "To: ";
+}
 
 .AnyTime-win
 {
