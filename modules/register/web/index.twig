@@ -24,30 +24,30 @@
 				</div>
 
 				<div class="customer">
-					{{ report.customer ().name }}
+					{{ report.customer ().name|default('No customer') }}
 				</div>
 
 				<div class="customer_user">
-					{{ report.customerUser () }}
+					{{ report.customerUser ()|default('No user') }}
 				</div>
 
 				<div class="location">
-					{{ report.location }}
+					{{ report.location|default('No location') }}
 				</div>
 
 				<div class="ticket">
-					{{ report.ticket }}
+					{{ report.ticket|default('No ticket') }}
 				</div>
 
 				<div class="servers">
-					{{ report.servers () }}
+					{{ report.servers ()|default('No servers') }}
 				</div>
 			</div>
 			<div class="user">
 				{{ report.user () }}
 			</div>
 			<div class="description">
-				{{ report.description }}
+				{{ report.description|default('No description provided') }}
 			</div>
 		</a>
 	{% endfor %}
