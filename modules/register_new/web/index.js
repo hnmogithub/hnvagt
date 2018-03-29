@@ -12,6 +12,10 @@ r ( function ()
 
 	$('#register-new-backdrop').on ('click', function ()
 	{
-		
+		$('#register-new').css ('animation-name', 'registerNewHide');
+		setTimeout ( function ()
+		{
+			window.location = '/register/';
+		}, 500 );
 	});
 } );
