@@ -39,9 +39,7 @@
 }
 
 #register-new > form > div
-{
-	margin-top: 5px;
-}
+{	margin-top: 5px; }
 
 #register-new .date
 {
@@ -52,6 +50,7 @@
 
 #register-new .date > div
 {
+	margin: 0 3px;
 	margin-bottom: 5px;
 
 	flex-grow: 1;
@@ -60,7 +59,10 @@
 }
 
 #register-new .date > div > input
-{	width: 100%; }
+{
+	width: 100%;
+	min-width: initial;
+}
 
 #register-new .date .date-from::before
 {
