@@ -41,9 +41,7 @@ r ( function ()
 		if ( e.keyCode == 27 )
 		{
 			if ( $('*:focus').is ('input') == true )
-			{
-				return false;
-			}
+			{	return true; }
 
 			$('#register-new-backdrop').trigger ('click');
 		}
