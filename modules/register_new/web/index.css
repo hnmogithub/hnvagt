@@ -38,6 +38,13 @@
 	box-shadow: inset 0px 1px 1px rgba(0,0,0, 0.075), 0px 0px 8px rgba(255,255,255, 0.6);
 }
 
+#register-new .date::before
+{
+	font-size: 90%;
+	font-weight: bold;
+	color: #AAA;
+	content: "Date\00000a";
+}
 #register-new .date > div
 {
 	display: flex;
@@ -56,7 +63,7 @@
 
 	font-size: 80%;
 	color: #AAA;
-	content: "From: ";
+	content: "From ";
 }
 
 #register-new .date .date-to::before
@@ -65,7 +72,7 @@
 
 	font-size: 80%;
 	color: #AAA;
-	content: "To: ";
+	content: "To ";
 }
 
 .AnyTime-win
