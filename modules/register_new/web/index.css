@@ -48,6 +48,19 @@
 	flex-wrap: wrap;
 }
 
+#register-new .date::before
+{
+	display: block;
+	width: 100%;
+
+	content: "Date";
+	
+	font-weight: bold;
+	font-size: 90%;
+
+	margin-left: 10px;
+}
+
 #register-new .date > div
 {
 	margin: 0 3px;
@@ -56,6 +69,9 @@
 	flex-grow: 1;
 	min-width: 400px;
 	width: calc(50% - 60px);
+
+	display: flex;
+	justify-content: flex-start;
 }
 
 #register-new .date > div > input
@@ -85,6 +101,4 @@
 }
 
 .AnyTime-win
-{
-	z-index: 10;
-}
+{	z-index: 10; }
