@@ -2,6 +2,10 @@ r ( function ()
 {
 	$(document).on ('keyup', function ( e )
 	{
-		console.log ( e.keyCode, e.which );
+		switch ( e.which )
+		{
+			case 78: // N
+				return $('#register-new-task').trigger ('click');
+		}
 	} );
 } );
