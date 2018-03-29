@@ -9,18 +9,4 @@ r ( function ()
 			'format': '%Y-%m-%d %H:%i'
 		} );
 	} );
-
-	$('#register-new').css('right', '-51%');
-	
-	/*
-	setTimeout ( function ()
-	{
-		$('#register-new').css('transition', 'right .5s');
-
-		setTimeout ( function ()
-		{
-			$('#register-new').css('right', '0%');
-		}, 0 );
-	}, 0 );
-	*/
 } );
