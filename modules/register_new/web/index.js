@@ -10,6 +10,19 @@ r ( function ()
 		} );
 	} );
 
+	$('#register-new').on ('click', function (e)
+	{
+		e.preventDefault ();
+		e.stopPropagation ();
+
+		return false;
+	} );
+
+	$('#register-new-close').on ( 'click', function ()
+	{
+		$('#register-new-backdrop').trigger ('click');
+	} );
+
 	$('#register-new-backdrop').on ('click', function ()
 	{
 		$('#register-new').css ({
