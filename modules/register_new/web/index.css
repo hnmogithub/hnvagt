@@ -2,7 +2,7 @@
 {
 	position: absolute;
 	top: 0px;
-	right: -51%;
+	right: 0%;
 
 	width: 50%;
 	min-width: 800px;
@@ -18,7 +18,8 @@
 	z-index: 10;
 
 	animation-name: registerNew;
-	animation-delay: .5s;
+	animation-duration: 0.5s;
+
 }
 
 @keyframes registerNew {
