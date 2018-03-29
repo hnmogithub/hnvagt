@@ -46,6 +46,14 @@
 	100% { right: -51%; }
 }
 
+#register-new-close
+{
+	float: right;
+
+	color: #CCC;
+	text-decoration: none;
+}
+
 #register-new h2
 {	color: #CCC; }
 
