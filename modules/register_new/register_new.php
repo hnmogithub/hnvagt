@@ -28,7 +28,10 @@ class register_new
 	public function run ()
 	{
 		template::addCSS ( 'web/index.css' );
-		template::addCSS ( 'web/lib/anytime/anytime.5.2.0.css' );
+		template::addCSS ( 'web/lib/anytime/anytime.5.2.0.min.css' );
+
+		template::addJS ( 'web/index.js' );
+
 
 		template::add ( 'web/index.twig', [ 'user' => user::current () ] );
 	}
