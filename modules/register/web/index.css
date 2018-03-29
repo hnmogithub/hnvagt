@@ -120,12 +120,27 @@
 	content: "Servers:";
 }
 
+#register-content .report .user::before
+{
+	color: #AAA;
+	font-size: 80%;
+	content: "Created by: ";
+
+	margin-right: -5px;
+}
+
 #register-content .report .description::before
 {
 	color: #AAA;
 	font-size: 80%;
 	content: "Description:\00000a";
 	white-space: pre;
+	margin-left: -5px;
+}
+
+#register-content .report .description
+{
+	padding: 5px;
 }
 
 #register-content .report .date > div

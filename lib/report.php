@@ -238,4 +238,15 @@ class report extends baseArray
 			});
 		}
 	}
+
+	/**
+	 * Gets the user thats set as the owner of the report
+	 * 
+	 * @return user $user
+	 */
+	public function user ()
+	{
+		return user::byId ( $this->get ('user') );
+	}
+
 }

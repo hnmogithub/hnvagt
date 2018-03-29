@@ -87,4 +87,14 @@ class user extends baseArray
 	{
 		return $this->get ('id');
 	}
+
+	/**
+	 * Gets the name of the user
+	 * 
+	 * @return string $name
+	 */
+	public function __toString ()
+	{
+		return $this->get ('name');
+	}
 }
