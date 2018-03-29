@@ -36,7 +36,7 @@ r ( function ()
 		}, 500 );
 	});
 
-	$(document).on ('keypress', function (e)
+	$(document).on ('keydown', function (e)
 	{
 		if ( e.keyCode == 27 )
 		{
