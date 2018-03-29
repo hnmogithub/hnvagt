@@ -1,7 +1,7 @@
 r ( function ()
 {
-	$(document).on ('keypress', function ( e )
+	$(document).on ('keyup', function ( e )
 	{
-		console.log ( e.keyCode );
+		console.log ( e.keyCode, e.which );
 	} );
 } );
