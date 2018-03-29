@@ -8,10 +8,12 @@
 	min-width: 800px;
 	height: calc(100% - 30px);
 
+	padding: 0px;
 	padding-top: 30px;
 
 	background: #2A2A2A;
-	border-left: 1px solid black;
+	border-left: 1px solid #000;
+	box-shadow: 3px 0px 15px #000;
 
 	z-index: 10;
 }
