@@ -6,9 +6,18 @@
 	color: #CCC;
 }
 
+#register-new-task
+{
+	color: #CCC;
+	text-decoration: none;
+
+	float: right;
+}
+
 #register-content > hr
 {
 	border: 1px solid #111;
+	clear: both;
 }
 
 #register-content .report
