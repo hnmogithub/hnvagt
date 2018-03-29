@@ -71,6 +71,55 @@
 	margin-left: 10px;
 }
 
+#register-content .report .source::before
+{
+	color: #AAA;
+	font-size: 80%;
+	content: "Source:";
+}
+
+#register-content .report .type::before
+{
+	color: #AAA;
+	font-size: 80%;
+	content: "Type:";
+}
+
+#register-content .report .customer::before
+{
+	color: #AAA;
+	font-size: 80%;
+	content: "Customer:";
+}
+
+#register-content .report .customer_user::before
+{
+	color: #AAA;
+	font-size: 80%;
+	content: "User:";
+}
+
+#register-content .report .location::before
+{
+	color: #AAA;
+	font-size: 80%;
+	content: "Location:";
+}
+
+#register-content .report .ticket::before
+{
+	color: #AAA;
+	font-size: 80%;
+	content: "Ticket:";
+}
+
+#register-content .report .servers::before
+{
+	color: #AAA;
+	font-size: 80%;
+	content: "Servers:";
+}
+
 #register-content .report .date > div
 {
 	min-width: 140px;
