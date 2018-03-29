@@ -16,6 +16,7 @@ r ( function ()
 			'right': '-51%',
 			'animation-name': 'registerNewHide'
 		});
+
 		setTimeout ( function ()
 		{
 			window.location = '/register/';
