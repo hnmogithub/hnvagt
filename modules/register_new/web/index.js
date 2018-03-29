@@ -7,7 +7,7 @@ r ( function ()
 			$(this).off ('click').AnyTime_picker ().focus ();
 		} ).on ('blur', function ()
 		{
-			$(this).AnyTime_nopicker ();
+			$(this).AnyTime_noPicker ();
 		} );
 	} );
 } );
