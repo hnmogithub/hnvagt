@@ -131,6 +131,8 @@
 {
 	float: right;
 	margin-right: 5px;
+
+	font-size: 80%;
 }
 
 #register-content .report .description::before
