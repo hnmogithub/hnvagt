@@ -66,6 +66,10 @@
 	font-size: 80%;
 	content: "To:";
 }
+#register-content .report .date .date-to
+{
+	margin-left: 10px;
+}
 
 #register-content .report .date > div
 {
