@@ -53,10 +53,16 @@
 	justify-content: flex-start;
 	flex-wrap: wrap;
 }
-#register-content .report .date .date-from::before
+#register-content .report .date > div
 {
-	content: "Date from";
+	color: #AAA;
+	font-size: 80%;
 }
+
+#register-content .report .date .date-from::before
+{	content: "From:"; }
+#register-content .report .date .date-to::before
+{	content: "To:"; }
 
 #register-content .report .date > div
 {
