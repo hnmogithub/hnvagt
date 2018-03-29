@@ -20,6 +20,7 @@ class register_new
 
 	public function run ()
 	{
+		template::addCSS ( 'web/index.css' );
 		template::add ( 'web/index.twig', [ 'user' => user::current () ] );
 	}
 }

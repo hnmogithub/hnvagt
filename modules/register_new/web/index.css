@@ -1,0 +1,17 @@
+#register_new
+{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+
+	width: 50%;
+	min-width: 800px;
+	height: calc(100% - 30px);
+
+	padding-top: 30px;
+
+	background: #2A2A2A;
+	border-left: 1px solid black;
+
+	z-index: 10;
+}
