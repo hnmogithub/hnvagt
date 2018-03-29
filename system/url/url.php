@@ -44,6 +44,9 @@ class url
 			case 'css':
 			case 'js':
 			case 'png':
+				$file [] = $extension;
+				$url = dirname ( $url ) .'/'. join ('.', $file );
+
 				if ( file_exists ( '.'. $url ) == false )
 				{	throw new Response ( 'File not found ('. $_SERVER ['REQUEST_URI'] .')', 404 ); }
 				$type = [
