@@ -38,6 +38,8 @@ class url
 		$file = explode ( '.', basename ( $url ) );
 		$extension = strtolower ( array_pop ( $file ) );
 
+		var_dump ( $extension );
+
 		switch ( $extension )
 		{
 			case 'css':
