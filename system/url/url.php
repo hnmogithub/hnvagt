@@ -37,8 +37,7 @@ class url
 
 		$file = explode ( '.', basename ( $url ) );
 		$extension = strtolower ( array_pop ( $file ) );
-
-		var_dump ( $extension );
+		list ( $extension ) = explode ( '?', $extension, 2 );
 
 		switch ( $extension )
 		{
