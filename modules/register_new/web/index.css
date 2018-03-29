@@ -30,14 +30,20 @@
 
 	z-index: 10;
 
-	animation-name: registerNew;
+	animation-name: registerNewShow;
 	animation-duration: 0.5s;
 
 }
 
-@keyframes registerNew {
+@keyframes registerNewShow
+{
 	0% { right: -51%; }
 	100% { right: 0%; }
+}
+@keyframes registerNewHide
+{
+	0% { right: 0%; }
+	100% { right: -51%; }
 }
 
 #register-new h2

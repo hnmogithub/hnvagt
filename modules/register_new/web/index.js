@@ -9,4 +9,9 @@ r ( function ()
 			'format': '%Y-%m-%d %H:%i'
 		} );
 	} );
+
+	$('#register-new-backdrop').on ('click', function ()
+	{
+		
+	});
 } );
