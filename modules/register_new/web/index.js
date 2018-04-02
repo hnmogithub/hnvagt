@@ -43,15 +43,15 @@ r ( function ()
 
 		$(document).on ('keyup', function ( e )
 		{
-			if ( e.which == 27 && $('*:focus').is ('input,textarea') )
+			var target = e.target;
+			if ( e.which == 27 && $(target).is ('input,textarea') )
 			{
-				var text = $('*:focus').val ();
-				console.log ('text', text );
-				console.log ( e );
+				
+				var text = $(target).val ();
 				if ( text == '' )
-				{	$(this).blur (); }
+				{	$(target).blur (); }
 				else
-				{	$(this).val (''); }
+				{	$(target).val (''); }
 			}
 		});
 	} );

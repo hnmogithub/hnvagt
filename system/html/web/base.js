@@ -64,7 +64,7 @@ r ( function ()
 				if ( window.__keybinds [ e.which ] == undefined )
 				{	return; }
 
-				if ( $('*:focus').is ('input,textarea') == true )
+				if ( $(e.target).is ('input,textarea') == true )
 				{	return; }
 
 				$(window.__keybinds [ e.which ]).get(0).click ();
