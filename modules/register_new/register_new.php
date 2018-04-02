@@ -41,7 +41,7 @@ class register_new
 				die ( $this->bCustomer () );
 			
 			case 'customerTypes':
-				die ( $This->customerTypes () );
+				die ( $this->customerTypes () );
 		}
 	}
 
