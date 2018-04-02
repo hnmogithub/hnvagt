@@ -27,6 +27,7 @@ r ( function ()
 		bSources.initialize ();
 
 		var source = $('#register-new .source input');
+		source.data ('bloodhound', bSources);
 		source.typeahead ({
 			highlight: true,
 			hint: true,
@@ -66,6 +67,7 @@ r ( function ()
 		bTypes.initialize ();
 
 		var type = $('#register-new .type input');
+		type.data ('bloodhound', bTypes);
 		type.typeahead ({
 			highlight: true,
 			hint: true,
@@ -174,6 +176,16 @@ r ( function ()
 					$('#register-new-input input[type="text"]').focus ();
 				}, 0 );
 			}
+		});
+		type.on ('blur', function ()
+		{
+			$(this).data ('bloodhound').search ( $(this).val (), function ( result )
+			{
+				if ( result.length == 0 || result[0].name !== $(this).typeahead ('val') )
+				{
+					$(this).typeahead ('val','');
+				}
+			} );
 		});
 	});
 
