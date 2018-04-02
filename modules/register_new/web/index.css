@@ -152,5 +152,68 @@
 	content: "Source: ";
 }
 
+#register-new .type::before
+{
+	width: 50px;
+	display: inline-block;
+
+	font-size: 80%;
+	color: #AAA;
+	content: "Type: ";
+}
+
+#register-new .customer::before
+{
+	width: 50px;
+	display: inline-block;
+
+	font-size: 80%;
+	color: #AAA;
+	content: "Customer: ";
+}
+
+#register-new .customer_user::before
+{
+	width: 50px;
+	display: inline-block;
+
+	font-size: 80%;
+	color: #AAA;
+	content: "User: ";
+}
+
+#register-new .location::before
+{
+	width: 50px;
+	display: inline-block;
+
+	font-size: 80%;
+	color: #AAA;
+	content: "Location: ";
+}
+
+#register-new .Ticket::before
+{
+	width: 50px;
+	display: inline-block;
+
+	font-size: 80%;
+	color: #AAA;
+	content: "Ticket: ";
+}
+
+#register-new .servers::before
+{
+	width: 50px;
+	display: inline-block;
+
+	font-size: 80%;
+	color: #AAA;
+	content: "Servers: ";
+}
+
+
+
+
 .AnyTime-win
 {	z-index: 10; }
