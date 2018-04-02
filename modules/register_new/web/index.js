@@ -404,7 +404,7 @@ r ( function ()
 				'queryTokenizer': Bloodhound.tokenizers.whitespace,
 
 				'prefetch': {
-					'url': '/register/new/ajax/bCustomerUser',
+					'url': '/register/new/ajax/bCustomerUser?prefetch=true',
 					'cache': false,
 				},
 				'remote': {

@@ -320,39 +320,48 @@ class register_new
 	 */
 	private function bCustomerUser ()
 	{
-		/**
-		 * This query might need a rewrite if this db grows massive
-		 */
+		if ( isset ( $_GET ['prefetch'] ) == true && $_GET ['prefetch'] == 'true' )
+		{
 
-		return json_encode ( database (DB)->query ('
-			SELECT
-				`cu`.*
-			
-			FROM
-				`customers_users` `cu`
-			
-			LEFT JOIN
-				`customers` `c`
-			ON
-				`cu`.`customer` = `c`.`id`
-				AND
-				`c`.`name` = ?
+		}
+		else
+		{
+			if ( isset ( $_POST ['customer'] ) == false || isset ( $_POST ['type'] ) == false )
+			{	throw new Response ('Missing arguments', 421 ); }
+			/**
+			 * This query might need a rewrite if this db grows massive
+			 */
 
-			LEFT JOIN
-				`reports` `r`
-			ON
-				`r`.`customerUser` = `cu`.`id`
-				AND
-				`r`.`type` = ?
+			return json_encode ( database (DB)->query ('
+				SELECT
+					`cu`.*
+				
+				FROM
+					`customers_users` `cu`
+				
+				LEFT JOIN
+					`customers` `c`
+				ON
+					`cu`.`customer` = `c`.`id`
+					AND
+					`c`.`name` = ?
 
-			GROUP BY
-				`cu`.`id`
+				LEFT JOIN
+					`reports` `r`
+				ON
+					`r`.`customerUser` = `cu`.`id`
+					AND
+					`r`.`type` = ?
 
-			ORDER BY
-				CASE
-					WHEN `c`.`id` IS NOT NULL THEN 1
-					WHEN `c`.`id` IS NULL THEN 0
-				END DESC, COUNT(`r`.`id`) DESC, `cu`.`id` ASC
-		', [ $_POST ['customer'],  $_POST ['type'] ])->fetchAll () );
+				GROUP BY
+					`cu`.`id`
+
+				ORDER BY
+					CASE
+						WHEN `c`.`id` IS NOT NULL THEN 1
+						WHEN `c`.`id` IS NULL THEN 0
+					END DESC, COUNT(`r`.`id`) DESC, `cu`.`id` ASC
+			', [ $_POST ['customer'],  $_POST ['type'] ])->fetchAll () );
+		}
 	}
 }
