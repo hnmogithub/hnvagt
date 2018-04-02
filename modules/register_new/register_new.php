@@ -88,7 +88,9 @@ class register_new
 	{
 		return json_encode ( database (DB)->query ('
 			SELECT
-				`t`.*
+				`t`.`id`,
+				IFNULL(`ta`.`value`,`t`.`name`) AS `name`,
+				`t`.`other`
 
 			FROM
 				`types` `t`
@@ -99,12 +101,35 @@ class register_new
 				`r`.`type` = `t`.`id`
 				AND
 				`r`.`from` BETWEEN NOW() AND (NOW() - INTERVAL 1 MONTH)
+				AND
+				`r`.`user` = :user
+
+			LEFT JOIN
+			(
+				SELECT
+					`ta`.*
+				FROM
+					`types_aliases` `ta`
+
+				INNER JOIN
+					`types` `t`
+				ON
+					`t`.`id` = `ta`.`type`
+
+				WHERE
+					`ta`.`user` = :user
+
+				GROUP BY
+					`t`.`id`
+			) `ta`
+			ON
+				`ta`.`type` = `t`.`id`
 
 			GROUP BY
 				`t`.`id`
 
 			ORDER BY
 				COUNT(`r`.`id`) DESC, `t`.`id` ASC
-		')->fetchAll () );
+		', [ 'user' => user::current ()->id () ])->fetchAll () );
 	}
 }

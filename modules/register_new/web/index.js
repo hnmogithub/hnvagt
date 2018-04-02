@@ -57,7 +57,7 @@ r ( function ()
 			'datumTokenizer': Bloodhound.tokenizers.obj.whitespace('name', 'id'),
 			'queryTokenizer': Bloodhound.tokenizers.whitespace,
 			'prefetch': {
-				'url': '/register/new/ajax/bType',
+				'url': '/register/new/ajax/bType?other=true',
 				'cache': false,
 			}
 		});
