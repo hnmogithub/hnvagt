@@ -13,7 +13,7 @@ r ( function ()
 		} );
 	} );
 
-	$.getScript ('/modules/register_new/web/lib/typeahead/typehead.bundle.min.js', function ()
+	$.getScript ('/modules/register_new/web/lib/typeahead/typeahead.bundle.min.js', function ()
 	{
 		var bSources = new Bloodhound ({
 			'prefetch': {
