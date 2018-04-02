@@ -76,6 +76,8 @@ r ( function ()
 				else
 				{
 					bTypes.search ( q, sync );
+
+					console.log (sync);
 				}
 			},
 
