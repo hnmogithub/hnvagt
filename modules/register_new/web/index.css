@@ -269,10 +269,33 @@
 
 	animation-duration: 0.5s;
 }
-#register-new-input input
+
+#register-new-input > div
 {
-	font-size: 18px;
+	display: flex;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+
+	border: 1px solid #000;
+	box-shadow: 3px 3px 3px rgba(0,0,0, 0.7);
+
+	background: #333;
+
+	margin-top: -30px;
+	padding: 5px;
 }
+
+#register-new-input h3
+{
+	width: 100%;
+	text-indent: 10px;
+}
+
+#register-new-input input
+{	font-size: 18px; }
+#register-new-input input[type="text"]
+{	flex-grow: 1; }
+
 
 @keyframes registerNewInputShow
 {
