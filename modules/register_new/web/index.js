@@ -490,8 +490,10 @@ r ( function ()
 			{
 				if ( selected.id == -10 )
 				{
+					if ( $('#register-new .customer input[name="customer"]').typeahead ('val') == '' )
+					{	return alert ('No customer selected, unable to create customer user'); }
 					$(this).typeahead ('val','');
-	
+
 					$('#register-new-input h3').text ('Create new User');
 					$('#register-new-input').css ({
 						'visibility': 'visible',
