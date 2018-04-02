@@ -216,6 +216,6 @@ class register_new
 			
 			ORDER BY
 				GREATEST(COUNT(`r1`.`id`) + GREATEST(10, COUNT(`r`.`id`) * 0.1), COUNT(`r`.`id`)) DESC
-		', [ $_POST ['source'] ] ) );
+		', [ $_POST ['source'] ] )->fetchAll () );
 	}
 }
