@@ -148,7 +148,12 @@ r ( function ()
 						'dataType': 'json',
 						'success': function ( data )
 						{
-							console.log ( data );
+							bTypes.add ( data );
+
+							$('#register-new .type input').typeahead ('val', data.name );
+							$('#register-new .type input').typeahead ('open');
+
+							$('#register-new-input').trigger ('click');
 						}
 					});
 
