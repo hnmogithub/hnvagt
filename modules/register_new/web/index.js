@@ -137,6 +137,12 @@ r ( function ()
 				$('#register-new-input').css ('visibility','hidden');
 			}, 500 );
 		} );
+		$('#register-new-input > div').on ('click', function ( e )
+		{
+			e.preventDefault();
+			e.stopPropagation();
+			return false;
+		} );
 
 		$('#register-new').on ('click', function (e)
 		{
