@@ -114,8 +114,10 @@ r ( function ()
 			{
 				$(this).typeahead('val','');
 
+				$('#register-new-input h3').text ('Create new Type');
 				$('#register-new-input').css ({
 					'visibility': 'visible',
+					'opacity': 1,
 					'animation-name': 'registerNewInputShow'
 				});
 			}
