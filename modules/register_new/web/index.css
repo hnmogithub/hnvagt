@@ -228,12 +228,16 @@
 
 	background: rgba(200,200,200, 0.95);
 	box-shadow: 3px 3px 3px rgba(0,0,0, 0.075);
+
+	border: 1px solid black;
 }
 .tt-suggestion
 {
 	display: flex;
 	border-bottom: 1px solid #000;
 }
+.tt-suggestion:last-child
+{	border-bottom: 0; }
 .tt-suggestion .id
 {	width: 40px; }
 .tt-cursor
