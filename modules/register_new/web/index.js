@@ -487,9 +487,6 @@ r ( function ()
 			users.on ('blur', function ()
 			{
 				var that = this;
-
-				console.log ( $(that).typeahead ('val'), $(that).data ('bloodhound').index.all () );
-
 				if ( $(this).typeahead ('val') == '' )
 				{
 					$(this).data ('bloodhound').search ('system user', function ( result )
@@ -528,7 +525,7 @@ r ( function ()
 			bLocation.initialize ();
 	
 			var location = $('#register-new .location input');
-			location.data ('bloodhound', bSources);
+			location.data ('bloodhound', bLocation);
 			location.typeahead ({
 				highlight: true,
 				hint: true,
