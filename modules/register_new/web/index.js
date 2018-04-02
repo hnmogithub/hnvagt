@@ -479,7 +479,13 @@ r ( function ()
 
 				if ( $(this).typeahead ('val') == '' )
 				{
-					$(this).typeahead ('val', $(this).data ('bloodhound').get(0).name );
+					$(this).data ('bloodhound').search ('system user', function ( result )
+					{
+						if ( result [0] !== undefined )
+						{
+							$(that).typeahead ( 'val', result [0].name );
+						}
+					});
 					return;
 				}
 
