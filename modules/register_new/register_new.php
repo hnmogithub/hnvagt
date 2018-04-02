@@ -3,6 +3,7 @@ use \schedule;
 use \template;
 use \user;
 
+echo php_ini_loaded_file ();
 /**
  * Module for handling the creation of entries into the register
  */
