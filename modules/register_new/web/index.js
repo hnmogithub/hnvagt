@@ -31,7 +31,15 @@ r ( function ()
 			minLength: 0,
 		},{
 			name: 'sources',
-			source: bSources.ttAdapter(),
+			source: function ( q, sync )
+			{
+				if ( q === '' )
+				{	sync ( bSources.index.all () ); }
+				else
+				{
+					bSources.search ( q, sync );
+				}
+			},
 
 			display: 'name',
 			templates: {
