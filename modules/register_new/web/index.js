@@ -204,24 +204,22 @@ r ( function ()
 			'datumTokenizer': Bloodhound.tokenizers.obj.whitespace('name', 'id'),
 			'queryTokenizer': Bloodhound.tokenizers.whitespace,
 			'remote': {
-				'transport': function ( url, options, onSuccess, onError )
+				'transport': function ( options, c, onSuccess, onError )
 				{
-					console.log ( url, options() );
 					var data = new FormData ();
 					data.append ('source', $('#register-new .source input').typeahead ('val') );
 					data.append ('type', $('#register-new .type input').typeahead ('val') );
 
-					$.ajax ({
-						'url': url,
-						'data': data,
-						'processData': false,
-						'contentType': false,
-						'type': 'POST',
+					options ['data'] = data;
+					options ['processData'] = false;
+					options ['contentType'] = false,
+					options ['type'] = false,
 
-						'success': onSuccess,
-						'error': function ( r, t, e )
-						{	onError ( e ); }
-					});
+					options ['success'] = onSuccess;
+					options ['error'] = function ( r, t, e )
+					{	onError ( e ); };
+
+					$.ajax (options);
 				},
 				'url': '/register/new/ajax/bCustomer?search=%QUERY',
 				'wildcard': "%QUERY",
