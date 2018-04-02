@@ -211,7 +211,7 @@ class register_new
 					COUNT(`r`.`id`) DESC
 
 				LIMIT 10
-			', [ $_POST ['source'], $_GET ['search'] ] )->fetchAll () );
+			' )->fetchAll () );
 		}
 		else
 		{
