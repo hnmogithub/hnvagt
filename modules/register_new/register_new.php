@@ -32,6 +32,8 @@ class register_new
 		{
 			case 'bSource':
 				die ( $this->bSource () );
+			case 'bType':
+				die ( $this->bType () );
 		}
 	}
 
@@ -76,6 +78,33 @@ class register_new
 
 			ORDER BY
 				COUNT(`r`.`id`) DESC, `s`.`id` ASC
+		')->fetchAll () );
+	}
+
+	/**
+	 * Gets the types we need, parsed in a way bloodhound understands
+	 */
+	private function bType ()
+	{
+		return json_encode ( database (DB)->query ('
+			SELECT
+				`t`.*
+
+			FROM
+				`types` `t`
+
+			LEFT JOIN
+				`reports` `r`
+			ON
+				`r`.`type` = `t`.`id`
+				AND
+				`r`.`from` BETWEEN NOW() AND (NOW() - INTERVAL 1 MONTH)
+
+			GROUP BY
+				`t`.`id`
+
+			ORDER BY
+				COUNT(`r`.`id`) DESC, `t`.`id` ASC
 		')->fetchAll () );
 	}
 }
