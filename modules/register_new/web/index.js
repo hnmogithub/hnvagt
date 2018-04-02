@@ -475,11 +475,11 @@ r ( function ()
 			{
 				var that = this;
 
-				console.log ( $(this).typeahead ('val'), $(this).data ('bloodhound').get(1) );
+				console.log ( $(that).typeahead ('val'), $(that).data ('bloodhound').index.all () );
 
 				if ( $(this).typeahead ('val') == '' )
 				{
-					$(this).typeahead ('val', $(this).data ('bloodhound').index.all () );
+					$(this).typeahead ('val', $(this).data ('bloodhound').get(0).name );
 					return;
 				}
 
