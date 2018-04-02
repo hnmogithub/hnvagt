@@ -336,7 +336,10 @@ r ( function ()
 						'dataType': 'json',
 						'success': function ( data )
 						{
-							bTypes.add ( data );
+							if ( data.error !== undefined )
+							{	return alert ( data.error ); }
+
+							bCustomers.add ( data );
 
 							var input = $('#register-new .customer input');
 							input.typeahead ('val', data.name );
