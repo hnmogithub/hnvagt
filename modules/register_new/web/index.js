@@ -156,6 +156,8 @@ r ( function ()
 					e.stopPropagation ();
 					return false;
 				});
+
+				$('#register-new-input input').focus ();
 			}
 		});
 	});
