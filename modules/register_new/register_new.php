@@ -105,7 +105,12 @@ class register_new
 			)
 		', [ $_POST ['name'], 1, user::current ()->id () ]);
 
-		return database (DB)->lastId ();
+		return json_encode ( [
+			'id' => database (DB)->lastId (), 
+			'name' => $_POST ['name'], 
+			'created_by' => user::current ()->get ('name'), 
+			'created_at' => date ('Y-m-d H:i')
+		] );
 	}
 
 	/**
@@ -119,10 +124,17 @@ class register_new
 			SELECT
 				`t`.`id`,
 				IFNULL(`ta`.`value`,`t`.`name`) AS `name`,
-				`t`.`other`
+				`t`.`other`,
+				IFNULL(`ta`.`username`, `u`.`name`) AS `created_by`,
+				IFNULL(`ta`.`created_at`,`t`.`created_at`) AS `created_at`
 
 			FROM
 				`types` `t`
+
+			INNER JOIN
+				`users` `u`
+			ON
+				`t`.`created_by` = `u`.`id`
 
 			LEFT JOIN
 				`reports` `r`
@@ -136,7 +148,9 @@ class register_new
 			LEFT JOIN
 			(
 				SELECT
-					`ta`.*
+					`ta`.*,
+					`u`.`name` as `username`
+
 				FROM
 					`types_aliases` `ta`
 
@@ -144,6 +158,11 @@ class register_new
 					`types` `t`
 				ON
 					`t`.`id` = `ta`.`type`
+
+				INNER JOIN
+					`users` `u`
+				ON
+					`u`.`id` = `ta`.`user`
 
 				WHERE
 					`ta`.`user` = ?

@@ -118,7 +118,7 @@ r ( function ()
 		{
 			if ( selected.id == -10 )
 			{
-				$(this).typeahead('val','');
+				$('#register-new-input input[type="text"]').val ( $(this).typeahead ('val') );
 
 				$('#register-new-input h3').text ('Create new Type');
 				$('#register-new-input').css ({
@@ -129,7 +129,6 @@ r ( function ()
 
 				$('#register-new-input').off('submit').on ('submit', function ( e )
 				{
-					console.log ( 'here' );
 					var data = new FormData ();
 					data.append ( 'name', $(this).find ('input[type="text"]').val () );
 
