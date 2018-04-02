@@ -19,7 +19,7 @@ r ( function ()
 			'datumTokenizer': Bloodhound.tokenizers.obj.whitespace("name"),
 			'queryTokenizer': Bloodhound.tokenizers.whitespace,
 			'prefetch': {
-				'url': '/modules/register_new/ajax/bSources',
+				'url': '/register/new/ajax/bSource',
 			}
 		});
 		$('#register_new .source').typeahead ({

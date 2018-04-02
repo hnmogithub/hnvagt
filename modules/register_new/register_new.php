@@ -23,6 +23,19 @@ class register_new
 	}
 
 	/**
+	 * Ajax call, Bloodhound wanting data most likely
+	 */
+	public function ajax ()
+	{
+		$name = basename ( $_SERVER ['REQUEST_URI'] );
+		switch ( $name )
+		{
+			case 'bSource':
+				return $this->bSource ();
+		}
+	}
+
+	/**
 	 * Add the html stuff we need
 	 */
 	public function run ()
@@ -37,5 +50,39 @@ class register_new
 			'user' => user::current (),
 			'date_from' => date ('Y-m-d H:i')
 		] );
+	}
+
+	/**
+	 * Gets the sources we need, parsed in a way bloodhound understands
+	 */
+	private function bSource ()
+	{
+		$data = [];
+
+		database (DB)->query ('
+			SELECT
+				`s`.*
+
+			FROM
+				`sources` `s`
+
+			LEFT JOIN
+				`reports` `r`
+			ON
+				`s`.`id` = `r`.`source
+				AND
+				`s`.`from` BETWEEN NOW() AND NOW() - INTERVAL 1 MONTH
+
+			GROUP BY
+				`s`.`id`
+
+			ORDER BY
+				COUNT(`r`.`id`) DESC, `s`.`id` ASC
+		')->each ( function ( $row ) use ( &$data )
+		{
+			$data [ $row ['id'] ] = $row;
+		} );
+
+		return json_encode ( $data );
 	}
 }
