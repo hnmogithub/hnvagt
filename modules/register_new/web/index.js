@@ -114,11 +114,15 @@ r ( function ()
 			}
 		});
 		type.on ('focus', function () { $(this).typeahead ('open') });
+		type.on ('change', function ()
+		{
+			$('#register-new-input input[type="text"]').val ( $(this).typeahead ('val') );
+		} );
 		type.on ('typeahead:selected', function ( e, selected )
 		{
 			if ( selected.id == -10 )
 			{
-				$('#register-new-input input[type="text"]').val ( $(this).typeahead ('val') );
+				$(this).typeahead ('val','');
 
 				$('#register-new-input h3').text ('Create new Type');
 				$('#register-new-input').css ({
