@@ -63,7 +63,9 @@
 	color: #333;
 	border: #111;
 
+	width: 100%;
 	min-width: 780px;
+
 	padding: 3px;
 	text-indent: 8px;
 	box-sizing: border-box;
@@ -86,6 +88,9 @@
 	justify-content: flex-start;
 	flex-wrap: wrap;
 }
+
+#register-new .date > div > input
+{	min-width: initial; }
 
 #register-new .date::before
 {
@@ -112,12 +117,6 @@
 
 	display: flex;
 	justify-content: flex-start;
-}
-
-#register-new .date > div > input
-{
-	width: 100%;
-	min-width: initial;
 }
 
 #register-new .date .date-from::before
