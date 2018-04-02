@@ -120,6 +120,30 @@ r ( function ()
 					'opacity': 1,
 					'animation-name': 'registerNewInputShow'
 				});
+
+				$('#register-new-input').off('submit').on ('submit', function ( e )
+				{
+					var data = new FormData ();
+					data.append ( 'name', $(this).find ('input[type="text"]').val () );
+
+					$.ajax ({
+						'url': '/register/new/ajax/nType',
+						'data': data,
+						'processData': false,
+						'contentType': false,
+
+						'type': 'POST',
+						'dataType': 'json',
+						'success': function ( data )
+						{
+							console.log ( data );
+						}
+					});
+
+					e.preventDefault ();
+					e.stopPropagation ();
+					return false;
+				});
 			}
 		});
 	});

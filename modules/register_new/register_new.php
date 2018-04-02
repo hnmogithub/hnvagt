@@ -33,6 +33,8 @@ class register_new
 		{
 			case 'bSource':
 				die ( $this->bSource () );
+			case 'nType':
+				die ( $this->nType () );
 			case 'bType':
 				die ( $this->bType () );
 		}
@@ -80,6 +82,30 @@ class register_new
 			ORDER BY
 				COUNT(`r`.`id`) DESC, `s`.`id` ASC
 		')->fetchAll () );
+	}
+	
+	/**
+	 * We got request to make a new type
+	 */
+	private function nType ()
+	{
+		database (DB)->query ('
+			INSERT INTO
+				`types`
+			(
+				`name`,
+				`other`,
+				`created_by`
+			)
+			VALUES
+			(
+				?,
+				?,
+				?
+			)
+		', [ $_POST ['name'], 1, user::current ()->id () ]);
+
+		return database (DB)->lastId ();
 	}
 
 	/**
