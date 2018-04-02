@@ -343,7 +343,7 @@ class register_new
 		}
 		else
 		{
-			if ( isset ( $_POST ['customer'] ) == false || isset ( $_POST ['type'] ) == false )
+			if ( isset ( $_POST ['customer'] ) == false || isset ( $_POST ['type'] ) == false || isset ( $_GET ['search'] ) == false )
 			{	throw new Response ('Missing arguments', 421 ); }
 			/**
 			 * This query might need a rewrite if this db grows massive
@@ -370,6 +370,9 @@ class register_new
 					AND
 					`r`.`type` = ?
 
+				WHERE
+					`cu`.`name` LIKE CONCAT("%",?,"%")
+
 				GROUP BY
 					`cu`.`id`
 
@@ -378,7 +381,7 @@ class register_new
 						WHEN `c`.`id` IS NOT NULL THEN 1
 						WHEN `c`.`id` IS NULL THEN 0
 					END DESC, COUNT(`r`.`id`) DESC, `cu`.`id` ASC
-			', [ $_POST ['customer'],  $_POST ['type'] ])->fetchAll () );
+			', [ $_POST ['customer'],  $_POST ['type'], $_GET ['search'] ])->fetchAll () );
 		}
 	}
 }
