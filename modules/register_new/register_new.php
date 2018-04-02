@@ -191,7 +191,7 @@ class register_new
 		return json_encode ( database(DB)->query ('
 			SELECT
 				`c`.*
-			
+
 			FROM
 				`customers` `c`
 
@@ -215,7 +215,7 @@ class register_new
 				`c`.`id`
 			
 			ORDER BY
-				HIGHEST(COUNT(`r1`.`id`) + 10, COUNT(`r`.`id`)) DESC
+				GREATEST(COUNT(`r1`.`id`) + GREATEST(10, COUNT(`r`.`id`) * 0.1), COUNT(`r`.`id`)) DESC
 		', [ $_POST ['source'] ] ) );
 	}
 }
