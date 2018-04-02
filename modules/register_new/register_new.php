@@ -3,6 +3,7 @@ use \schedule;
 use \template;
 use \user;
 
+echo ini_get('date.timezone');
 /**
  * Module for handling the creation of entries into the register
  */

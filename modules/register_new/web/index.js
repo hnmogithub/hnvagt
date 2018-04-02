@@ -15,6 +15,7 @@ r ( function ()
 
 	$.getScript ('/modules/register_new/web/lib/typeahead/typeahead.bundle.min.js', function ()
 	{
+		// -- Sources
 		var bSources = new Bloodhound ({
 			'datumTokenizer': Bloodhound.tokenizers.obj.whitespace('name', 'id'),
 			'queryTokenizer': Bloodhound.tokenizers.whitespace,
@@ -49,11 +50,44 @@ r ( function ()
 				}
 			}
 		});
+		$('#register-new .source input').on ('focus', function () { $(this).typeahead ('open') });
 
-		$('#register-new .source input').on ('focus', function ()
-		{
-			$(this).typeahead ('open')
-		})
+		// -- Sources
+		var bSources = new Bloodhound ({
+			'datumTokenizer': Bloodhound.tokenizers.obj.whitespace('name', 'id'),
+			'queryTokenizer': Bloodhound.tokenizers.whitespace,
+			'prefetch': {
+				'url': '/register/new/ajax/bSource',
+				'cache': false,
+			}
+		});
+		bSources.initialize ();
+
+		$('#register-new .source input').typeahead ({
+			highlight: true,
+			hint: true,
+			minLength: 0,
+		},{
+			name: 'sources',
+			source: function ( q, sync )
+			{
+				if ( q === '' )
+				{	sync ( bSources.index.all () ); }
+				else
+				{
+					bSources.search ( q, sync );
+				}
+			},
+
+			display: 'name',
+			templates: {
+				suggestion: function ( data )
+				{
+					return '<div><div class="id">'+ data.id +'</div><div class="name">'+ data.name +'</div></div>';
+				}
+			}
+		});
+		$('#register-new .source input').on ('focus', function () { $(this).typeahead ('open') });
 	});
 
 	$(document).ready ( function ()
