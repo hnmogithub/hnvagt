@@ -204,7 +204,7 @@
 
 #register-new .servers::before
 {
-	width: 50px;
+	width: 100px;
 	display: inline-block;
 
 	font-size: 80%;
