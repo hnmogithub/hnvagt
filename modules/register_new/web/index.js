@@ -181,6 +181,7 @@ r ( function ()
 		{
 			$(this).data ('bloodhound').search ( $(this).val (), function ( result )
 			{
+				console.log ( 'here', result, $(this).typeahead ('val') );
 				if ( result.length == 0 || result[0].name !== $(this).typeahead ('val') )
 				{
 					$(this).typeahead ('val','');
