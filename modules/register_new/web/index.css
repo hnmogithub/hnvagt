@@ -127,7 +127,7 @@
 
 	font-size: 80%;
 	color: #AAA;
-	content: "From ";
+	content: "From: ";
 }
 
 #register-new .date .date-to::before
@@ -137,7 +137,22 @@
 
 	font-size: 80%;
 	color: #AAA;
-	content: "To ";
+	content: "To: ";
+}
+
+#register-new .source::before
+{
+	width: 50px;
+	display: inline-block;
+
+	font-size: 80%;
+	color: #AAA;
+	content: "Source: ";
+}
+
+#register-new .source
+{
+	flex-grow: 1;
 }
 
 .AnyTime-win

@@ -2,48 +2,54 @@ r ( function ()
 {
 	$.getScript ('/modules/register_new/web/lib/anytime/anytime.5.2.0.min.js', function ()
 	{
-		AnyTime.picker ( 'register-new-date-from', {
-			'format': '%Y-%m-%d %H:%i'
+		$(document).ready ( function ()
+		{
+			AnyTime.picker ( 'register-new-date-from', {
+				'format': '%Y-%m-%d %H:%i'
+			} );
+			AnyTime.picker ( 'register-new-date-to', {
+				'format': '%Y-%m-%d %H:%i'
+			} );
 		} );
-		AnyTime.picker ( 'register-new-date-to', {
-			'format': '%Y-%m-%d %H:%i'
+	} );
+
+	$(document).ready ( function ()
+	{
+		$('#register-new').on ('click', function (e)
+		{
+			e.preventDefault ();
+			e.stopPropagation ();
+
+			return false;
 		} );
-	} );
 
-	$('#register-new').on ('click', function (e)
-	{
-		e.preventDefault ();
-		e.stopPropagation ();
+		$('#register-new-close').on ( 'click', function ()
+		{
+			$('#register-new-backdrop').trigger ('click');
+		} );
 
-		return false;
-	} );
+		$('#register-new-backdrop').on ('click', function ()
+		{
+			$('#register-new').css ({
+				'right': '-51%',
+				'animation-name': 'registerNewHide'
+			});
 
-	$('#register-new-close').on ( 'click', function ()
-	{
-		$('#register-new-backdrop').trigger ('click');
-	} );
-
-	$('#register-new-backdrop').on ('click', function ()
-	{
-		$('#register-new').css ({
-			'right': '-51%',
-			'animation-name': 'registerNewHide'
+			setTimeout ( function ()
+			{
+				window.location = '/register/';
+			}, 500 );
 		});
 
-		setTimeout ( function ()
+		$(document).on ('keydown', function (e)
 		{
-			window.location = '/register/';
-		}, 500 );
-	});
+			if ( e.keyCode == 27 )
+			{
+				if ( $('*:focus').is ('input') == true )
+				{	return true; }
 
-	$(document).on ('keydown', function (e)
-	{
-		if ( e.keyCode == 27 )
-		{
-			if ( $('*:focus').is ('input') == true )
-			{	return true; }
-
-			$('#register-new-backdrop').trigger ('click');
-		}
-	});
+				$('#register-new-backdrop').trigger ('click');
+			}
+		});
+	} );
 } );
