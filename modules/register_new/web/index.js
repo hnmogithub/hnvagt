@@ -415,6 +415,7 @@ r ( function ()
 						var val = $('#register-new .type input[name="type"]').typeahead ('val');
 						$('#register-new .type input[name="type"]').data('bloodhound').search ( val, function ( result )
 						{
+							console.log ( result );
 							val = result [0].id;
 						} );
 						data.append ('type', val );
