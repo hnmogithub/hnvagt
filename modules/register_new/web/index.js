@@ -98,6 +98,8 @@ r ( function ()
 			templates: {
 				suggestion: function ( data )
 				{
+					if ( data.id < 0 ) { data.id = "&nbsp;"; }
+
 					return '<div><div class="id">'+ data.id +'</div><div class="name">'+ data.name +'</div></div>';
 				},
 				empty: '<div class="tt-suggestion text-center"><a href="javascript:void(0);">Create new</a></div><div class="tt-suggestion text-center"><a href="javascript:void(0);">Create alias</a></div>'
