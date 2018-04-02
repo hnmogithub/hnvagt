@@ -82,12 +82,17 @@
 #register-new > form > div
 {	margin-top: 5px; }
 
-#register-new .date
+#register-new > div
 {
 	display: flex;
 	justify-content: flex-start;
 	flex-wrap: wrap;
+
+	margin: 0 3px;
 }
+
+#register-new .date
+{	margin: 0 0; }
 
 #register-new .date > div > input
 {	min-width: initial; }
@@ -147,12 +152,6 @@
 	font-size: 80%;
 	color: #AAA;
 	content: "Source: ";
-}
-
-#register-new .source
-{
-	display: flex;
-	justify-content: flex-start;
 }
 
 .AnyTime-win
