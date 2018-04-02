@@ -23,4 +23,41 @@ function r ( callback )
 		setTimeout ( function () { r () }, 100 );
 	}
 }
-r ();
+
+
+var __keybinds = [];
+r ( function ()
+{
+	$(document).ready ( function ()
+	{
+		var keybinds = $('*[data-keybind]');
+		if ( keybinds.length > 0 )
+		{
+			keybinds.each ( function ()
+			{
+				var key = $(this).data ('keybind');
+				switch ( key )
+				{
+					case 'ESC':
+						key = 27;
+						break;
+					default:
+						key = key.charCodeAt ( 0 );
+				}
+
+				__keybinds [ key ] = this;
+			} );
+
+			$(document).on ('keydown', function ( e )
+			{
+				if ( __keybinds [ e.which ] == undefined )
+				{	return; }
+
+				if ( $('*:focus').is ('input,textarea') == true )
+				{	return; }
+
+				$(__keybinds [ e.which ]).get(0).click ();
+			} )
+		}
+	} );
+} );

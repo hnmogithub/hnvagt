@@ -40,16 +40,5 @@ r ( function ()
 				window.location = '/register/';
 			}, 500 );
 		});
-
-		$(document).on ('keydown', function (e)
-		{
-			if ( e.keyCode == 27 )
-			{
-				if ( $('*:focus').is ('input') == true )
-				{	return true; }
-
-				$('#register-new-backdrop').trigger ('click');
-			}
-		});
 	} );
 } );
