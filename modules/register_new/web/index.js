@@ -475,6 +475,8 @@ r ( function ()
 			{
 				var that = this;
 
+				console.log ( $(this).typeahead ('val'), $(this).data ('bloodhound').get(1) );
+
 				if ( $(this).typeahead ('val') == '' )
 				{
 					$(this).typeahead ('val', $(this).data ('bloodhound').get(1).name );
