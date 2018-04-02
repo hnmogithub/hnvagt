@@ -80,7 +80,7 @@ class register_new
 				COUNT(`r`.`id`) DESC, `s`.`id` ASC
 		')->each ( function ( $row ) use ( &$data )
 		{
-			$data [ $row ['id'] ] = $row;
+			$data [] = $row;
 		} );
 
 		return json_encode ( $data );
