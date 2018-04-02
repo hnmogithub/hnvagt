@@ -3,6 +3,8 @@ use \schedule;
 use \template;
 use \user;
 
+var_dump ( $_SERVER );
+
 /**
  * Module for handling the creation of entries into the register
  */
