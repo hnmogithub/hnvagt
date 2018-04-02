@@ -207,8 +207,8 @@ r ( function ()
 				'transport': function ( options, c, onSuccess, onError )
 				{
 					var data = new FormData ();
-					data.append ('source', $('#register-new .source input').typeahead ('val') );
-					data.append ('type', $('#register-new .type input').typeahead ('val') );
+					data.append ('source', $('#register-new .source input[name="source"]').typeahead ('val') );
+					data.append ('type', $('#register-new .type input[name="type"]').typeahead ('val') );
 
 					options ['data'] = data;
 					options ['processData'] = false;

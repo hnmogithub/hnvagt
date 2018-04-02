@@ -199,12 +199,23 @@ class register_new
 				`reports` `r`
 			ON
 				`r`.`customer` = `c`.`id`
+				AND
+				`r`.`from` BETWEEN NOW() AND (NOW() - INTERVAL 1 MONTH)
+
+			LEFT JOIN
+				`reports` `r1`
+			ON
+				`r1`.`customer` = `c`.`id`
+				AND
+				`r`.`from` BETWEEN NOW() AND (NOW() - INTERVAL 1 MONTH)
+				AND
+				`r`.`type` = ?
 
 			GROUP BY
 				`c`.`id`
 			
 			ORDER BY
-				COUNT(`r`.`id`) DESC
-		') );
+				HIGHEST(COUNT(`r1`.`id`) + 10, COUNT(`r`.`id`)) DESC
+		', [ $_POST ['source'] ] ) );
 	}
 }
