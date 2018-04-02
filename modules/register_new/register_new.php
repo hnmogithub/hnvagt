@@ -87,6 +87,8 @@ class register_new
 	 */
 	private function bType ()
 	{
+		$id = user::current ()->id ();
+
 		return json_encode ( database (DB)->query ('
 			SELECT
 				`t`.`id`,
@@ -103,7 +105,7 @@ class register_new
 				AND
 				`r`.`from` BETWEEN NOW() AND (NOW() - INTERVAL 1 MONTH)
 				AND
-				`r`.`user` = :user
+				`r`.`user` = ?
 
 			LEFT JOIN
 			(
@@ -118,7 +120,7 @@ class register_new
 					`t`.`id` = `ta`.`type`
 
 				WHERE
-					`ta`.`user` = :user
+					`ta`.`user` = ?
 
 				GROUP BY
 					`t`.`id`
@@ -131,6 +133,6 @@ class register_new
 
 			ORDER BY
 				COUNT(`r`.`id`) DESC, `t`.`id` ASC
-		', [ 'user' => user::current ()->id () ])->fetchAll () );
+		', [ $id, $id ])->fetchAll () );
 	}
 }
