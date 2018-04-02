@@ -23,7 +23,7 @@ r ( function ()
 				'cache': false,
 			}
 		});
-		$('#register_new .source').typeahead ({
+		$('#register-new .source input').typeahead ({
 			highlight: true
 		}, {
 			name: 'sources',
