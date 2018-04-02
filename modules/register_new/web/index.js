@@ -221,7 +221,10 @@ r ( function ()
 				if ( text == '' )
 				{	$(target).blur (); }
 				else
-				{	$(target).val (''); }
+				{
+					$(target).val ('');
+					$(target).typeahead ('val','');
+				}
 			}
 		});
 	} );
