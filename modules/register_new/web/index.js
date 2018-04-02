@@ -23,12 +23,20 @@ r ( function ()
 				'cache': false,
 			}
 		});
+
 		$('#register-new .source input').typeahead ({
-			highlight: true
-		}, {
+			highlight: true,
+			hint: true,
+			minLength: 0,
+		},{
 			name: 'sources',
 			source: bSources
 		});
+
+		$('#register-new .source input').on ('focus', function ()
+		{
+			$(this).trigger ('keydown');
+		})
 	});
 
 	$(document).ready ( function ()
