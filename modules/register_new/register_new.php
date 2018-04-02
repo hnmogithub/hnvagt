@@ -30,6 +30,7 @@ class register_new
 	public function ajax ()
 	{
 		$name = basename ( $_SERVER ['REQUEST_URI'] );
+		list ( $name ) = explode( '?', $name , 2 );
 		switch ( $name )
 		{
 			case 'bSource':
