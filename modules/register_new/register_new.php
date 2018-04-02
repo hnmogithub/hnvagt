@@ -196,19 +196,34 @@ class register_new
 		if ( isset ( $_POST ['type'] ) == false || isset ( $_POST ['name'] ) == false )
 		{	die ( '{"error": "Missing data"}' ); }
 
-		database(DB)->Query ('
-			INSERT INTO
-				`customers`
-			(
-				`name`,
-				`type`
-			)
-			VALUES
-			(
-				?,
-				?
-			)
-		', [ $_POST ['name'], $_POST ['type'] ] );
+		try
+		{
+			database(DB)->Query ('
+				INSERT INTO
+					`customers`
+				(
+					`name`,
+					`type`
+				)
+				VALUES
+				(
+					?,
+					?
+				)
+			', [ $_POST ['name'], $_POST ['type'] ] );
+		}
+		catch ( Exception $e )
+		{
+			if ( $e->getCode () == 23000 )
+			{	return json_encode ( ['error' => 'Customer with that name already exists'] ); }
+			return json_encode ( ['error' => $e->getMessage () ] );
+		}
+
+		return json_encode ( [
+			'id' => database(DB)->lastId (),
+			'name' => $_POST ['name'],
+			'type' => $_POST ['type']
+		] );
 	}
 
 	/**
