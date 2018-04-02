@@ -157,7 +157,10 @@ r ( function ()
 					return false;
 				});
 
-				$('#register-new-input input').focus ();
+				setTimeout ( function ()
+				{
+					$('#register-new-input input').focus ();
+				}, 0 );
 			}
 		});
 	});
