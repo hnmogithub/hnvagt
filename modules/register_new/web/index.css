@@ -80,10 +80,9 @@
 }
 
 #register-new > form > div
-{	margin-top: 5px; }
-
-#register-new > div
 {
+	margin-top: 5px;
+
 	display: flex;
 	justify-content: flex-start;
 	flex-wrap: wrap;
