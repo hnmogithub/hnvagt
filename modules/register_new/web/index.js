@@ -206,7 +206,7 @@ r ( function ()
 			'remote': {
 				'transport': function ( url, options, onSuccess, onError )
 				{
-					console.log ( url, options );
+					console.log ( url, options() );
 					var data = new FormData ();
 					data.append ('source', $('#register-new .source input').typeahead ('val') );
 					data.append ('type', $('#register-new .type input').typeahead ('val') );
