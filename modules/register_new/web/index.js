@@ -126,6 +126,18 @@ r ( function ()
 
 	$(document).ready ( function ()
 	{
+		$('#register-new-input').on ( 'click', function ()
+		{
+			$(this).css ({
+				'opacity': 0,
+				'animation-name': 'registerNewInputHide'
+			});
+			setTimeout ( function ()
+			{
+				$('#register-new-input').css ('visibility','hidden');
+			}, 500 );
+		} );
+
 		$('#register-new').on ('click', function (e)
 		{
 			e.preventDefault ();
