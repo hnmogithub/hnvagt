@@ -69,9 +69,9 @@ class register_new
 			LEFT JOIN
 				`reports` `r`
 			ON
-				`s`.`id` = `r`.`source
+				`s`.`id` = `r`.`source`
 				AND
-				`s`.`from` BETWEEN NOW() AND (NOW() - INTERVAL 1 MONTH)
+				`r`.`from` BETWEEN NOW() AND (NOW() - INTERVAL 1 MONTH)
 
 			GROUP BY
 				`s`.`id`
