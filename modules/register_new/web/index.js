@@ -26,7 +26,8 @@ r ( function ()
 		});
 		bSources.initialize ();
 
-		$('#register-new .source input').typeahead ({
+		var source = $('#register-new .source input');
+		source.typeahead ({
 			highlight: true,
 			hint: true,
 			minLength: 0,
@@ -47,10 +48,11 @@ r ( function ()
 				suggestion: function ( data )
 				{
 					return '<div><div class="id">'+ data.id +'</div><div class="name">'+ data.name +'</div></div>';
-				}
+				},
+				empty: '<div class="warning">Unable to use this selection</div>';
 			}
 		});
-		$('#register-new .source input').on ('focus', function () { $(this).typeahead ('open') });
+		source.on ('focus', function () { $(this).typeahead ('open') });
 
 		// -- Types
 		var bTypes = new Bloodhound ({
@@ -63,7 +65,8 @@ r ( function ()
 		});
 		bTypes.initialize ();
 
-		$('#register-new .type input').typeahead ({
+		var type = $('#register-new .type input');
+		type.typeahead ({
 			highlight: true,
 			hint: true,
 			minLength: 0,
@@ -101,11 +104,14 @@ r ( function ()
 					if ( data.id < 0 ) { data.id = "&nbsp;"; }
 
 					return '<div><div class="id">'+ data.id +'</div><div class="name">'+ data.name +'</div></div>';
-				},
-				empty: '<div class="tt-suggestion text-center"><a href="javascript:void(0);">Create new</a></div><div class="tt-suggestion text-center"><a href="javascript:void(0);">Create alias</a></div>'
+				}
 			}
 		});
-		$('#register-new .type input').on ('focus', function () { $(this).typeahead ('open') });
+		type.on ('focus', function () { $(this).typeahead ('open') });
+		type.on ('typeahead:selected', function (a,b,c)
+		{
+			console.log ( a,b,c );
+		});
 	});
 
 	$(document).ready ( function ()
