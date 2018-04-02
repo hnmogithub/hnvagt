@@ -43,7 +43,7 @@ r ( function ()
 
 		$('#register-new .source input').on ('focus', function ()
 		{
-			$(this).trigger ('keydown');
+			$(this).typeahead ('open');
 		})
 	});
 
