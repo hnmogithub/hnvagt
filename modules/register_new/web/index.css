@@ -249,10 +249,11 @@
 {	flex-grow: 1; }
 .tt-suggestion .other::before
 {
-	font-size: 70%;
+	font-size: 60%;
 	color: #777;
 
 	content: "Perfered";
+	font-style: italic;
 }
 
 
