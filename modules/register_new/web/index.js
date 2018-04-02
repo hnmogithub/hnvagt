@@ -75,7 +75,10 @@ r ( function ()
 				{	sync ( bTypes.index.all () ); }
 				else
 				{
-					bTypes.search ( q, sync );
+					bTypes.search ( q, function ( a,b,c )
+					{
+						console.log ( a,b,c );
+					});
 
 					console.log (sync());
 				}
