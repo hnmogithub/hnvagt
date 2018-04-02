@@ -322,7 +322,24 @@ class register_new
 	{
 		if ( isset ( $_GET ['prefetch'] ) == true && $_GET ['prefetch'] == 'true' )
 		{
+			return json_encode ( database (DB)->query ('
+				SELECT
+					`cu`.*
 
+				FROM
+					`customer_users` `cu`
+
+				LEFT JOIN
+					`reports` `r`
+				ON
+					`r`.`customerUser` = `cu`.`id`
+
+				GROUP BY
+					`cu`.`id`
+
+				ORDER BY
+					COUNT(`r`.`id`) DESC
+			')->fetchAll () );
 		}
 		else
 		{
