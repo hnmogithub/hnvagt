@@ -162,6 +162,11 @@ r ( function ()
 					return false;
 				});
 
+				$('#register-new-input input[type="submit"]').on ('click', function ()
+				{
+					$(this).trigger ('submit');
+				});
+
 				setTimeout ( function ()
 				{
 					$('#register-new-input input[type="text"]').focus ();
