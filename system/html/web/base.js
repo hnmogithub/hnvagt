@@ -38,8 +38,8 @@ r ( function ()
 				var key = $(this).data ('keybind').toUpperCase ();
 
 				var text = $(this).text ();
-				text = text.replace ( RegExp(key,'i'), '<span class="underline">$1</span>' );
-				$(this).text ( text );
+				text = text.replace ( RegExp('('+ key +')','i'), '<span class="underline">$1</span>' );
+				$(this).html ( text );
 				
 				switch ( key )
 				{
