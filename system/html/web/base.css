@@ -9,3 +9,9 @@ body
 {
 	text-decoration: underline;
 }
+
+.keybind
+{
+	font-size: 50%;
+	color: #AAA;
+}
