@@ -42,16 +42,16 @@ r ( function ()
 						key = 27;
 						break;
 					default:
-						key = key.charCodeAt ( 0 );
+						key = key.toUpperCase ().charCodeAt ( 0 );
 				}
 
-				__keybinds [ key ] = this;
+				window.__keybinds [ key ] = this;
 			} );
 
 			$(document).on ('keydown', function ( e )
 			{
 				console.log ('1');
-				if ( __keybinds [ e.which ] == undefined )
+				if ( window.__keybinds [ e.which ] == undefined )
 				{	return; }
 				console.log ('2');
 
@@ -59,7 +59,7 @@ r ( function ()
 				{	return; }
 				console.log ('3');
 
-				$(__keybinds [ e.which ]).get(0).click ();
+				$(window.__keybinds [ e.which ]).get(0).click ();
 			} )
 		}
 	} );
