@@ -39,7 +39,13 @@ r ( function ()
 
 				var text = $(this).text ();
 				text = text.replace ( RegExp('('+ key +')','i'), '<span class="underline">$1</span>' );
-				$(this).html ( text );
+				if ( text !== $(this).text () )
+				{	$(this).html ( text ); }
+				else
+				{
+					$(this).prepend ('['+ key +'] ');
+				}
+				
 				
 				switch ( key )
 				{
