@@ -54,6 +54,17 @@ r ( function ()
 			}
 		});
 		source.on ('focus', function () { $(this).typeahead ('open') });
+		source.on ('blur', function ()
+		{
+			var that = this;
+			$(this).data ('bloodhound').search ( $(this).val (), function ( result )
+			{
+				if ( result.length == 0 || result[0].name !== $(that).typeahead ('val') )
+				{
+					$(that).typeahead ('val', '');
+				}
+			} );
+		});
 
 		// -- Types
 		var bTypes = new Bloodhound ({
