@@ -215,7 +215,8 @@
 
 
 
-
+.tt-hint
+{	color: #333; }
 .tt-menu
 {
 	width: calc(100% - 6px);
@@ -231,10 +232,8 @@
 	display: flex;
 	border-radius: 3px;
 }
-
 .tt-suggestion .id
 {	width: 40px; }
-
 .tt-cursor
 {
 	background: #AAA;
