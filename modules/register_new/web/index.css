@@ -245,6 +245,17 @@
 .tt-suggestion:hover,.tt-cursor
 {	background: #AAA; }
 
+.tt-suggestion .name
+{	flex-grow: 1; }
+.tt-suggestion .other::before
+{
+	font-size: 70%;
+	color: #777;
+
+	content: "Important";
+}
+
+
 .AnyTime-win
 {	z-index: 10; }
 
