@@ -520,6 +520,36 @@ r ( function ()
 				'prefetch': {
 					'url': '/register/new/ajax/bLocation?prefetch=true',
 					'cache': false,
+				},
+				'remote': {
+					'transport': function ( options, c, onSuccess, onError )
+					{
+						var data = new FormData ();
+
+						var val = $('#register-new .customer input[name="customer"]').typeahead ('val');
+						$('#register-new .customer input[name="customer"]').data('bloodhound').search ( val, function ( result )
+						{
+							if ( result [0] == undefined )
+							{	val = null; }
+							else
+							{	val = result [0].id; }
+						} );
+						data.append ('type', val );
+	
+						options ['data'] = data;
+						options ['processData'] = false;
+						options ['contentType'] = false,
+						options ['type'] = 'POST',
+	
+						options ['success'] = onSuccess;
+						options ['error'] = function ( r, t, e )
+						{	onError ( e ); };
+	
+						$.ajax (options);
+					},
+					'url': '/register/new/ajax/bLocation?search=%QUERY',
+					'wildcard': "%QUERY",
+					'cache': false,
 				}
 			});
 			bLocation.initialize ();

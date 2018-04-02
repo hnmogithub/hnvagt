@@ -47,6 +47,8 @@ class register_new
 
 			case 'bCustomerUser':
 				die ( $this->bCustomerUser () );
+			case 'bLocation':
+				die ( $this->bLocation () );
 		}
 	}
 
@@ -382,6 +384,57 @@ class register_new
 						WHEN `c`.`id` IS NULL THEN 0
 					END DESC, COUNT(`r`.`id`) DESC, `cu`.`id` ASC
 			', [ $_POST ['customer'],  $_POST ['type'], $_GET ['search'] ])->fetchAll () );
+		}
+	}
+
+	/**
+	 * Get locations, parsed in a way bloodhound understands
+	 */
+	private function bLocation ()
+	{
+		if ( isset ( $_GET ['prefetch'] ) == true && $_GET ['prefetch'] == 'true' )
+		{
+			return json_encode ( database (DB)->query ('
+				SELECT
+					1 AS `id`,
+					`r`.`location` AS `name`
+
+				FROM
+					`reports` `r`
+				
+				LEFT JOIN
+					`reports` `r1`
+				ON
+					`r1`.`location` = `r`.`location`
+					AND
+					`r1`.`from` BETWEEN NOW() AND (NOW() - INTERVAL 1 MONTH)
+
+				GROUP BY
+					`r`.`id`
+
+				ORDER BY
+					COUNT(`r`.`id`) DESC
+			')->fetchAll () );
+		}
+		else
+		{
+			return json_encode ( database (DB)->query ('
+				SELECT
+					1 AS `id`,
+					`r`.`location` AS `name`
+
+				FROM
+					`reports` `r`
+
+				LEFT JOIN
+					`reports` `r1`
+				ON
+					`r1`.`location` = `r`.`location`
+					AND
+					`r1`.`from` BETWEEN NOW() AND (NOW() - INTERVAL 1 MONTH)
+					AND
+					`r1`.`customerUser` = ?
+			')->fetchAll () );
 		}
 	}
 }
