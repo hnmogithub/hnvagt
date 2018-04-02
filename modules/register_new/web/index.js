@@ -180,10 +180,9 @@ r ( function ()
 			var that = this;
 			$(this).data ('bloodhound').search ( $(this).val (), function ( result )
 			{
-				console.log ( 'here', result, $(that).val () );
-				if ( result.length == 0 || result[0].name !== $(that).val () )
+				if ( result.length == 0 || result[0].name !== $(that).typeahead ('val') )
 				{
-					$(that).val ('');
+					$(that).typeahead ('val', '');
 				}
 			} );
 		});
