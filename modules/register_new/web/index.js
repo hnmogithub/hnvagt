@@ -104,7 +104,12 @@ r ( function ()
 				{
 					if ( data.id < 0 ) { data.id = "&nbsp;"; }
 
-					return '<div><div class="id">'+ data.id +'</div><div class="name">'+ data.name +'</div></div>';
+					var string = '<div><div class="id">'+ data.id +'</div><div class="name">'+ data.name +'</div>';
+					if ( data.other == 0 )
+					{	string += '<div class="other">&nbsp;</div>'; }
+					string += '</div>';
+
+					return string;
 				}
 			}
 		});
