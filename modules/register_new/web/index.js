@@ -455,7 +455,21 @@ r ( function ()
 					if ( q === '' )
 					{	sync ( bUsers.index.all () ); }
 					else
-					{	bUsers.search ( q, sync ); }
+					{
+						bUsers.search ( q, function ( result )
+						{
+							if ( result.length > 0 )
+							{
+								sync ( result );
+							}
+							else
+							{
+								var result = [];
+								result.push ({'id': -10, 'name': 'Create new'});
+								sync (result);
+							}
+						});
+					}
 				},
 	
 				display: 'name',
@@ -463,8 +477,7 @@ r ( function ()
 					suggestion: function ( data )
 					{
 						return '<div><div class="id">'+ data.id +'</div><div class="name">'+ data.name +'</div></div>';
-					},
-					empty: '<div class="warning">Unable to use this selection</div>'
+					}
 				}
 			});
 			users.on ('focus', function ()
@@ -489,6 +502,61 @@ r ( function ()
 					return;
 				}
 
+				$(this).data ('bloodhound').search ( $(this).val (), function ( result )
+				{
+					if ( result.length == 0 || result[0].name !== $(that).typeahead ('val') )
+					{
+						$(that).typeahead ('val', '');
+					}
+				} );
+			});
+		})();
+
+				/**
+		 * Bloodhound and Typeahead for the sources input
+		 */
+		(function ()
+		{
+			var bSources = new Bloodhound ({
+				'datumTokenizer': Bloodhound.tokenizers.obj.whitespace('name', 'id'),
+				'queryTokenizer': Bloodhound.tokenizers.whitespace,
+				'prefetch': {
+					'url': '/register/new/ajax/bLocation',
+					'cache': false,
+				}
+			});
+			bSources.initialize ();
+	
+			var source = $('#register-new .source input');
+			source.data ('bloodhound', bSources);
+			source.typeahead ({
+				highlight: true,
+				hint: true,
+				minLength: 0,
+			},{
+				name: 'sources',
+				source: function ( q, sync )
+				{
+					if ( q === '' )
+					{	sync ( bSources.index.all () ); }
+					else
+					{
+						bSources.search ( q, sync );
+					}
+				},
+	
+				display: 'name',
+				templates: {
+					suggestion: function ( data )
+					{
+						return '<div><div class="id">&nbsp;</div><div class="name">'+ data.name +'</div></div>';
+					}
+				}
+			});
+			source.on ('focus', function () { $(this).typeahead ('open') });
+			source.on ('blur', function ()
+			{
+				var that = this;
 				$(this).data ('bloodhound').search ( $(this).val (), function ( result )
 				{
 					if ( result.length == 0 || result[0].name !== $(that).typeahead ('val') )
