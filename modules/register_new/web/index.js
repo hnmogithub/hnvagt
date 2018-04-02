@@ -284,7 +284,8 @@ r ( function ()
 					'animation-name': 'registerNewInputShow'
 				});
 
-				var select = $(document.createElement ('input'));
+				var select = $(document.createElement ('select'));
+				select.css ('width', '100%');
 				select.attr ('name', 'type');
 				select.attr ('id', 'customerType');
 				$(select).insertBefore ('#register-new-input input[type="text"]');
