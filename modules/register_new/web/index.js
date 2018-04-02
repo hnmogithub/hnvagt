@@ -159,8 +159,8 @@ r ( function ()
 
 				setTimeout ( function ()
 				{
-					$('#register-new-input input').focus ();
-				}, 0 );
+					$('#register-new-input input[type="text"]').focus ();
+				}, 100 );
 			}
 		});
 	});
