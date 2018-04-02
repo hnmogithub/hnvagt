@@ -188,7 +188,7 @@ class register_new
 	 */
 	public function bCustomer ()
 	{
-		if ( isset ( $_GET ['default'] ) == true && $_GET ['default'] === 'true' )
+		if ( isset ( $_GET ['prefetch'] ) == true && $_GET ['prefetch'] === 'true' )
 		{
 			return json_encode ( database(DB)->query ('
 				SELECT

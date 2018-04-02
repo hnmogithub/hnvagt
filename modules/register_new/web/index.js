@@ -125,12 +125,6 @@ r ( function ()
 			}
 		});
 		type.on ('focus', function () { $(this).typeahead ('open') });
-		type.on ('change', function ()
-		{
-			if ( $(this).typeahead ('val') == '' ) { return false; }
-
-			$('#register-new-input input[type="text"]').val ( $(this).typeahead ('val') );
-		} );
 		type.on ('typeahead:selected', function ( e, selected )
 		{
 			if ( selected.id == -10 )
@@ -226,7 +220,7 @@ r ( function ()
 				'cache': false,
 			},
 			'prefetch': {
-				'url': '/register/new/ajax/bCustomer?default=true',
+				'url': '/register/new/ajax/bCustomer?prefetch=true',
 				'cache': false,
 			},
 		});
@@ -277,6 +271,101 @@ r ( function ()
 			}
 		});
 		customer.on ('focus', function () { $(this).typeahead ('open') });
+		customer.on ('typeahead:selected', function ( e, selected )
+		{
+			if ( selected.id == -10 )
+			{
+				$(this).typeahead ('val','');
+
+				$('#register-new-input h3').text ('Create new Customer');
+				$('#register-new-input').css ({
+					'visibility': 'visible',
+					'opacity': 1,
+					'animation-name': 'registerNewInputShow'
+				});
+
+				var select = $(document.createElement ('input'));
+				select.attr ('name', 'type');
+				select.attr ('id', 'customerType');
+				$(select).insertBefore ('#register-new-input input[type="text"]');
+
+				$.ajax ({
+					'url': '/register/new/ajax/customerTypes',
+					'type': 'GET',
+
+					'dataType': 'json',
+					'success': function ( data )
+					{
+						var select = $('#customerType');
+						for ( var i in data )
+						{
+							var option = $(document.createElement ('option'));
+							option.attr ('value', data [i].id );
+							option.text ( data [i].name );
+							select.append ( option );
+						}
+					},
+					'error': function ( r, t, e )
+					{
+						console.warn ( r,t,e );
+					}
+				})
+
+
+
+				$('#register-new-input').off('submit').on ('submit', function ( e )
+				{
+					var data = new FormData ();
+					data.append ( 'name', $(this).find ('input[type="text"]').val () );
+
+					$.ajax ({
+						'url': '/register/new/ajax/nType',
+						'data': data,
+						'processData': false,
+						'contentType': false,
+
+						'type': 'POST',
+						'dataType': 'json',
+						'success': function ( data )
+						{
+							bTypes.add ( data );
+
+							var input = $('#register-new .type input');
+							input.typeahead ('val', data.name );
+							input.typeahead ('open');
+							input.focus ();
+
+							$('#register-new-input').trigger ('click');
+						}
+					});
+
+					e.preventDefault ();
+					e.stopPropagation ();
+					return false;
+				});
+
+				$('#register-new-input input[type="submit"]').on ('click', function ()
+				{
+					$(this).trigger ('submit');
+				});
+
+				setTimeout ( function ()
+				{
+					$('#register-new-input input[type="text"]').focus ();
+				}, 0 );
+			}
+		});
+		customer.on ('blur', function ()
+		{
+			var that = this;
+			$(this).data ('bloodhound').search ( $(this).val (), function ( result )
+			{
+				if ( result.length == 0 || result[0].name !== $(that).typeahead ('val') )
+				{
+					$(that).typeahead ('val', '');
+				}
+			} );
+		});
 	});
 
 	$(document).ready ( function ()
