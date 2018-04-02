@@ -211,11 +211,14 @@ class register_new
 				AND
 				`r`.`type` = ?
 
+			WHERE
+				`c`.`name` LIKE CONCAT("%",?, "%")
+
 			GROUP BY
 				`c`.`id`
 			
 			ORDER BY
 				GREATEST(COUNT(`r1`.`id`) + GREATEST(10, COUNT(`r`.`id`) * 0.1), COUNT(`r`.`id`)) DESC
-		', [ $_POST ['source'] ] )->fetchAll () );
+		', [ $_POST ['source'], $_GET ['search'] ] )->fetchAll () );
 	}
 }
