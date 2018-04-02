@@ -77,7 +77,7 @@ r ( function ()
 				{
 					bTypes.search ( q, sync );
 
-					console.log (sync);
+					console.log (sync());
 				}
 			},
 
