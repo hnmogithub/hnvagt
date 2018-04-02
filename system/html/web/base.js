@@ -42,7 +42,7 @@ r ( function ()
 				if ( text !== $(this).text () )
 				{	$(this).html ( text ); }
 				else
-				{	$(this).prepend ('['+ key +'] '); }
+				{	$(this).prepend ('<span class="keybind">['+ key +']</span> '); }
 
 
 				switch ( key )
