@@ -86,10 +86,10 @@ r ( function ()
 						}
 						else
 						{
-							sync ([
-								{'id': -10, 'name': 'Create new'},
-								{'id': -11, 'name': 'Create alias'}
-							]);
+							var result = [];
+							result.push ({'id': -10, 'name': 'Create new'});
+							result.push ({'id': -11, 'name': 'Create alias'});
+							sync (result);
 						}
 					});
 
