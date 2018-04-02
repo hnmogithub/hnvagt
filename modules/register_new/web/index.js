@@ -213,7 +213,7 @@ r ( function ()
 					options ['data'] = data;
 					options ['processData'] = false;
 					options ['contentType'] = false,
-					options ['type'] = false,
+					options ['type'] = 'POST',
 
 					options ['success'] = onSuccess;
 					options ['error'] = function ( r, t, e )
