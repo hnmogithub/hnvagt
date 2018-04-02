@@ -47,6 +47,10 @@ r ( function ()
 				suggestion: function ( data )
 				{
 					return '<div><div class="id">'+ data.id +'</div><div class="name">'+ data.name +'</div></div>';
+				},
+				empty: function ()
+				{
+					return '<div class="text-center"><a href="javascript:void(0);">Create new</a></div>';
 				}
 			}
 		});
