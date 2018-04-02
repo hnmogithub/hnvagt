@@ -28,6 +28,9 @@ r ( function ()
 			highlight: true,
 			hint: true,
 			minLength: 0,
+		},{
+			name: 'sources',
+			source: bSources,
 
 			display: 'name',
 			templates: {
@@ -36,9 +39,6 @@ r ( function ()
 					return '<div class="suggestion"><div class="id">'+ data.id +'</div><div class="name">'+ data.name +'</div></div>';
 				}
 			}
-		},{
-			name: 'sources',
-			source: bSources,
 		});
 
 		$('#register-new .source input').on ('focus', function ()
