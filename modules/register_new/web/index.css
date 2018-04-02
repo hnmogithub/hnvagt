@@ -213,6 +213,10 @@
 }
 
 
+.twitter-typeahead
+{	flex-grow: 1; }
+.twitter-typeahead input
+{	width: 100%; }
 
 .tt-hint
 {	color: #333; }
