@@ -116,6 +116,8 @@ r ( function ()
 		type.on ('focus', function () { $(this).typeahead ('open') });
 		type.on ('change', function ()
 		{
+			if ( $(this).typeahead ('val') == '' ) { return; }
+
 			$('#register-new-input input[type="text"]').val ( $(this).typeahead ('val') );
 		} );
 		type.on ('typeahead:selected', function ( e, selected )
