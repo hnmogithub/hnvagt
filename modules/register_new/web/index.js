@@ -31,7 +31,7 @@ r ( function ()
 			minLength: 0,
 		},{
 			name: 'sources',
-			source: bSources,
+			source: bSources.ttAdapter(),
 
 			display: 'name',
 			templates: {
