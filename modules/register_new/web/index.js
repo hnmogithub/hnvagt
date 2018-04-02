@@ -474,6 +474,13 @@ r ( function ()
 			users.on ('blur', function ()
 			{
 				var that = this;
+
+				if ( $(this).val () == '' )
+				{
+					$(this).typeahead ('val', $(this).data ('bloodhound').get(1).name );
+					return;
+				}
+
 				$(this).data ('bloodhound').search ( $(this).val (), function ( result )
 				{
 					if ( result.length == 0 || result[0].name !== $(that).typeahead ('val') )
