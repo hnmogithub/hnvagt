@@ -479,7 +479,7 @@ r ( function ()
 
 				if ( $(this).typeahead ('val') == '' )
 				{
-					$(this).typeahead ('val', $(this).data ('bloodhound').get(1).name );
+					$(this).typeahead ('val', $(this).data ('bloodhound').index.all () );
 					return;
 				}
 
