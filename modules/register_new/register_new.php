@@ -31,7 +31,7 @@ class register_new
 		switch ( $name )
 		{
 			case 'bSource':
-				return $this->bSource ();
+				die ( $this->bSource () );
 		}
 	}
 
