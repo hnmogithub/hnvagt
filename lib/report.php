@@ -84,12 +84,12 @@ class report extends baseArray
 		static $loaded = false;
 		if ( $loaded === false )
 		{
-			database(DB)->cache ('reports_types', 'id', '
+			database(DB)->cache ('types', 'id', '
 				SELECT
 					*
 
 				FROM
-					`reports_types`
+					`types`
 			')->each ( function ( $row )
 			{
 				report::typeById ( $row ['id'] );

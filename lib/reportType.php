@@ -9,17 +9,17 @@ class reportType extends baseArray
 
 	public function __construct ( int $id )
 	{
-		baseArray::__construct ('reports_types', 'id');
+		baseArray::__construct ('types', 'id');
 
-		$row = cache (DB)->get ('reports_types', $id );
+		$row = cache (DB)->get ('types', $id );
 		if ( $row == null )
 		{
-			$row = database(DB)->cache ('reports_types', 'id', '
+			$row = database(DB)->cache ('types', 'id', '
 				SELECT
 					*
 
 				FROM
-					`reports_types`
+					`types`
 
 				WHERE
 					`id` = ?
