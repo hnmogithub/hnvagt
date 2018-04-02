@@ -63,8 +63,8 @@
 	color: #333;
 	border: #111;
 
-	width: 100%;
 	min-width: 780px;
+	flex-grow: 1;
 
 	padding: 3px;
 	text-indent: 8px;
@@ -151,7 +151,8 @@
 
 #register-new .source
 {
-	flex-grow: 1;
+	display: flex;
+	justify-content: flex-start;
 }
 
 .AnyTime-win
