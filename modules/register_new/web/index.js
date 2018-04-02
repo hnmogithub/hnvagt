@@ -47,7 +47,7 @@ r ( function ()
 			{
 				var text = $('*:focus').val ();
 				console.log ('text', text );
-				console.log ( this );
+				console.log ( e );
 				if ( text == '' )
 				{	$(this).blur (); }
 				else
