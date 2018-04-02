@@ -39,6 +39,9 @@ class register_new
 				die ( $this->bType () );
 			case 'bCustomer':
 				die ( $this->bCustomer () );
+			
+			case 'customerTypes':
+				die ( $This->customerTypes () );
 		}
 	}
 
@@ -250,5 +253,22 @@ class register_new
 				LIMIT 10
 			', [ $_POST ['source'], $_GET ['search'] ] )->fetchAll () );
 		}
+	}
+
+	/**
+	 * Gets customer types, returns in json
+	 */
+	private function customerTypes ()
+	{
+		return json_encode ( database(DB)->query ('
+			SELECT
+				*
+			
+			FROM
+				`customers_types`
+
+			ORDER BY
+				`id` ASC
+		')->fetchAll () );
 	}
 }
