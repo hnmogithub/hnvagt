@@ -327,7 +327,7 @@ class register_new
 					`cu`.*
 
 				FROM
-					`customer_users` `cu`
+					`customers_users` `cu`
 
 				LEFT JOIN
 					`reports` `r`
