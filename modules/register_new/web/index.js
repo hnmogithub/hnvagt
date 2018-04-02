@@ -23,6 +23,7 @@ r ( function ()
 				'cache': false,
 			}
 		});
+		bSources.initialize ();
 
 		$('#register-new .source input').typeahead ({
 			highlight: true,
