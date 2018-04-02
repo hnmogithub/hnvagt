@@ -36,6 +36,11 @@ r ( function ()
 			keybinds.each ( function ()
 			{
 				var key = $(this).data ('keybind').toUpperCase ();
+
+				var text = $(this).text ();
+				text = text.replace ( RegExp(key,'i'), '<span class="underline">$1</span>' );
+				$(this).text ( text );
+				
 				switch ( key )
 				{
 					case 'ESC':
@@ -45,6 +50,8 @@ r ( function ()
 						key = key.charCodeAt ( 0 );
 				}
 
+				if ( window.__keybinds [ key ] !== undefined )
+				{	console.warn ( 'Multiple keybinds on: '+ key +', overwriting current' ); }
 				window.__keybinds [ key ] = this;
 			} );
 
