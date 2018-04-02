@@ -439,14 +439,14 @@ r ( function ()
 			});
 			bUsers.initialize ();
 	
-			var users = $('#register-new .source input');
+			var users = $('#register-new .customer_user input');
 			users.data ('bloodhound', bUsers);
 			users.typeahead ({
 				highlight: true,
 				hint: true,
 				minLength: 0,
 			},{
-				name: 'sources',
+				name: 'customers_users',
 				source: function ( q, sync )
 				{
 					if ( q === '' )
