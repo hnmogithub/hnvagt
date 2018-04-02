@@ -505,6 +505,17 @@ r ( function ()
 					{
 						var data = new FormData ();
 						data.append ( 'name', $(this).find ('input[type="text"]').val () );
+
+						var customer = $('#register-new .customer input[name="customer"]');
+						var val = customer.typeahead ('val');
+						customer.data ('bloodhound').search ( val, function ( result )
+						{
+							if ( result.length == 0 )
+							{	return (val = null); }
+
+							return (val = result[0].id);
+						});
+						data.append ( 'customer', val );
 	
 						$.ajax ({
 							'url': '/register/new/ajax/nCustomerUser',
