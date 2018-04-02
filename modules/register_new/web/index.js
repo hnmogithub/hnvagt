@@ -114,7 +114,10 @@ r ( function ()
 			{
 				$(this).typeahead('val','');
 
-				
+				$('#register-new-input').css ({
+					'visibility': 'visible',
+					'animation-name': 'registerNewInputShow'
+				});
 			}
 		});
 	});

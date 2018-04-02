@@ -247,3 +247,40 @@
 
 .AnyTime-win
 {	z-index: 10; }
+
+#register-new-input
+{
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	z-index: 11;
+
+	width: 100%;
+	height: 100%;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	background: rgba(0,0,0, 0.7);
+
+	visibility: hidden;
+	opacity: 0;
+
+	animation-duration: 0.5s;
+}
+#register-new-input input
+{
+	font-size: 18px;
+}
+
+@keyframes registerNewInputShow
+{
+0% { opacity: 1; }
+100% { opacity: 0; }
+}
+@keyframes registerNewInputHide
+{
+0% { opacity: 0; }
+100% { opacity: 1; }
+}
