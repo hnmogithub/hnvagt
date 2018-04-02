@@ -123,6 +123,7 @@ r ( function ()
 
 				$('#register-new-input').off('submit').on ('submit', function ( e )
 				{
+					console.log ( 'here' );
 					var data = new FormData ();
 					data.append ( 'name', $(this).find ('input[type="text"]').val () );
 
