@@ -486,6 +486,63 @@ r ( function ()
 			{
 				$(this).typeahead ('open');
 			});
+			users.on ('typeahead:selected', function ( e, selected )
+			{
+				if ( selected.id == -10 )
+				{
+					$(this).typeahead ('val','');
+	
+					$('#register-new-input h3').text ('Create new User');
+					$('#register-new-input').css ({
+						'visibility': 'visible',
+						'opacity': 1,
+						'animation-name': 'registerNewInputShow'
+					});
+		
+					$('#register-new-input').off('submit').on ('submit', function ( e )
+					{
+						var data = new FormData ();
+						data.append ( 'name', $(this).find ('input[type="text"]').val () );
+	
+						$.ajax ({
+							'url': '/register/new/ajax/nCustomerUser',
+							'data': data,
+							'processData': false,
+							'contentType': false,
+	
+							'type': 'POST',
+							'dataType': 'json',
+							'success': function ( data )
+							{
+								if ( data.error !== undefined )
+								{	return alert ( data.error ); }
+	
+								bCustomers.add ( data );
+	
+								var input = $('#register-new .customer_user input[name="customer_user"]');
+								input.typeahead ('val', data.name );
+								input.typeahead ('open');
+								input.focus ();
+	
+								$('#register-new-input').trigger ('click');
+							}
+						});
+	
+						e.preventDefault ();
+						e.stopPropagation ();
+						return false;
+					});
+	
+					setTimeout ( function ()
+					{
+						$('#register-new-input input[type="text"]').focus ();
+					}, 0 );
+				}
+				else
+				{
+					
+				}
+			});
 			users.on ('blur', function ()
 			{
 				var that = this;
@@ -589,9 +646,7 @@ r ( function ()
 		} );
 		$('#register-new-input > div').on ('click', function ( e )
 		{
-			e.preventDefault();
 			e.stopPropagation();
-			return false;
 		} );
 
 		$('#register-new').on ('click', function (e)
