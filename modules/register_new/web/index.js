@@ -150,8 +150,10 @@ r ( function ()
 						{
 							bTypes.add ( data );
 
-							$('#register-new .type input').typeahead ('val', data.name );
-							$('#register-new .type input').typeahead ('open');
+							var input = $('#register-new .type input');
+							input.typeahead ('val', data.name );
+							input.typeahead ('open');
+							input.focus ();
 
 							$('#register-new-input').trigger ('click');
 						}
