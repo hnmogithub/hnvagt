@@ -71,7 +71,7 @@ class register_new
 			ON
 				`s`.`id` = `r`.`source
 				AND
-				`s`.`from` BETWEEN NOW() AND NOW() - INTERVAL 1 MONTH
+				`s`.`from` BETWEEN NOW() AND (NOW() - INTERVAL 1 MONTH)
 
 			GROUP BY
 				`s`.`id`
