@@ -49,7 +49,7 @@ r ( function ()
 				{
 					return '<div><div class="id">'+ data.id +'</div><div class="name">'+ data.name +'</div></div>';
 				},
-				empty: '<div class="warning">Unable to use this selection</div>';
+				empty: '<div class="warning">Unable to use this selection</div>'
 			}
 		});
 		source.on ('focus', function () { $(this).typeahead ('open') });
