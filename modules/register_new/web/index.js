@@ -489,18 +489,6 @@ r ( function ()
 			users.on ('blur', function ()
 			{
 				var that = this;
-				if ( $(this).typeahead ('val') == '' )
-				{
-					$(this).data ('bloodhound').search ('system user', function ( result )
-					{
-						if ( result [0] !== undefined )
-						{
-							$(that).typeahead ( 'val', result [0].name );
-						}
-					});
-					return;
-				}
-
 				$(this).data ('bloodhound').search ( $(this).val (), function ( result )
 				{
 					if ( result.length == 0 || result[0].name !== $(that).typeahead ('val') )
