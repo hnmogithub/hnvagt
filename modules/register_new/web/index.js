@@ -16,7 +16,7 @@ r ( function ()
 	$.getScript ('/modules/register_new/web/lib/typeahead/typeahead.bundle.min.js', function ()
 	{
 		var bSources = new Bloodhound ({
-			'datumTokenizer': Bloodhound.tokenizers.whitespace,
+			'datumTokenizer': Bloodhound.tokenizers.obj.whitespace ('name'),
 			'queryTokenizer': Bloodhound.tokenizers.whitespace,
 			'remote': {
 				'url': '/register/new/ajax/bSource',
