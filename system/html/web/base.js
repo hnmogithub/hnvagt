@@ -35,14 +35,14 @@ r ( function ()
 		{
 			keybinds.each ( function ()
 			{
-				var key = $(this).data ('keybind');
+				var key = $(this).data ('keybind').toUpperCase ();
 				switch ( key )
 				{
 					case 'ESC':
 						key = 27;
 						break;
 					default:
-						key = key.toUpperCase ().charCodeAt ( 0 );
+						key = key.charCodeAt ( 0 );
 				}
 
 				window.__keybinds [ key ] = this;
