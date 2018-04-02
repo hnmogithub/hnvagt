@@ -512,36 +512,36 @@ r ( function ()
 			});
 		})();
 
-				/**
+		/**
 		 * Bloodhound and Typeahead for the sources input
 		 */
 		(function ()
 		{
-			var bSources = new Bloodhound ({
+			var bLocation = new Bloodhound ({
 				'datumTokenizer': Bloodhound.tokenizers.obj.whitespace('name', 'id'),
 				'queryTokenizer': Bloodhound.tokenizers.whitespace,
 				'prefetch': {
-					'url': '/register/new/ajax/bLocation',
+					'url': '/register/new/ajax/bLocation?prefetch=true',
 					'cache': false,
 				}
 			});
-			bSources.initialize ();
+			bLocation.initialize ();
 	
-			var source = $('#register-new .source input');
-			source.data ('bloodhound', bSources);
-			source.typeahead ({
+			var location = $('#register-new .location input');
+			location.data ('bloodhound', bSources);
+			location.typeahead ({
 				highlight: true,
 				hint: true,
 				minLength: 0,
 			},{
-				name: 'sources',
+				name: 'location',
 				source: function ( q, sync )
 				{
 					if ( q === '' )
-					{	sync ( bSources.index.all () ); }
+					{	sync ( bLocation.index.all () ); }
 					else
 					{
-						bSources.search ( q, sync );
+						bLocation.search ( q, sync );
 					}
 				},
 	
@@ -553,18 +553,7 @@ r ( function ()
 					}
 				}
 			});
-			source.on ('focus', function () { $(this).typeahead ('open') });
-			source.on ('blur', function ()
-			{
-				var that = this;
-				$(this).data ('bloodhound').search ( $(this).val (), function ( result )
-				{
-					if ( result.length == 0 || result[0].name !== $(that).typeahead ('val') )
-					{
-						$(that).typeahead ('val', '');
-					}
-				} );
-			});
+			location.on ('focus', function () { $(this).typeahead ('open') });
 		})();
 	});
 
