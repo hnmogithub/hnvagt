@@ -240,10 +240,8 @@
 {	border-bottom: 0; }
 .tt-suggestion .id
 {	width: 40px; }
-.tt-cursor
-{
-	background: #AAA;
-}
+.tt-suggestion:hover,.tt-cursor
+{	background: #AAA; }
 
 .AnyTime-win
 {	z-index: 10; }
