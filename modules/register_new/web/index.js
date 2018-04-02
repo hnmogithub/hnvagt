@@ -404,7 +404,7 @@ r ( function ()
 				'queryTokenizer': Bloodhound.tokenizers.whitespace,
 
 				'prefetch': {
-					'url': '/register/new/ajax/bCustomerUsers',
+					'url': '/register/new/ajax/bCustomerUser',
 					'cache': false,
 				},
 				'remote': {
@@ -432,7 +432,7 @@ r ( function ()
 	
 						$.ajax (options);
 					},
-					'url': '/register/new/ajax/bCustomerUsers?search=%QUERY',
+					'url': '/register/new/ajax/bCustomerUser?search=%QUERY',
 					'wildcard': "%QUERY",
 					'cache': false,
 				},
