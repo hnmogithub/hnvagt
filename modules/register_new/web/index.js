@@ -40,5 +40,17 @@ r ( function ()
 				window.location = '/register/';
 			}, 500 );
 		});
+
+		$(document).on ('keyup', function ( e )
+		{
+			if ( e.which == 27 && $('*:focus').is ('input,textarea') )
+			{
+				var text = $('*:focus').val ();
+				if ( text == '' )
+				{	$(this).blur (); }
+				else
+				{	$(this).val (''); }
+			}
+		});
 	} );
 } );

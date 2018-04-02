@@ -42,11 +42,9 @@ r ( function ()
 				if ( text !== $(this).text () )
 				{	$(this).html ( text ); }
 				else
-				{
-					$(this).prepend ('['+ key +'] ');
-				}
-				
-				
+				{	$(this).prepend ('['+ key +'] '); }
+
+
 				switch ( key )
 				{
 					case 'ESC':
