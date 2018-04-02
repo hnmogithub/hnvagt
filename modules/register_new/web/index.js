@@ -20,6 +20,7 @@ r ( function ()
 			'queryTokenizer': Bloodhound.tokenizers.whitespace,
 			'prefetch': {
 				'url': '/register/new/ajax/bSource',
+				'cache': false,
 			}
 		});
 		$('#register_new .source').typeahead ({
