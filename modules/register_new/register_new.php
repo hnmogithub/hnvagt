@@ -341,6 +341,8 @@ class register_new
 
 				ORDER BY
 					COUNT(`r`.`id`) DESC
+
+				LIMIT 10
 			')->fetchAll () );
 		}
 		else
@@ -383,6 +385,8 @@ class register_new
 						WHEN `c`.`id` IS NOT NULL THEN 1
 						WHEN `c`.`id` IS NULL THEN 0
 					END DESC, COUNT(`r`.`id`) DESC, `cu`.`id` ASC
+
+				LIMIT 10
 			', [ $_POST ['customer'],  $_POST ['type'], $_GET ['search'] ])->fetchAll () );
 		}
 	}
@@ -408,12 +412,17 @@ class register_new
 					`r1`.`location` = `r`.`location`
 					AND
 					`r1`.`from` BETWEEN NOW() AND (NOW() - INTERVAL 1 MONTH)
+				
+				WHERE
+					`r`.`location` IS NOT NULL
 
 				GROUP BY
 					`r`.`id`
 
 				ORDER BY
 					COUNT(`r`.`id`) DESC
+
+				LIMIT 10
 			')->fetchAll () );
 		}
 		else
@@ -434,6 +443,11 @@ class register_new
 					`r1`.`from` BETWEEN NOW() AND (NOW() - INTERVAL 1 MONTH)
 					AND
 					`r1`.`customerUser` = ?
+
+				WHERE
+					`r`.`location` IS NOT NULL
+
+				LIMIT 10
 			')->fetchAll () );
 		}
 	}
