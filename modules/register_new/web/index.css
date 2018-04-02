@@ -227,7 +227,10 @@
 	box-shadow: 3px 3px 3px rgba(0,0,0, 0.075);
 }
 .tt-suggestion
-{	display: flex; }
+{
+	display: flex;
+	border-radius: 3px;
+}
 
 .tt-suggestion .id
 {	width: 40px; }
