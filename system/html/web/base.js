@@ -25,7 +25,7 @@ function r ( callback )
 }
 
 
-var __keybinds = [];
+var window.__keybinds = [];
 r ( function ()
 {
 	$(document).ready ( function ()
