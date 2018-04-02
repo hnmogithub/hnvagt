@@ -94,8 +94,6 @@ r ( function ()
 							sync (result);
 						}
 					});
-
-					console.log (sync());
 				}
 			},
 			limit: 10,
@@ -179,12 +177,13 @@ r ( function ()
 		});
 		type.on ('blur', function ()
 		{
+			var that = this;
 			$(this).data ('bloodhound').search ( $(this).val (), function ( result )
 			{
-				console.log ( 'here', result, $(this).val () );
-				if ( result.length == 0 || result[0].name !== $(this).val () )
+				console.log ( 'here', result, $(that).val () );
+				if ( result.length == 0 || result[0].name !== $(that).val () )
 				{
-					$(this).val ('');
+					$(that).val ('');
 				}
 			} );
 		});
