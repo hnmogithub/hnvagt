@@ -15,7 +15,9 @@ r ( function ()
 
 	$.getScript ('/modules/register_new/web/lib/typeahead/typeahead.bundle.min.js', function ()
 	{
-		// -- Sources
+		/**
+		 * Bloodhound and Typeahead for the sources input
+		 */
 		var bSources = new Bloodhound ({
 			'datumTokenizer': Bloodhound.tokenizers.obj.whitespace('name', 'id'),
 			'queryTokenizer': Bloodhound.tokenizers.whitespace,
@@ -66,7 +68,9 @@ r ( function ()
 			} );
 		});
 
-		// -- Types
+		/**
+		 * Bloodhound and Typeahead for the types input
+		 */
 		var bTypes = new Bloodhound ({
 			'datumTokenizer': Bloodhound.tokenizers.obj.whitespace('name', 'id'),
 			'queryTokenizer': Bloodhound.tokenizers.whitespace,
@@ -193,7 +197,9 @@ r ( function ()
 		});
 
 
-		// -- Types
+		/**
+		 * Bloodhound and Typeahead for the customers input
+		 */
 		var bCustomers = new Bloodhound ({
 			'datumTokenizer': Bloodhound.tokenizers.obj.whitespace('name', 'id'),
 			'queryTokenizer': Bloodhound.tokenizers.whitespace,
@@ -308,19 +314,20 @@ r ( function ()
 					},
 					'error': function ( r, t, e )
 					{
+						$('#customerType').remove ();
+
 						console.warn ( r,t,e );
 					}
 				})
-
-
 
 				$('#register-new-input').off('submit').on ('submit', function ( e )
 				{
 					var data = new FormData ();
 					data.append ( 'name', $(this).find ('input[type="text"]').val () );
+					data.append ( 'type', $('#customerType').val () );
 
 					$.ajax ({
-						'url': '/register/new/ajax/nType',
+						'url': '/register/new/ajax/nCustomer',
 						'data': data,
 						'processData': false,
 						'contentType': false,
@@ -331,12 +338,13 @@ r ( function ()
 						{
 							bTypes.add ( data );
 
-							var input = $('#register-new .type input');
+							var input = $('#register-new .customer input');
 							input.typeahead ('val', data.name );
 							input.typeahead ('open');
 							input.focus ();
 
 							$('#register-new-input').trigger ('click');
+							$('#customerType').remove ();
 						}
 					});
 
@@ -393,7 +401,6 @@ r ( function ()
 		{
 			e.preventDefault ();
 			e.stopPropagation ();
-
 			return false;
 		} );
 

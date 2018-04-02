@@ -37,6 +37,8 @@ class register_new
 				die ( $this->nType () );
 			case 'bType':
 				die ( $this->bType () );
+			case 'nCustomer':
+				die ( $this->nCustomer () );
 			case 'bCustomer':
 				die ( $this->bCustomer () );
 			
@@ -187,9 +189,32 @@ class register_new
 	}
 
 	/**
+	 * Creates a new customer
+	 */
+	private function nCustomer ()
+	{
+		if ( isset ( $_POST ['type'] ) == false || isset ( $_POST ['name'] ) == false )
+		{	die ( '{"error": "Missing data"}' ); }
+
+		database(DB)->Query ('
+			INSERT INTO
+				`customers`
+			(
+				`name`,
+				`type`
+			)
+			VALUES
+			(
+				?,
+				?
+			)
+		', [ $_POST ['name'], $_POST ['type'] ] );
+	}
+
+	/**
 	 * Get customers, parsed in a way bloodhound understands
 	 */
-	public function bCustomer ()
+	private function bCustomer ()
 	{
 		if ( isset ( $_GET ['prefetch'] ) == true && $_GET ['prefetch'] === 'true' )
 		{
