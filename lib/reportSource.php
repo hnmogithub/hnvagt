@@ -9,17 +9,17 @@ class reportSource extends baseArray
 
 	public function __construct ( int $id )
 	{
-		baseArray::__construct ('reports_sources', 'id');
+		baseArray::__construct ('sources', 'id');
 
-		$row = cache (DB)->get ('reports_sources', $id );
+		$row = cache (DB)->get ('sources', $id );
 		if ( $row == null )
 		{
-			$row = database(DB)->cache ('reports_sources', 'id', '
+			$row = database(DB)->cache ('sources', 'id', '
 				SELECT
 					*
 
 				FROM
-					`reports_sources`
+					`sources`
 
 				WHERE
 					`id` = ?
