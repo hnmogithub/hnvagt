@@ -46,6 +46,7 @@ r ( function ()
 			if ( e.which == 27 && $('*:focus').is ('input,textarea') )
 			{
 				var text = $('*:focus').val ();
+				console.log ('text', text );
 				if ( text == '' )
 				{	$(this).blur (); }
 				else
