@@ -50,11 +50,14 @@ r ( function ()
 
 			$(document).on ('keydown', function ( e )
 			{
+				console.log ('1');
 				if ( __keybinds [ e.which ] == undefined )
 				{	return; }
+				console.log ('2');
 
 				if ( $('*:focus').is ('input,textarea') == true )
 				{	return; }
+				console.log ('3');
 
 				$(__keybinds [ e.which ]).get(0).click ();
 			} )
