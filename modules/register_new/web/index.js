@@ -69,6 +69,7 @@ r ( function ()
 		type.typeahead ({
 			highlight: true,
 			hint: true,
+			limit: 10,
 			minLength: 0,
 		},{
 			name: 'types',
