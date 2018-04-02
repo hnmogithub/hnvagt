@@ -33,6 +33,9 @@ class register_new
 		template::addJS ( 'web/index.js' );
 
 
-		template::add ( 'web/index.twig', [ 'user' => user::current () ] );
+		template::add ( 'web/index.twig', [
+			'user' => user::current (),
+			'date_from' => date ('Y-m-d H:i')
+		] );
 	}
 }
