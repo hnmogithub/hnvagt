@@ -44,6 +44,9 @@ class register_new
 			
 			case 'customerTypes':
 				die ( $this->customerTypes () );
+
+			case 'bCustomerUser':
+				die ( $this->bCustomerUser () );
 		}
 	}
 
@@ -310,5 +313,46 @@ class register_new
 			ORDER BY
 				`id` ASC
 		')->fetchAll () );
+	}
+
+	/**
+	 * Gets relevant users, parsed in a way bloodhound understands
+	 */
+	private function bCustomerUser ()
+	{
+		/**
+		 * This query might need a rewrite if this db grows massive
+		 */
+
+		return json_encode ( database (DB)->query ('
+			SELECT
+				`cu`.*
+			
+			FROM
+				`customers_users` `cu`
+			
+			LEFT JOIN
+				`customers` `c`
+			ON
+				`cu`.`customer` = `c`.`id`
+				AND
+				`c`.`name` = ?
+
+			LEFT JOIN
+				`reports` `r`
+			ON
+				`r`.`customerUser` = `cu`.`id`
+				AND
+				`r`.`type` = ?
+
+			GROUP BY
+				`cu`.`id`
+
+			ORDER BY
+				CASE
+					WHEN `c`.`id` IS NOT NULL THEN 1
+					WHEN `c`.`id` IS NULL THEN 0
+				END DESC, COUNT(`r`.`id`) DESC, `cu`.`id` ASC
+		', [ $_POST ['customer'],  $_POST ['type'] ])->fetchAll () );
 	}
 }

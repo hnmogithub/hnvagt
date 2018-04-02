@@ -373,9 +373,16 @@ r ( function ()
 						$('#register-new-input input[type="text"]').focus ();
 					}, 0 );
 				}
+				else
+				{
+					
+				}
 			});
 			customer.on ('blur', function ()
 			{
+				$('#register-new .customer_user input[name="customer_user"]').data ('bloodhound').search ('', function () {});
+
+
 				var that = this;
 				$(this).data ('bloodhound').search ( $(this).val (), function ( result )
 				{
@@ -387,6 +394,92 @@ r ( function ()
 			});
 		})();
 		
+		/**
+		 * Bloodhound and Typeahead for the customer users input
+		 */
+		(function ()
+		{
+			var bUsers = new Bloodhound ({
+				'datumTokenizer': Bloodhound.tokenizers.obj.whitespace('name', 'id'),
+				'queryTokenizer': Bloodhound.tokenizers.whitespace,
+
+				'prefetch': {
+					'url': '/register/new/ajax/bCustomerUsers',
+					'cache': false,
+				},
+				'remote': {
+					'transport': function ( options, c, onSuccess, onError )
+					{
+						var data = new FormData ();
+
+						var val = $('#register-new .type input[name="type"]').typeahead ('val');
+						$('#register-new .type input[name="type"]').data('bloodhound').search ( val, function ( result )
+						{
+							val = result [0].id;
+						} );
+						data.append ('type', val );
+
+						data.append ('customer', $('#register-new .customer input[name="customer"]').typeahead ('val') );
+	
+						options ['data'] = data;
+						options ['processData'] = false;
+						options ['contentType'] = false,
+						options ['type'] = 'POST',
+	
+						options ['success'] = onSuccess;
+						options ['error'] = function ( r, t, e )
+						{	onError ( e ); };
+	
+						$.ajax (options);
+					},
+					'url': '/register/new/ajax/bCustomerUsers?search=%QUERY',
+					'wildcard': "%QUERY",
+					'cache': false,
+				},
+			});
+			bUsers.initialize ();
+	
+			var users = $('#register-new .source input');
+			users.data ('bloodhound', bUsers);
+			users.typeahead ({
+				highlight: true,
+				hint: true,
+				minLength: 0,
+			},{
+				name: 'sources',
+				source: function ( q, sync )
+				{
+					if ( q === '' )
+					{	sync ( bUsers.index.all () ); }
+					else
+					{	bUsers.search ( q, sync ); }
+				},
+	
+				display: 'name',
+				templates: {
+					suggestion: function ( data )
+					{
+						return '<div><div class="id">'+ data.id +'</div><div class="name">'+ data.name +'</div></div>';
+					},
+					empty: '<div class="warning">Unable to use this selection</div>'
+				}
+			});
+			users.on ('focus', function ()
+			{
+				$(this).typeahead ('open');
+			});
+			users.on ('blur', function ()
+			{
+				var that = this;
+				$(this).data ('bloodhound').search ( $(this).val (), function ( result )
+				{
+					if ( result.length == 0 || result[0].name !== $(that).typeahead ('val') )
+					{
+						$(that).typeahead ('val', '');
+					}
+				} );
+			});
+		})();
 	});
 
 	$(document).ready ( function ()

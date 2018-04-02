@@ -133,7 +133,7 @@ class customer extends baseArray
 					`customers_users` `cu`
 
 				WHERE
-					`customer_id` = ?
+					`customer` = ?
 
 				LEFT JOIN
 					`reports` `r`
