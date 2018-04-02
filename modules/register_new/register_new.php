@@ -57,9 +57,7 @@ class register_new
 	 */
 	private function bSource ()
 	{
-		$data = [];
-
-		database (DB)->query ('
+		return json_encode ( database (DB)->query ('
 			SELECT
 				`s`.*
 
@@ -78,11 +76,6 @@ class register_new
 
 			ORDER BY
 				COUNT(`r`.`id`) DESC, `s`.`id` ASC
-		')->each ( function ( $row ) use ( &$data )
-		{
-			$data [] = $row;
-		} );
-
-		return json_encode ( $data );
+		')->fetchAll () );
 	}
 }
