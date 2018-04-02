@@ -18,7 +18,7 @@ r ( function ()
 		var bSources = new Bloodhound ({
 			'datumTokenizer': Bloodhound.tokenizers.whitespace,
 			'queryTokenizer': Bloodhound.tokenizers.whitespace,
-			'prefetch': {
+			'remote': {
 				'url': '/register/new/ajax/bSource',
 				'cache': false,
 			}
