@@ -188,37 +188,67 @@ class register_new
 	 */
 	public function bCustomer ()
 	{
-		return json_encode ( database(DB)->query ('
-			SELECT
-				`c`.*
+		if ( isset ( $_GET ['default'] ) == true && $_GET ['default'] === 'true' )
+		{
+			return json_encode ( database(DB)->query ('
+				SELECT
+					`c`.*
 
-			FROM
-				`customers` `c`
+				FROM
+					`customers` `c`
 
-			LEFT JOIN
-				`reports` `r`
-			ON
-				`r`.`customer` = `c`.`id`
-				AND
-				`r`.`from` BETWEEN NOW() AND (NOW() - INTERVAL 1 MONTH)
+				LEFT JOIN
+					`reports` `r`
+				ON
+					`r`.`customer` = `c`.`id`
+					AND
+					`r`.`from` BETWEEN NOW() AND (NOW() - INTERVAL 1 MONTH)
 
-			LEFT JOIN
-				`reports` `r1`
-			ON
-				`r1`.`customer` = `c`.`id`
-				AND
-				`r`.`from` BETWEEN NOW() AND (NOW() - INTERVAL 1 MONTH)
-				AND
-				`r`.`type` = ?
+				GROUP BY
+					`c`.`id`
+				
+				ORDER BY
+					COUNT(`r`.`id`) DESC
 
-			WHERE
-				`c`.`name` LIKE CONCAT("%",?, "%")
+				LIMIT 10
+			', [ $_POST ['source'], $_GET ['search'] ] )->fetchAll () );
+		}
+		else
+		{
+			return json_encode ( database(DB)->query ('
+				SELECT
+					`c`.*
 
-			GROUP BY
-				`c`.`id`
-			
-			ORDER BY
-				GREATEST(COUNT(`r1`.`id`) + GREATEST(10, COUNT(`r`.`id`) * 0.1), COUNT(`r`.`id`)) DESC
-		', [ $_POST ['source'], $_GET ['search'] ] )->fetchAll () );
+				FROM
+					`customers` `c`
+
+				LEFT JOIN
+					`reports` `r`
+				ON
+					`r`.`customer` = `c`.`id`
+					AND
+					`r`.`from` BETWEEN NOW() AND (NOW() - INTERVAL 1 MONTH)
+
+				LEFT JOIN
+					`reports` `r1`
+				ON
+					`r1`.`customer` = `c`.`id`
+					AND
+					`r`.`from` BETWEEN NOW() AND (NOW() - INTERVAL 1 MONTH)
+					AND
+					`r`.`type` = ?
+
+				WHERE
+					`c`.`name` LIKE CONCAT("%",?, "%")
+
+				GROUP BY
+					`c`.`id`
+				
+				ORDER BY
+					GREATEST(COUNT(`r1`.`id`) + GREATEST(10, COUNT(`r`.`id`) * 0.1), COUNT(`r`.`id`)) DESC
+				
+				LIMIT 10
+			', [ $_POST ['source'], $_GET ['search'] ] )->fetchAll () );
+		}
 	}
 }

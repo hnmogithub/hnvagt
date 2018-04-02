@@ -224,7 +224,11 @@ r ( function ()
 				'url': '/register/new/ajax/bCustomer?search=%QUERY',
 				'wildcard': "%QUERY",
 				'cache': false,
-			}
+			},
+			'prefetch': {
+				'url': '/register/new/ajax/bCustomer?default=true',
+				'cache': false,
+			},
 		});
 		bCustomers.initialize ();
 
