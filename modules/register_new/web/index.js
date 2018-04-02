@@ -104,7 +104,7 @@ r ( function ()
 				{
 					if ( data.id < 0 ) { data.id = "&nbsp;"; }
 
-					var string = '<div><div class="id">'+ data.id +'</div><div class="name">'+ data.name +'</div>';
+					var string = '<div title="Created by: '+ data.created_by +', '+ data.created_at +' "><div class="id">'+ data.id +'</div><div class="name">'+ data.name +'</div>';
 					if ( data.other == 0 )
 					{	string += '<div class="other">&nbsp;</div>'; }
 					string += '</div>';
