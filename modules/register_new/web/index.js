@@ -75,9 +75,19 @@ r ( function ()
 				{	sync ( bTypes.index.all () ); }
 				else
 				{
-					bTypes.search ( q, function ( a,b,c )
+					bTypes.search ( q, function ( result )
 					{
-						console.log ( a,b,c );
+						if ( result.length > 0 )
+						{
+							sync ( result );
+						}
+						else
+						{
+							sync ([
+								{'id': -10, 'name': 'Create new'},
+								{'id': -11, 'name': 'Create alias'}
+							]);
+						}
 					});
 
 					console.log (sync());
