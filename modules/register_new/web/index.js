@@ -13,6 +13,21 @@ r ( function ()
 		} );
 	} );
 
+	$.getScript ('/modules/register_new/web/lib/typeahead/typehead.bundle.min.js', function ()
+	{
+		var bSources = new Bloodhound ({
+			'prefetch': {
+				'url': '/modules/register_new/ajax/bSources',
+			}
+		});
+		$('#register_new .source').typeahead ({
+			highlight: true
+		}, {
+			name: 'sources',
+			source: bSources
+		});
+	});
+
 	$(document).ready ( function ()
 	{
 		$('#register-new').on ('click', function (e)
