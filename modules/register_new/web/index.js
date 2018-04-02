@@ -108,9 +108,14 @@ r ( function ()
 			}
 		});
 		type.on ('focus', function () { $(this).typeahead ('open') });
-		type.on ('typeahead:selected', function (a,b,c)
+		type.on ('typeahead:selected', function ( e, selected )
 		{
-			console.log ( a,b,c );
+			if ( selected.id == -10 )
+			{
+				$(this).typeahead('val','');
+
+				
+			}
 		});
 	});
 
