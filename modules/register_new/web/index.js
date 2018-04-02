@@ -197,6 +197,83 @@ r ( function ()
 				}
 			} );
 		});
+
+
+		// -- Types
+		var bCustomers = new Bloodhound ({
+			'datumTokenizer': Bloodhound.tokenizers.obj.whitespace('name', 'id'),
+			'queryTokenizer': Bloodhound.tokenizers.whitespace,
+			'remote': {
+				'transport': function ( url, options, onSuccess, onError )
+				{
+					var data = new FormData ();
+					data.append ('source', $('#register-new .source input').typeahead ('val') );
+					data.append ('type', $('#register-new .type input').typeahead ('val') );
+
+					$.ajax ({
+						'url': url,
+						'data': data,
+						'processData': false,
+						'contentType': false,
+						'type': 'POST',
+
+						'success': onSuccess,
+						'error': function ( r, t, e )
+						{	onError ( e ); }
+					});
+				},
+				'url': '/register/new/ajax/bCustomer?search=%QUERY',
+				'wildcard': "%QUERY",
+				'cache': false,
+			}
+		});
+		bCustomers.initialize ();
+
+		var customer = $('#register-new .customer input');
+		customer.data ('bloodhound', bCustomers);
+		customer.typeahead ({
+			highlight: true,
+			hint: true,
+			minLength: 0,
+		},{
+			name: 'customers',
+			source: function ( q, sync )
+			{
+				if ( q === '' )
+				{	sync ( bCustomers.index.all () ); }
+				else
+				{
+					bCustomers.search ( q, function ( result )
+					{
+						if ( result.length > 0 )
+						{
+							sync ( result );
+						}
+						else
+						{
+							var result = [];
+							result.push ({'id': -10, 'name': 'Create new'});
+							sync (result);
+						}
+					});
+				}
+			},
+			limit: 10,
+
+			display: 'name',
+			templates: {
+				suggestion: function ( data )
+				{
+					if ( data.id < 0 ) { data.id = "&nbsp;"; }
+
+					var string = '<div title="Created by: '+ data.created_by +', '+ data.created_at +' "><div class="id">'+ data.id +'</div><div class="name">'+ data.name +'</div>';
+					string += '</div>';
+
+					return string;
+				}
+			}
+		});
+		customer.on ('focus', function () { $(this).typeahead ('open') });
 	});
 
 	$(document).ready ( function ()

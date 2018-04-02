@@ -37,6 +37,8 @@ class register_new
 				die ( $this->nType () );
 			case 'bType':
 				die ( $this->bType () );
+			case 'bCustomer':
+				die ( $this->bCustomer () );
 		}
 	}
 
@@ -179,5 +181,30 @@ class register_new
 			ORDER BY
 				COUNT(`r`.`id`) DESC, `t`.`id` ASC
 		', [ $id, $id ])->fetchAll () );
+	}
+
+	/**
+	 * Get customers, parsed in a way bloodhound understands
+	 */
+	public function bCustomer ()
+	{
+		return json_encode ( database(DB)->query ('
+			SELECT
+				`c`.*
+			
+			FROM
+				`customers` `c`
+
+			LEFT JOIN
+				`reports` `r`
+			ON
+				`r`.`customer` = `c`.`id`
+
+			GROUP BY
+				`c`.`id`
+			
+			ORDER BY
+				COUNT(`r`.`id`) DESC
+		') );
 	}
 }
