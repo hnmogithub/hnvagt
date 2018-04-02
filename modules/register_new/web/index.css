@@ -144,7 +144,7 @@
 
 #register-new .source::before
 {
-	width: 50px;
+	width: 100px;
 	display: inline-block;
 
 	font-size: 80%;
@@ -154,7 +154,7 @@
 
 #register-new .type::before
 {
-	width: 50px;
+	width: 100px;
 	display: inline-block;
 
 	font-size: 80%;
@@ -164,7 +164,7 @@
 
 #register-new .customer::before
 {
-	width: 50px;
+	width: 100px;
 	display: inline-block;
 
 	font-size: 80%;
@@ -174,7 +174,7 @@
 
 #register-new .customer_user::before
 {
-	width: 50px;
+	width: 100px;
 	display: inline-block;
 
 	font-size: 80%;
@@ -184,7 +184,7 @@
 
 #register-new .location::before
 {
-	width: 50px;
+	width: 100px;
 	display: inline-block;
 
 	font-size: 80%;
@@ -192,9 +192,9 @@
 	content: "Location: ";
 }
 
-#register-new .Ticket::before
+#register-new .ticket::before
 {
-	width: 50px;
+	width: 100px;
 	display: inline-block;
 
 	font-size: 80%;
