@@ -160,7 +160,7 @@ r ( function ()
 				setTimeout ( function ()
 				{
 					$('#register-new-input input[type="text"]').focus ();
-				}, 100 );
+				}, 0 );
 			}
 		});
 	});
