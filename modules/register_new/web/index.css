@@ -215,5 +215,26 @@
 
 
 
+
+.tt-menu
+{
+	width: calc(100% - 6px);
+
+	margin: 3px;
+	padding: 3px;
+
+	background: #EEE;
+}
+.tt-suggestion
+{	display: flex; }
+
+.tt-suggestion .id
+{	width: 40px; }
+
+.tt-cursor
+{
+	background: #AAA;
+}
+
 .AnyTime-win
 {	z-index: 10; }

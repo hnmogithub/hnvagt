@@ -36,7 +36,7 @@ r ( function ()
 			templates: {
 				suggestion: function ( data )
 				{
-					return '<div class="suggestion"><div class="id">'+ data.id +'</div><div class="name">'+ data.name +'</div></div>';
+					return '<div><div class="id">'+ data.id +'</div><div class="name">'+ data.name +'</div></div>';
 				}
 			}
 		});
