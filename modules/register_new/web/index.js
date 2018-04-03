@@ -395,7 +395,7 @@ r ( function ()
 				}
 				else
 				{
-					
+					$(this).data ('id', selected.id);
 				}
 			});
 			customer.on ('blur', function ()
@@ -429,27 +429,9 @@ r ( function ()
 					{
 						var data = new FormData ();
 		
-						var val = $('#register-new .type input[name="type"]').typeahead ('val');
-						$('#register-new .type input[name="type"]').data('bloodhound').search ( val, function ( result )
-						{
-							if ( result [0] == undefined )
-							{	val = null; }
-							else
-							{	val = result [0].id; }
-						} );
-						data.append ( 'type', val );
-		
-						var val = $('#register-new .customer input[name="customer"]').typeahead ('val');
-						$('#register-new .customer input[name="customer"]').data ('bloodhound').search ( val, function ( result )
-						{
-							if ( result [0] == undefined )
-							{	val = null; }
-							else
-							{	val = result [0].id; }
-						});
-						data.append ( 'customer', val );
-		
-		
+						data.append ( 'type', $('#register-new .type input[name="type"]').data ('id') );
+						data.append ( 'customer', $('#register-new .customer input[name="customer"]').data ('id') );
+
 						options ['data'] = data;
 						options ['processData'] = false;
 						options ['contentType'] = false,
@@ -465,26 +447,8 @@ r ( function ()
 					{
 						var data = new FormData ();
 		
-						var val = $('#register-new .type input[name="type"]').typeahead ('val');
-						$('#register-new .type input[name="type"]').data('bloodhound').search ( val, function ( result )
-						{
-							if ( result [0] == undefined )
-							{	val = null; }
-							else
-							{	val = result [0].id; }
-						} );
-						data.append ( 'type', val );
-		
-						var val = $('#register-new .customer input[name="customer"]').typeahead ('val');
-						$('#register-new .customer input[name="customer"]').data ('bloodhound').search ( val, function ( result )
-						{
-							if ( result [0] == undefined )
-							{	val = null; }
-							else
-							{	val = result [0].id; }
-						});
-						data.append ( 'customer', val );
-		
+						data.append ( 'type', $('#register-new .type input[name="type"]').data ('id') );
+						data.append ( 'customer', $('#register-new .customer input[name="customer"]').data ('id') );
 		
 						options ['data'] = data;
 						options ['processData'] = false;
