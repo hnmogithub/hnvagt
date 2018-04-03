@@ -414,6 +414,8 @@ r ( function ()
 		(function ()
 		{
 			var bUsers = new Bloodhound ({
+				'name': 'customer_users',
+
 				'datumTokenizer': Bloodhound.tokenizers.obj.whitespace('name', 'id'),
 				'queryTokenizer': Bloodhound.tokenizers.whitespace,
 
