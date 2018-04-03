@@ -415,6 +415,7 @@ r ( function ()
 		{
 			var bUsers = new Bloodhound ({
 				'name': 'customer_users',
+				'initialize': false,
 
 				'datumTokenizer': Bloodhound.tokenizers.obj.whitespace('name', 'id'),
 				'queryTokenizer': Bloodhound.tokenizers.whitespace,
@@ -456,7 +457,6 @@ r ( function ()
 					'cache': false,
 				},
 			});
-			bUsers.initialize ();
 	
 			var users = $('#register-new .customer_user input');
 			users.data ('bloodhound', bUsers);
