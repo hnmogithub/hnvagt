@@ -383,8 +383,6 @@ class register_new
 				ON
 					`r`.`customerUser` = `cu`.`id`
 
-				'. $where .'
-
 				GROUP BY
 					`cu`.`id`
 
