@@ -455,6 +455,7 @@ r ( function ()
 						options ['contentType'] = false,
 						options ['type'] = 'POST'
 						
+						console.log ( options );
 						return options;
 					},
 					'cache': false,
