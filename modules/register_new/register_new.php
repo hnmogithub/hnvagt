@@ -406,7 +406,7 @@ class register_new
 				ON
 					`cu`.`customer` = `c`.`id`
 					AND
-					`c`.`name` = ?
+					`c`.`id` = ?
 
 				LEFT JOIN
 					`reports` `r`
