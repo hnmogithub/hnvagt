@@ -434,8 +434,8 @@ r ( function ()
 
 						options ['data'] = data;
 						options ['processData'] = false;
-						options ['contentType'] = false,
-						options ['type'] = 'POST'
+						options ['contentType'] = false;
+						options ['type'] = 'POST';
 						
 						return options;
 					},
@@ -446,7 +446,6 @@ r ( function ()
 					'prepare': function ( q, options )
 					{
 						var data = new FormData ();
-		
 						data.append ( 'type', $('#register-new .type input[name="type"]').data ('id') );
 						data.append ( 'customer', $('#register-new .customer input[name="customer"]').data ('id') );
 		
@@ -455,6 +454,7 @@ r ( function ()
 						options ['contentType'] = false;
 						options ['type'] = 'POST';
 
+						console.log ( options );
 						return options;
 					},
 					'cache': false,
