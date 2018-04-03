@@ -285,9 +285,14 @@ r ( function ()
 					}
 				}
 			});
-			customer.on ('focus', function () { $(this).typeahead ('open') });
+			customer.on ('focus', function ()
+			{
+				$(this).typeahead ('open');
+			});
 			customer.on ('typeahead:selected', function ( e, selected )
 			{
+				$('#register-new .customer_user input[name="customer_user"]').data ('bloodhound').initialize ( true );
+
 				if ( selected.id == -10 )
 				{
 					$(this).typeahead ('val','');
@@ -407,6 +412,42 @@ r ( function ()
 
 				'prefetch': {
 					'url': '/register/new/ajax/bCustomerUser?prefetch=true',
+					'transport': function ( options, c, onSuccess, onError )
+					{
+						var data = new FormData ();
+
+						var val = $('#register-new .type input[name="type"]').typeahead ('val');
+						$('#register-new .type input[name="type"]').data('bloodhound').search ( val, function ( result )
+						{
+							if ( result [0] == undefined )
+							{	val = null; }
+							else
+							{	val = result [0].id; }
+						} );
+						data.append ( 'type', val );
+
+						var val = $('#register-new .customer input[name="customer"]').typeahead ('val');
+						$('#register-new .customer input[name="customer"]').data ('bloodhound').search ( val, function ( result )
+						{
+							if ( result [0] == undefined )
+							{	val = null; }
+							else
+							{	val = result [0].id; }
+						});
+						data.append ( 'customer', val );
+
+
+						options ['data'] = data;
+						options ['processData'] = false;
+						options ['contentType'] = false,
+						options ['type'] = 'POST',
+	
+						options ['success'] = onSuccess;
+						options ['error'] = function ( r, t, e )
+						{	onError ( e ); };
+	
+						$.ajax (options);
+					},
 					'cache': false,
 				},
 				'remote': {
