@@ -465,7 +465,15 @@ r ( function ()
 						} );
 						data.append ('type', val );
 
-						data.append ('customer', $('#register-new .customer input[name="customer"]').typeahead ('val') );
+						var val = $('#register-new .customer input[name="customer"]').typeahead ('val');
+						$('#register-new .customer input[name="customer"]').data ('bloodhound').search ( val, function ( result )
+						{
+							if ( result [0] == undefined )
+							{	val = null; }
+							else
+							{	val = result [0].id; }
+						});
+						data.append ( 'customer', val );
 	
 						options ['data'] = data;
 						options ['processData'] = false;
