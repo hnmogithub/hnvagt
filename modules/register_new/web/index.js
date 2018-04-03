@@ -73,6 +73,7 @@ r ( function ()
 			source.on ('focus', function () { $(this).typeahead ('open') });
 			source.on ('typeahead:selected', function ( e, selected )
 			{
+				console.log ( 'setting', this, 'to', selected );
 				$(this).data ('id', selected.id);
 			});
 			source.on ('blur', function ()
