@@ -58,6 +58,10 @@ r ( function ()
 				}
 			});
 			source.on ('focus', function () { $(this).typeahead ('open') });
+			source.on ('typeahead:selected', function ( e, selected )
+			{
+				$(this).attr ('data-id', selected.id);
+			});
 			source.on ('blur', function ()
 			{
 				var that = this;
@@ -189,6 +193,10 @@ r ( function ()
 					{
 						$('#register-new-input input[type="text"]').focus ();
 					}, 0 );
+				}
+				else
+				{
+					$(this).attr ('data-id', selected.id );
 				}
 			});
 			type.on ('blur', function ()
