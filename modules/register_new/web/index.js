@@ -76,6 +76,7 @@ r ( function ()
 		 * 
 		 * NOTE: We might need to write a remote for bloodhound here depending on the amount thats gonna be added to type, preloading every single type works when there's not that many, however as this increases it might be an issue
 		 */
+		/*
 		(function ()
 		{
 			var bTypes = new Bloodhound ({
@@ -203,6 +204,7 @@ r ( function ()
 				} );
 			});
 		})();
+		*/
 
 		/**
 		 * Bloodhound and Typeahead for the customers input

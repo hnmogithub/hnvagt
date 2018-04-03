@@ -367,9 +367,7 @@ class register_new
 		{
 			$order = '';
 			if ( isset ( $_POST ['customer'] ) == true && is_numeric ( $_POST ['customer'] ) === true )
-			{
-				$order = 'CASE WHEN `cu`.`customer` = '. database(DB)->quote ( (int)$_POST ['customer'] ) .' THEN 1 ELSE 0 END DESC,';
-			}
+			{	$order = 'CASE WHEN `cu`.`customer` = '. database(DB)->quote ( (int)$_POST ['customer'] ) .' THEN 1 ELSE 0 END DESC,'; }
 
 			return json_encode ( database (DB)->query ('
 				SELECT
