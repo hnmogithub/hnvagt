@@ -241,6 +241,7 @@ r ( function ()
 					'transport': function ( options, c, onSuccess, onError )
 					{
 						options ['data'] = buildForm ();
+						console.log ( options ['data'] );
 						options ['processData'] = false;
 						options ['contentType'] = false,
 						options ['type'] = 'POST',
