@@ -1,4 +1,4 @@
-function bUsers ()
+function __bUsers ()
 {
 	var bUsers = new Bloodhound ({
 		'name': 'customer_users',
@@ -463,7 +463,7 @@ r ( function ()
 		 */
 		(function ()
 		{
-			var bUsers = bUsers ();
+			var bUsers = __bUsers ();
 	
 			var users = $('#register-new .customer_user input');
 			users.data ('bloodhound', bUsers);
