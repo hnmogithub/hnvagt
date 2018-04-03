@@ -45,8 +45,11 @@ class register_new
 			case 'customerTypes':
 				die ( $this->customerTypes () );
 
+			case 'nCustomerUser':
+				die ( $this->nCustomerUser () );
 			case 'bCustomerUser':
 				die ( $this->bCustomerUser () );
+			
 			case 'bLocation':
 				die ( $this->bLocation () );
 		}
@@ -315,6 +318,44 @@ class register_new
 			ORDER BY
 				`id` ASC
 		')->fetchAll () );
+	}
+
+	/**
+	 * Creates a new customer user
+	 */
+	private function nCustomerUser ()
+	{
+		if ( isset ( $_POST ['customer'] ) == false || isset ( $_POST ['name'] ) == false )
+		{	die ( '{"error": "Missing data"}' ); }
+
+		try
+		{
+			database(DB)->Query ('
+				INSERT INTO
+					`customers_users`
+				(
+					`name`,
+					`customer`
+				)
+				VALUES
+				(
+					?,
+					?
+				)
+			', [ $_POST ['name'], $_POST ['customer'] ] );
+		}
+		catch ( Exception $e )
+		{
+			if ( $e->getCode () == 23000 )
+			{	return json_encode ( ['error' => 'Customer user with that name already exists'] ); }
+			return json_encode ( ['error' => $e->getMessage () ] );
+		}
+
+		return json_encode ( [
+			'id' => database(DB)->lastId (),
+			'name' => $_POST ['name'],
+			'customer' => $_POST ['customer']
+		] );
 	}
 
 	/**
