@@ -397,9 +397,6 @@ r ( function ()
 			});
 			customer.on ('blur', function ()
 			{
-				$('#register-new .customer_user input[name="customer_user"]').data ('bloodhound').search ('', function () {});
-
-
 				var that = this;
 				$(this).data ('bloodhound').search ( $(this).val (), function ( result )
 				{
