@@ -1,8 +1,14 @@
-function __bUsers ()
+function buildForm ()
 {
-	
+	var data = new FormData ();
+	data.append ( 'source', $('#register-new input[name="source"]').data ('id') );
+	data.append ( 'type', $('#register-new input[name="type"]').data ('id') );
+	data.append ( 'customer', $('#register-new input[name="customer"]').data ('id') );
+	data.append ( 'customer_user', $('#register-new input[name="customer_user"]').data ('id') );
+	data.append ( 'location', $('#register-new input[name="location"]').typeahead ('val') );
+	data.append ( 'ticket', $('#register-new input[name="ticket"]').val () );
 
-	return bUsers;
+	return data;
 }
 
 r ( function ()
@@ -93,11 +99,15 @@ r ( function ()
 				'datumTokenizer': Bloodhound.tokenizers.obj.whitespace('name', 'id'),
 				'queryTokenizer': Bloodhound.tokenizers.whitespace,
 				'prefetch': {
-					'url': '/register/new/ajax/bType?other=true',
+					'url': '/register/new/ajax/bType?prefetch=true',
+					'cache': false,
+				},
+				'remote': {
+					'url': '/register/new/ajax/bType?search=%QUERY',
+					'wildcard': '%QUERY',
 					'cache': false,
 				}
 			});
-			bTypes.initialize ();
 	
 			var type = $('#register-new .type input');
 			type.data ('bloodhound', bTypes);
@@ -123,7 +133,7 @@ r ( function ()
 							{
 								var result = [];
 								result.push ({'id': -10, 'name': 'Create new'});
-								result.push ({'id': -11, 'name': 'Create alias'});
+								//result.push ({'id': -11, 'name': 'Create alias'});
 								sync (result);
 							}
 						});
@@ -230,11 +240,7 @@ r ( function ()
 				'remote': {
 					'transport': function ( options, c, onSuccess, onError )
 					{
-						var data = new FormData ();
-						data.append ('source', $('#register-new .source input[name="source"]').typeahead ('val') );
-						data.append ('type', $('#register-new .type input[name="type"]').typeahead ('val') );
-	
-						options ['data'] = data;
+						options ['data'] = buildForm ();
 						options ['processData'] = false;
 						options ['contentType'] = false,
 						options ['type'] = 'POST',

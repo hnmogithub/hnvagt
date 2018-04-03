@@ -135,65 +135,136 @@ class register_new
 	{
 		$id = user::current ()->id ();
 
-		return json_encode ( database (DB)->query ('
-			SELECT
-				`t`.`id`,
-				IFNULL(`ta`.`value`,`t`.`name`) AS `name`,
-				`t`.`other`,
-				IFNULL(`ta`.`username`, `u`.`name`) AS `created_by`,
-				IFNULL(`ta`.`created_at`,`t`.`created_at`) AS `created_at`
-
-			FROM
-				`types` `t`
-
-			INNER JOIN
-				`users` `u`
-			ON
-				`t`.`created_by` = `u`.`id`
-
-			LEFT JOIN
-				`reports` `r`
-			ON
-				`r`.`type` = `t`.`id`
-				AND
-				`r`.`from` BETWEEN NOW() AND (NOW() - INTERVAL 1 MONTH)
-				AND
-				`r`.`user` = ?
-
-			LEFT JOIN
-			(
+		if ( isset ( $_GET ['prefetch'] ) == true && $_GET ['prefetch'] == 'true' )
+		{
+			return json_encode ( database (DB)->query ('
 				SELECT
-					`ta`.*,
-					`u`.`name` as `username`
+					`t`.`id`,
+					IFNULL(`ta`.`value`,`t`.`name`) AS `name`,
+					`t`.`other`,
+					`u`.`name` AS `created_by`,
+					`t`.`created_at` AS `created_at`
 
 				FROM
-					`types_aliases` `ta`
-
-				INNER JOIN
 					`types` `t`
-				ON
-					`t`.`id` = `ta`.`type`
 
 				INNER JOIN
 					`users` `u`
 				ON
-					`u`.`id` = `ta`.`user`
+					`t`.`created_by` = `u`.`id`
+
+				LEFT JOIN
+					`reports` `r`
+				ON
+					`r`.`type` = `t`.`id`
+					AND
+					`r`.`from` BETWEEN NOW() AND (NOW() - INTERVAL 1 MONTH)
+					AND
+					`r`.`user` = ?
+
+				LEFT JOIN
+				(
+					SELECT
+						`ta`.*,
+						`u`.`name` as `username`
+
+					FROM
+						`types_aliases` `ta`
+
+					INNER JOIN
+						`types` `t`
+					ON
+						`t`.`id` = `ta`.`type`
+
+					INNER JOIN
+						`users` `u`
+					ON
+						`u`.`id` = `ta`.`user`
+
+					WHERE
+						`ta`.`user` = ?
+
+					GROUP BY
+						`t`.`id`
+				) `ta`
+				ON
+					`ta`.`type` = `t`.`id`
 
 				WHERE
-					`ta`.`user` = ?
+					`t`.`other` = 0
 
 				GROUP BY
 					`t`.`id`
-			) `ta`
-			ON
-				`ta`.`type` = `t`.`id`
 
-			GROUP BY
-				`t`.`id`
+				ORDER BY
+					COUNT(`r`.`id`) DESC, `t`.`id` ASC
+			', [ $id, $id ])->fetchAll () );
+		}
+		else
+		{
+			return json_encode ( database (DB)->query ('
+				SELECT
+					`t`.`id`,
+					IFNULL(`ta`.`value`,`t`.`name`) AS `name`,
+					`t`.`other`,
+					`u`.`name` AS `created_by`,
+					`t`.`created_at` AS `created_at`
 
-			ORDER BY
-				COUNT(`r`.`id`) DESC, `t`.`id` ASC
-		', [ $id, $id ])->fetchAll () );
+				FROM
+					`types` `t`
+
+				INNER JOIN
+					`users` `u`
+				ON
+					`t`.`created_by` = `u`.`id`
+
+				LEFT JOIN
+					`reports` `r`
+				ON
+					`r`.`type` = `t`.`id`
+					AND
+					`r`.`from` BETWEEN NOW() AND (NOW() - INTERVAL 1 MONTH)
+					AND
+					`r`.`user` = ?
+
+				LEFT JOIN
+				(
+					SELECT
+						`ta`.*,
+						`u`.`name` as `username`
+
+					FROM
+						`types_aliases` `ta`
+
+					INNER JOIN
+						`types` `t`
+					ON
+						`t`.`id` = `ta`.`type`
+
+					INNER JOIN
+						`users` `u`
+					ON
+						`u`.`id` = `ta`.`user`
+
+					WHERE
+						`ta`.`user` = ?
+
+					GROUP BY
+						`t`.`id`
+				) `ta`
+				ON
+					`ta`.`type` = `t`.`id`
+
+				WHERE
+					`t`.`name` LIKE CONCAT(?,"%")
+
+				GROUP BY
+					`t`.`id`
+
+				ORDER BY
+					COUNT(`r`.`id`) DESC, `t`.`id` ASC
+			', [ $id, $id, $_GET ['search'] ] )->fetchAll () );
+		}
 	}
 
 	/**
