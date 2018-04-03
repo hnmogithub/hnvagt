@@ -306,11 +306,6 @@ r ( function ()
 			});
 			customer.on ('typeahead:selected', function ( e, selected )
 			{
-				var cu = $('#register-new .customer_user input[name="customer_user"]');
-				cu.typeahead (null, {
-					'prefetch':
-				})
-
 				if ( selected.id == -10 )
 				{
 					$(this).typeahead ('val','');
