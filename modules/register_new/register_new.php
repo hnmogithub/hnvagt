@@ -366,7 +366,7 @@ class register_new
 		if ( isset ( $_GET ['prefetch'] ) == true && $_GET ['prefetch'] == 'true' )
 		{
 			$order = '';
-			if ( isset ( $_POST ['customer'] ) == true && is_int ( $_POST ['customer'] ) === true )
+			if ( isset ( $_POST ['customer'] ) == true && is_numeric ( $_POST ['customer'] ) === true )
 			{
 				$order = 'CASE `cu`.`customer` = '. database(DB)->quote ( $_POST ['customer'] ) .' THEN 1 ELSE 0 END DESC,';
 			}
