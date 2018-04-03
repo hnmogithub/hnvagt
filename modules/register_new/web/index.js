@@ -2,6 +2,7 @@ function buildForm ()
 {
 	var data = new FormData ();
 	data.append ( 'source', $('#register-new input[name="source"]').data ('id') );
+	console.log ( $('#register-new input[name="source"]').data ('id') );
 	data.append ( 'type', $('#register-new input[name="type"]').data ('id') );
 	data.append ( 'customer', $('#register-new input[name="customer"]').data ('id') );
 	data.append ( 'customer_user', $('#register-new input[name="customer_user"]').data ('id') );
