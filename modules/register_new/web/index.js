@@ -412,6 +412,7 @@ r ( function ()
 
 				'prefetch': {
 					'url': '/register/new/ajax/bCustomerUser?prefetch=true',
+					/*
 					'transport': function ( options, c, onSuccess, onError )
 					{
 						var data = new FormData ();
@@ -447,7 +448,7 @@ r ( function ()
 						{	onError ( e ); };
 	
 						$.ajax (options);
-					},
+					},*/
 					'cache': false,
 				},
 				'remote': {
