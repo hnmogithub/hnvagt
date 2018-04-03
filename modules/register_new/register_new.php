@@ -365,10 +365,6 @@ class register_new
 	{
 		if ( isset ( $_GET ['prefetch'] ) == true && $_GET ['prefetch'] == 'true' )
 		{
-			$order = '';
-			if ( isset ( $_POST ['customer'] ) == true && is_numeric ( $_POST ['customer'] ) === true )
-			{	$order = 'CASE WHEN `cu`.`customer` = '. database(DB)->quote ( (int)$_POST ['customer'] ) .' THEN 1 ELSE 0 END DESC,'; }
-
 			return json_encode ( database (DB)->query ('
 				SELECT
 					`cu`.*
@@ -381,14 +377,17 @@ class register_new
 				ON
 					`r`.`customerUser` = `cu`.`id`
 
+				WHERE
+					`customer` = ?
+
 				GROUP BY
 					`cu`.`id`
 
 				ORDER BY
-					'. $order .' COUNT(`r`.`id`) DESC
+					COUNT(`r`.`id`) DESC
 
 				LIMIT 10
-			')->fetchAll () );
+			', [ $_POST ['customer'] ])->fetchAll () );
 		}
 		else
 		{

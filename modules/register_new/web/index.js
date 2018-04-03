@@ -1,49 +1,6 @@
 function __bUsers ()
 {
-	var bUsers = new Bloodhound ({
-		'name': 'customer_users',
-		'initialize': false,
-
-		'datumTokenizer': Bloodhound.tokenizers.obj.whitespace('name', 'id'),
-		'queryTokenizer': Bloodhound.tokenizers.whitespace,
-
-		'prefetch': {
-			'url': '/register/new/ajax/bCustomerUser?prefetch=true',
-			'prepare': function ( options )
-			{
-				var data = new FormData ();
-
-				var val = $('#register-new .type input[name="type"]').typeahead ('val');
-				$('#register-new .type input[name="type"]').data('bloodhound').search ( val, function ( result )
-				{
-					if ( result [0] == undefined )
-					{	val = null; }
-					else
-					{	val = result [0].id; }
-				} );
-				data.append ( 'type', val );
-
-				var val = $('#register-new .customer input[name="customer"]').typeahead ('val');
-				$('#register-new .customer input[name="customer"]').data ('bloodhound').search ( val, function ( result )
-				{
-					if ( result [0] == undefined )
-					{	val = null; }
-					else
-					{	val = result [0].id; }
-				});
-				data.append ( 'customer', val );
-
-
-				options ['data'] = data;
-				options ['processData'] = false;
-				options ['contentType'] = false,
-				options ['type'] = 'POST'
-				
-				return options;
-			},
-			'cache': false,
-		},
-	});
+	
 
 	return bUsers;
 }
@@ -350,8 +307,9 @@ r ( function ()
 			customer.on ('typeahead:selected', function ( e, selected )
 			{
 				var cu = $('#register-new .customer_user input[name="customer_user"]');
-				cu.data ('bloodhound').clear ();
-				cu.data ('bloodhound').initialize ( true );
+				cu.typeahead (null, {
+					'prefetch':
+				})
 
 				if ( selected.id == -10 )
 				{
@@ -463,7 +421,86 @@ r ( function ()
 		 */
 		(function ()
 		{
-			var bUsers = __bUsers ();
+			var bUsers = new Bloodhound ({
+				'name': 'customer_users',
+				'initialize': false,
+		
+				'datumTokenizer': Bloodhound.tokenizers.obj.whitespace('name', 'id'),
+				'queryTokenizer': Bloodhound.tokenizers.whitespace,
+		
+				'prefetch': {
+					'url': '/register/new/ajax/bCustomerUser?prefetch=true',
+					'prepare': function ( options )
+					{
+						var data = new FormData ();
+		
+						var val = $('#register-new .type input[name="type"]').typeahead ('val');
+						$('#register-new .type input[name="type"]').data('bloodhound').search ( val, function ( result )
+						{
+							if ( result [0] == undefined )
+							{	val = null; }
+							else
+							{	val = result [0].id; }
+						} );
+						data.append ( 'type', val );
+		
+						var val = $('#register-new .customer input[name="customer"]').typeahead ('val');
+						$('#register-new .customer input[name="customer"]').data ('bloodhound').search ( val, function ( result )
+						{
+							if ( result [0] == undefined )
+							{	val = null; }
+							else
+							{	val = result [0].id; }
+						});
+						data.append ( 'customer', val );
+		
+		
+						options ['data'] = data;
+						options ['processData'] = false;
+						options ['contentType'] = false,
+						options ['type'] = 'POST'
+						
+						return options;
+					},
+					'cache': false,
+				},
+				'remote': {
+					'url': '/register/new/ajax/bCustomerUser',
+					'prepare': function ( options )
+					{
+						var data = new FormData ();
+		
+						var val = $('#register-new .type input[name="type"]').typeahead ('val');
+						$('#register-new .type input[name="type"]').data('bloodhound').search ( val, function ( result )
+						{
+							if ( result [0] == undefined )
+							{	val = null; }
+							else
+							{	val = result [0].id; }
+						} );
+						data.append ( 'type', val );
+		
+						var val = $('#register-new .customer input[name="customer"]').typeahead ('val');
+						$('#register-new .customer input[name="customer"]').data ('bloodhound').search ( val, function ( result )
+						{
+							if ( result [0] == undefined )
+							{	val = null; }
+							else
+							{	val = result [0].id; }
+						});
+						data.append ( 'customer', val );
+		
+		
+						options ['data'] = data;
+						options ['processData'] = false;
+						options ['contentType'] = false,
+						options ['type'] = 'POST'
+						
+						return options;
+					},
+					'cache': false,
+				}
+			});
 	
 			var users = $('#register-new .customer_user input');
 			users.data ('bloodhound', bUsers);
