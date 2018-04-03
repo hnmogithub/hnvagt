@@ -371,7 +371,7 @@ class register_new
 				$order = 'CASE `cu`.`customer` = '. database(DB)->quote ( $_POST ['customer'] ) .' THEN 1 ELSE 0 END DESC,';
 			}
 
-			return json_encode ( database (DB)->query ('
+			$query = '
 				SELECT
 					`cu`.*
 
@@ -390,7 +390,10 @@ class register_new
 					'. $order .' COUNT(`r`.`id`) DESC
 
 				LIMIT 10
-			')->fetchAll () );
+			';
+			var_dump ( $query );
+
+			return json_encode ( database (DB)->query ($query)->fetchAll () );
 		}
 		else
 		{
