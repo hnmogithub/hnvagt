@@ -291,7 +291,9 @@ r ( function ()
 			});
 			customer.on ('typeahead:selected', function ( e, selected )
 			{
-				$('#register-new .customer_user input[name="customer_user"]').data ('bloodhound').initialize ( true );
+				var cu = $('#register-new .customer_user input[name="customer_user"]');
+				cu.data ('bloodhound').clear ();
+				cu.data ('bloodhound').initialize ( true );
 
 				if ( selected.id == -10 )
 				{
