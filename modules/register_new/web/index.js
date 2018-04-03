@@ -1,3 +1,53 @@
+function bUsers ()
+{
+	var bUsers = new Bloodhound ({
+		'name': 'customer_users',
+		'initialize': false,
+
+		'datumTokenizer': Bloodhound.tokenizers.obj.whitespace('name', 'id'),
+		'queryTokenizer': Bloodhound.tokenizers.whitespace,
+
+		'prefetch': {
+			'url': '/register/new/ajax/bCustomerUser?prefetch=true',
+			'prepare': function ( options )
+			{
+				var data = new FormData ();
+
+				var val = $('#register-new .type input[name="type"]').typeahead ('val');
+				$('#register-new .type input[name="type"]').data('bloodhound').search ( val, function ( result )
+				{
+					if ( result [0] == undefined )
+					{	val = null; }
+					else
+					{	val = result [0].id; }
+				} );
+				data.append ( 'type', val );
+
+				var val = $('#register-new .customer input[name="customer"]').typeahead ('val');
+				$('#register-new .customer input[name="customer"]').data ('bloodhound').search ( val, function ( result )
+				{
+					if ( result [0] == undefined )
+					{	val = null; }
+					else
+					{	val = result [0].id; }
+				});
+				data.append ( 'customer', val );
+
+
+				options ['data'] = data;
+				options ['processData'] = false;
+				options ['contentType'] = false,
+				options ['type'] = 'POST'
+				
+				return options;
+			},
+			'cache': false,
+		},
+	});
+
+	return bUsers;
+}
+
 r ( function ()
 {
 	$.getScript ('/modules/register_new/web/lib/anytime/anytime.5.2.0.min.js', function ()
@@ -413,50 +463,7 @@ r ( function ()
 		 */
 		(function ()
 		{
-			var bUsers = new Bloodhound ({
-				'name': 'customer_users',
-				'initialize': false,
-
-				'datumTokenizer': Bloodhound.tokenizers.obj.whitespace('name', 'id'),
-				'queryTokenizer': Bloodhound.tokenizers.whitespace,
-
-				'prefetch': {
-					'url': '/register/new/ajax/bCustomerUser?prefetch=true',
-					'prepare': function ( options )
-					{
-						var data = new FormData ();
-
-						var val = $('#register-new .type input[name="type"]').typeahead ('val');
-						$('#register-new .type input[name="type"]').data('bloodhound').search ( val, function ( result )
-						{
-							if ( result [0] == undefined )
-							{	val = null; }
-							else
-							{	val = result [0].id; }
-						} );
-						data.append ( 'type', val );
-
-						var val = $('#register-new .customer input[name="customer"]').typeahead ('val');
-						$('#register-new .customer input[name="customer"]').data ('bloodhound').search ( val, function ( result )
-						{
-							if ( result [0] == undefined )
-							{	val = null; }
-							else
-							{	val = result [0].id; }
-						});
-						data.append ( 'customer', val );
-
-
-						options ['data'] = data;
-						options ['processData'] = false;
-						options ['contentType'] = false,
-						options ['type'] = 'POST'
-						
-						return options;
-					},
-					'cache': false,
-				},
-			});
+			var bUsers = bUsers ();
 	
 			var users = $('#register-new .customer_user input');
 			users.data ('bloodhound', bUsers);
