@@ -443,7 +443,7 @@ r ( function ()
 				},
 				'remote': {
 					'url': '/register/new/ajax/bCustomerUser',
-					'prepare': function ( options,b,c )
+					'prepare': function ( q, options )
 					{
 						var data = new FormData ();
 		
@@ -452,10 +452,9 @@ r ( function ()
 		
 						options ['data'] = data;
 						options ['processData'] = false;
-						options ['contentType'] = false,
-						options ['type'] = 'POST'
-						
-						console.log ( options,b,c );
+						options ['contentType'] = false;
+						options ['type'] = 'POST';
+
 						return options;
 					},
 					'cache': false,
