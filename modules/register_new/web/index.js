@@ -450,6 +450,7 @@ r ( function ()
 						data.append ( 'customer', $('#register-new .customer input[name="customer"]').data ('id') );
 		
 						options ['data'] = data;
+						options ['enctype'] = 'multipart/form-data';
 						options ['processData'] = false;
 						options ['contentType'] = false;
 						options ['type'] = 'POST';
